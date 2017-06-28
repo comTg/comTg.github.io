@@ -2,8 +2,10 @@
 
 
 
+  
 
-<html class="theme-next pisces" lang="zh-Hans">
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -108,7 +110,7 @@
     scheme: 'Pisces',
     sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
-    motion: false,
+    motion: true,
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -212,6 +214,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -288,6 +300,13 @@
           
   <div class="comments" id="comments">
     
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
   </div>
 
 
@@ -317,7 +336,7 @@
                alt="Desc" />
           <p class="site-author-name" itemprop="name">Desc</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">Java是世界上最差的语言</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -332,7 +351,25 @@
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -380,15 +417,20 @@
 
 
 <div class="powered-by">
+  每一个不曾学习的日子
+  <!--
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  -->
 </div>
 
 <div class="theme-info">
+  都是对生命的极大浪费
+  <!--
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Pisces
-  </a>
-</div>
+  </a>-->
+</div> 
 
 
         
@@ -491,6 +533,26 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://robot.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/404.html';
+          this.page.identifier = '404.html';
+          this.page.title = '';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://robot.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
 
 
 
@@ -509,10 +571,6 @@
   
 
 
-
-
-
-  
 
 
 

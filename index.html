@@ -2,8 +2,10 @@
 
 
 
+  
 
-<html class="theme-next pisces" lang="zh-Hans">
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -91,12 +93,15 @@
 
 
 
+<meta name="description" content="Java是世界上最差的语言">
 <meta property="og:type" content="website">
 <meta property="og:title" content="某人的博客">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="某人的博客">
+<meta property="og:description" content="Java是世界上最差的语言">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="某人的博客">
+<meta name="twitter:description" content="Java是世界上最差的语言">
 
 
 
@@ -107,7 +112,7 @@
     scheme: 'Pisces',
     sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
-    motion: false,
+    motion: true,
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -213,6 +218,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -303,8 +318,41 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/test/" itemprop="url" rel="index">
+                    <span itemprop="name">test</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/28/FirstBook/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/28/FirstBook/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -328,12 +376,17 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>我有一头小毛驴我从来都不骑</p>
 </blockquote>
-
-          
+<p><img src="/myimages/0.gif" alt=""></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/28/FirstBook/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -403,7 +456,7 @@
                alt="Desc" />
           <p class="site-author-name" itemprop="name">Desc</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">Java是世界上最差的语言</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -418,7 +471,25 @@
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -466,15 +537,20 @@
 
 
 <div class="powered-by">
+  每一个不曾学习的日子
+  <!--
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  -->
 </div>
 
 <div class="theme-info">
+  都是对生命的极大浪费
+  <!--
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Pisces
-  </a>
-</div>
+  </a>-->
+</div> 
 
 
         
@@ -577,6 +653,14 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://robot.disqus.com/count.js" async></script>
+    
+
+    
+
+  
+
 
 
 
@@ -595,10 +679,6 @@
   
 
 
-
-
-
-  
 
 
 
