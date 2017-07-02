@@ -93,18 +93,18 @@
 
 
 
-<meta name="description" content="Git的安装这一步去官网查看如何安装就行，Git的安装算是比较简单的了，Windows操作系统只需要去官网下载安装包安装即可 创建代码仓库再进行创建前先配置一下你的身份，这样在提交代码的时候Git就知道是谁提交的了，命令如下：12git config --global user.name &quot;Tom&quot;git config --global user.email &quot;Tom@gmail.com&quot; 仓库(">
+<meta name="description" content="Git的安装这一步去官网查看如何安装就行，Git的安装算是比较简单的了，Windows操作系统只需要去官网下载安装包安装即可 创建代码仓库在开始创建前先配置一下你的身份，这样在提交代码的时候Git就知道是谁提交的了，命令如下：12git config --global user.name &quot;Tom&quot;git config --global user.email &quot;Tom@gmail.com&quot; 仓库(">
 <meta name="keywords" content="Git,github,项目">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git的基本使用">
 <meta property="og:url" content="http://yoursite.com/2017/07/02/Git的基本使用/index.html">
 <meta property="og:site_name" content="某人的博客">
-<meta property="og:description" content="Git的安装这一步去官网查看如何安装就行，Git的安装算是比较简单的了，Windows操作系统只需要去官网下载安装包安装即可 创建代码仓库再进行创建前先配置一下你的身份，这样在提交代码的时候Git就知道是谁提交的了，命令如下：12git config --global user.name &quot;Tom&quot;git config --global user.email &quot;Tom@gmail.com&quot; 仓库(">
+<meta property="og:description" content="Git的安装这一步去官网查看如何安装就行，Git的安装算是比较简单的了，Windows操作系统只需要去官网下载安装包安装即可 创建代码仓库在开始创建前先配置一下你的身份，这样在提交代码的时候Git就知道是谁提交的了，命令如下：12git config --global user.name &quot;Tom&quot;git config --global user.email &quot;Tom@gmail.com&quot; 仓库(">
 <meta property="og:image" content="http://yoursite.com/myimages/git%20use/fenzhi.png">
-<meta property="og:updated_time" content="2017-07-02T08:48:53.563Z">
+<meta property="og:updated_time" content="2017-07-02T08:50:49.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git的基本使用">
-<meta name="twitter:description" content="Git的安装这一步去官网查看如何安装就行，Git的安装算是比较简单的了，Windows操作系统只需要去官网下载安装包安装即可 创建代码仓库再进行创建前先配置一下你的身份，这样在提交代码的时候Git就知道是谁提交的了，命令如下：12git config --global user.name &quot;Tom&quot;git config --global user.email &quot;Tom@gmail.com&quot; 仓库(">
+<meta name="twitter:description" content="Git的安装这一步去官网查看如何安装就行，Git的安装算是比较简单的了，Windows操作系统只需要去官网下载安装包安装即可 创建代码仓库在开始创建前先配置一下你的身份，这样在提交代码的时候Git就知道是谁提交的了，命令如下：12git config --global user.name &quot;Tom&quot;git config --global user.email &quot;Tom@gmail.com&quot; 仓库(">
 <meta name="twitter:image" content="http://yoursite.com/myimages/git%20use/fenzhi.png">
 
 
@@ -343,7 +343,7 @@
 
       
         <h2 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h2><p>这一步去官网查看如何安装就行，Git的安装算是比较简单的了，Windows操作系统只需要去官网下载安装包安装即可</p>
-<h2 id="创建代码仓库"><a href="#创建代码仓库" class="headerlink" title="创建代码仓库"></a>创建代码仓库</h2><p>再进行创建前先配置一下你的身份，这样在提交代码的时候Git就知道是谁提交的了，命令如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"Tom"</span></div><div class="line">git config --global user.email <span class="string">"Tom@gmail.com"</span></div></pre></td></tr></table></figure></p>
+<h2 id="创建代码仓库"><a href="#创建代码仓库" class="headerlink" title="创建代码仓库"></a>创建代码仓库</h2><p>在开始创建前先配置一下你的身份，这样在提交代码的时候Git就知道是谁提交的了，命令如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"Tom"</span></div><div class="line">git config --global user.email <span class="string">"Tom@gmail.com"</span></div></pre></td></tr></table></figure></p>
 <p><strong>仓库(Repository)是用于保存版本管理所需信息的地方，所有本地提交的代码都会被提交到代码仓库中，也可以推送到Github远程仓库中。</strong><br><a id="more"></a><br> 在资源管理器中进入到项目目录，右键，选择Git bash here，然后输入<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure></p>
 <p>就完成了代码仓库的创建，创建完成后会在该项目的根目录下生成一个隐藏的.git文件夹，用来记录本地所有的Git操作。</p>
 <h2 id="提交本地代码"><a href="#提交本地代码" class="headerlink" title="提交本地代码"></a>提交本地代码</h2><p>提交本地代码需要用到add 和 commit命令即可，add用于将想要提交的代码添加进来，commit则是真正地区执行提交操作。</p>
