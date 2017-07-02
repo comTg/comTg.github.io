@@ -1,0 +1,794 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Git,github,项目," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Git的安装这一步去官网查看如何安装就行，Git的安装算是比较简单的了，Windows操作系统只需要去官网下载安装包安装即可 创建代码仓库再进行创建前先配置一下你的身份，这样在提交代码的时候Git就知道是谁提交的了，命令如下：12git config --global user.name &quot;Tom&quot;git config --global user.email &quot;Tom@gmail.com&quot; 仓库(">
+<meta name="keywords" content="Git,github,项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git的基本使用">
+<meta property="og:url" content="http://yoursite.com/2017/07/02/Git的基本使用/index.html">
+<meta property="og:site_name" content="某人的博客">
+<meta property="og:description" content="Git的安装这一步去官网查看如何安装就行，Git的安装算是比较简单的了，Windows操作系统只需要去官网下载安装包安装即可 创建代码仓库再进行创建前先配置一下你的身份，这样在提交代码的时候Git就知道是谁提交的了，命令如下：12git config --global user.name &quot;Tom&quot;git config --global user.email &quot;Tom@gmail.com&quot; 仓库(">
+<meta property="og:image" content="http://yoursite.com/myimages/git%20use/fenzhi.png">
+<meta property="og:updated_time" content="2017-07-02T08:48:53.563Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git的基本使用">
+<meta name="twitter:description" content="Git的安装这一步去官网查看如何安装就行，Git的安装算是比较简单的了，Windows操作系统只需要去官网下载安装包安装即可 创建代码仓库再进行创建前先配置一下你的身份，这样在提交代码的时候Git就知道是谁提交的了，命令如下：12git config --global user.name &quot;Tom&quot;git config --global user.email &quot;Tom@gmail.com&quot; 仓库(">
+<meta name="twitter:image" content="http://yoursite.com/myimages/git%20use/fenzhi.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/02/Git的基本使用/"/>
+
+
+
+
+
+  <title>Git的基本使用 | 某人的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2f1cdf637fd7d1ad3d558bb2fb89112b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">某人的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/02/Git的基本使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Desc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="某人的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Git的基本使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-02T15:33:25+08:00">
+                2017-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h2><p>这一步去官网查看如何安装就行，Git的安装算是比较简单的了，Windows操作系统只需要去官网下载安装包安装即可</p>
+<h2 id="创建代码仓库"><a href="#创建代码仓库" class="headerlink" title="创建代码仓库"></a>创建代码仓库</h2><p>再进行创建前先配置一下你的身份，这样在提交代码的时候Git就知道是谁提交的了，命令如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"Tom"</span></div><div class="line">git config --global user.email <span class="string">"Tom@gmail.com"</span></div></pre></td></tr></table></figure></p>
+<p><strong>仓库(Repository)是用于保存版本管理所需信息的地方，所有本地提交的代码都会被提交到代码仓库中，也可以推送到Github远程仓库中。</strong><br><a id="more"></a><br> 在资源管理器中进入到项目目录，右键，选择Git bash here，然后输入<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure></p>
+<p>就完成了代码仓库的创建，创建完成后会在该项目的根目录下生成一个隐藏的.git文件夹，用来记录本地所有的Git操作。</p>
+<h2 id="提交本地代码"><a href="#提交本地代码" class="headerlink" title="提交本地代码"></a>提交本地代码</h2><p>提交本地代码需要用到add 和 commit命令即可，add用于将想要提交的代码添加进来，commit则是真正地区执行提交操作。</p>
+<ol>
+<li>添加 app 目录 或 单个文件</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git add app</div></pre></td></tr></table></figure>
+<ol>
+<li>添加所有的文件</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git add .</div></pre></td></tr></table></figure>
+<ol>
+<li>提交</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m <span class="string">"First commit"</span></div></pre></td></tr></table></figure>
+<p>在commit命令的后面，一个要通过 -m参数来加上提交的描述信息，不然以后连自己都不知道每次提交的意义。</p>
+<h2 id="如何忽略不想提交的文件"><a href="#如何忽略不想提交的文件" class="headerlink" title="如何忽略不想提交的文件"></a>如何忽略不想提交的文件</h2><p><strong>Git会检查代码仓库的目录下是否存在一个名为.gitignore的文件，如果存在的话，就会一行行读取这个文件的内容，并把每一行指定的文件或目录排除在版本控制之外，.gitignore中指定的文件或目录可以使用 “*” 通配符。</strong></p>
+<h2 id="查看修改内容"><a href="#查看修改内容" class="headerlink" title="查看修改内容"></a>查看修改内容</h2><ol>
+<li>查看文件修改情况，使用status指令</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure>
+<ol>
+<li>查看更改的内容，使用到diff指令</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git diff</div></pre></td></tr></table></figure>
+<ol>
+<li>如果只想查看某一个文件的更改内容</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git diff app/src/main/.../MainActivity.java</div></pre></td></tr></table></figure>
+<h2 id="撤销未提交的修改"><a href="#撤销未提交的修改" class="headerlink" title="撤销未提交的修改"></a>撤销未提交的修改</h2><p>如果代码写得太草率影响了正常的功能，只要代码还没有提交，所有修改的内容都是可以撤销的，只需要使用checkout命令</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout app/src/main/.../MainActivity.java</div></pre></td></tr></table></figure>
+<p>执行这个命令后，对MainActivity.java这个文件所做的一些修改都恢复到上一次提交的状态。<br><strong>如果代码已经添加，但是还没有提交，也可以用reset命令取消添加，再用checkout命令撤销修改。</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset HEAD app/src/main/.../MainActivity.java</div></pre></td></tr></table></figure>
+<h2 id="查看提交记录"><a href="#查看提交记录" class="headerlink" title="查看提交记录"></a>查看提交记录</h2><p>项目开发过程中，如果想要知道提交了多少次，每次提交修改了哪些内容也是可以的，用到log命令。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git log</div></pre></td></tr></table></figure>
+<p>当提交记录非常多，只想查看某一条记录，可以在命令中指定该记录的id，并加上-1参数表示我们只想看到一行记录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git log 1fa38..... -1</div></pre></td></tr></table></figure></p>
+<p>查看这条提交记录具体修改了什么内容，可以在命令中加入-p参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git log 1fa38..... -1 -p</div></pre></td></tr></table></figure></p>
+<h2 id="Git中分支的用法"><a href="#Git中分支的用法" class="headerlink" title="Git中分支的用法"></a>Git中分支的用法</h2><p><strong>分支</strong><br>分支是版本控制中比较高级且比较重要的一个概念，它主要的作用是在代码的基础上开辟一个分叉口，使得代码可以在主干线和分支线同时进行开发，且相互间不会影响。<br><img src="/myimages/git use/fenzhi.png" alt=""></p>
+<ol>
+<li><p>查看当前的版本库当中有哪些分支，使用branch命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建一个名为version1.0的分支:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch version1.0</div></pre></td></tr></table></figure>
+</li>
+<li><p>从主干线master切换到分支线上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout version1.0</div></pre></td></tr></table></figure>
+</li>
+<li><p>在分支线和主干线上进行的操作不会互相影响，但是可以使用merge命令来完成合并操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git checkout master</div><div class="line">git merge version1.0</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除不需要的分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch version1.0</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="与远程版本库协作"><a href="#与远程版本库协作" class="headerlink" title="与远程版本库协作"></a>与远程版本库协作</h2><p>git可以与在github的版本库进行协作来达到团队合作开发的目的。</p>
+<ol>
+<li><p>将Github上的版本库代码下载到本地，假如地址是 <a href="https://github.com/example/test.git" target="_blank" rel="external">https://github.com/example/test.git</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/example/test.git</div></pre></td></tr></table></figure>
+</li>
+<li><p>将本地修改的内容同步到远程版本库上，使用push命令，origin 部分指定的是远程版本库的Git地址，master部分指定的是同步到哪一个分支上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin master</div></pre></td></tr></table></figure>
+</li>
+<li><p>将远程版本库的修改同步到本地，Git提供了两种命令，fetch和pull<br>fetch和push的语法规则类似，执行了这个命令之后会将远程版本库上的代码同步到本地。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch origin master</div></pre></td></tr></table></figure>
+</li>
+<li><p>不过同步下来的代码不会合并到任何分支上，会存放到一个origin/master分支上，可以通过diff命令来查看远程版本库上到底修改了哪些东西。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git diff origin/master</div></pre></td></tr></table></figure>
+</li>
+<li><p>调用merge命令即可将origin/master的修改合并到主分支上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git merge origin/master</div></pre></td></tr></table></figure>
+</li>
+<li><p>pull命令则是相当于将fetch和merge命令放在一起执行了，获取最新代码并且合并到本地</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull origin master</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag"># Git</a>
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+            <a href="/tags/项目/" rel="tag"># 项目</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/01/Java中的反射机制/" rel="next" title="Java中的反射机制">
+                <i class="fa fa-chevron-left"></i> Java中的反射机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Desc" />
+          <p class="site-author-name" itemprop="name">Desc</p>
+           
+              <p class="site-description motion-element" itemprop="description">Java是世界上最差的语言</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git的安装"><span class="nav-number">1.</span> <span class="nav-text">Git的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建代码仓库"><span class="nav-number">2.</span> <span class="nav-text">创建代码仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提交本地代码"><span class="nav-number">3.</span> <span class="nav-text">提交本地代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何忽略不想提交的文件"><span class="nav-number">4.</span> <span class="nav-text">如何忽略不想提交的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看修改内容"><span class="nav-number">5.</span> <span class="nav-text">查看修改内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#撤销未提交的修改"><span class="nav-number">6.</span> <span class="nav-text">撤销未提交的修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看提交记录"><span class="nav-number">7.</span> <span class="nav-text">查看提交记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git中分支的用法"><span class="nav-number">8.</span> <span class="nav-text">Git中分支的用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与远程版本库协作"><span class="nav-number">9.</span> <span class="nav-text">与远程版本库协作</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Desc</span>
+</div>
+
+
+<div class="powered-by">
+  每一个不曾学习的日子
+  <!--
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  -->
+</div>
+
+<div class="theme-info">
+  都是对生命的极大浪费
+  <!--
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>-->
+</div> 
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
