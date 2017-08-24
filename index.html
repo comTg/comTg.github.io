@@ -1,99 +1,14 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<!DOCTYPE html>
+<html class="full-height">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
-
-
-
-
-
-
-<meta name="description" content="Java是世界上最差的语言">
+  <title>某人的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java是世界上最差的语言">
 <meta property="og:type" content="website">
 <meta property="og:title" content="某人的博客">
 <meta property="og:url" content="http://yoursite.com/index.html">
@@ -102,1568 +17,713 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="某人的博客">
 <meta name="twitter:description" content="Java是世界上最差的语言">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/"/>
-
-
-
-
-
-  <title>某人的博客</title>
   
-
-
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?2f1cdf637fd7d1ad3d558bb2fb89112b";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-
-
-
-
-
+    <link rel="alternate" href="/atom.xml" title="某人的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Vetoer</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
 
-  
-  
-    
-  
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <style>
+    .post-hover:hover {
+        box-shadow: inset 0 0 100px #000;
+        transition: box-shadow .2s;
+    }
 
-  <div class="container sidebar-position-right 
-   page-home 
- ">
-    <div class="headband"></div>
+    .sub-post-container .post-hover:hover h3 {
+        text-decoration: underline gray;
+    }
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">某人的博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    .primary-item-main {
+        height: 330px;
+        background-size: cover;
+    }
+
+    .primary-container .title,
+    .primary-container .sub-title,
+    .primary-container .post-content-text,
+    .primary-container .date {
+        color: #fff;
+    }
+
+    .post-content-text {
+        color: #f1f1f1!important;
+    }
+
+    .primary-container .post-hover {
+        background: black;
+    }
+
+    .content-bg-mask {
+        background: rgba(0,0,0,.4);
+    }
+
+</style>
+
+<div style="background: #f5f8f9;">
+    <div id="main-container" class="container" style="padding-top: 20px;">
+        <div class="is-flex main-content justify-center">
+            <section class="column is-9">
+                
+<div class="primary-container content-box is-flex-desktop clear-padding bottom-line" style="margin-bottom: 25px;">
+    <div class="column  is-7-desktop">
+        <a href="/2017/08/25/python中wordcloud的基本用法/">
+            <div class="full-height post-hover"
+                 style="
+                         background-image: url('/myimages/word_i_have_dream.jpg');
+                         height: 350px;
+                         background-size: cover;
+                         background-repeat: no-repeat;
+                         ">
+                    <div class=" is-flex flex-column center content has-text-centered full-height has-padding content-bg-mask">
+                        <h1 class="title text-shadow" style="margin-bottom: 15px;">
+                            Python中wordcloud的用法
+                        </h1>
+                        <div>
+                        
+                            
+                        
+                        </div>
+                        <p class="post-content-text is-marginless has-padding text-shadow">
+                            wordcloud包的基本用法1class wordcloud.WordCloud(font_path=None, width=400, height=200, margin=2, ranks_only=None, prefer_hor..
+                        </p>
+                        <p class="date text-shadow">2017-08-25</p>
+                        <button class="button is-info is-small">Read More</button>
+                    </div>
+            </div>
+        </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+    <div class="column is-5 is-hidden-touch" style="padding-left: 0;">
+        <div class="full-height is-flex flex-column justify-space-between" style="min-height: 350px;">
+            
+                
+<a class="post-hover" href="/2017/08/25/Ubuntu生存指南/" style="height: 48.5%">
+    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('')">
+        <div class="content-bg-mask full-width full-height has-padding">
+            <h3 class="title is-marginless text-shadow">
+                Ubuntu生存指南
+            </h3>
+            
+            
+            
+            <p class="sub-title text-shadow"></p>
+            <p class="is-marginless text-shadow post-content-text">
+                切换开关机动画sudo update-alternatives --config default..
+            </p>
+            <p class="date text-shadow is-marginless">2017-08-25</p>
+        </div>
+    </div>
+</a>
+            
+            
+                
+<a class="post-hover" href="/2017/08/25/Ubuntu中的软件安装与卸载/" style="height: 48.5%">
+    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('')">
+        <div class="content-bg-mask full-width full-height has-padding">
+            <h3 class="title is-marginless text-shadow">
+                ubuntu 中的安装和卸载
+            </h3>
+            
+            
+            <span class="tag is-post-tag">linux</span>
+            
+            <span class="tag is-post-tag">ubuntu</span>
+            
+            
+            <p class="sub-title text-shadow"></p>
+            <p class="is-marginless text-shadow post-content-text">
+                Ubuntu中软件的安装方法1、APT方式
+（1）普通安装：apt-get install so..
+            </p>
+            <p class="date text-shadow is-marginless">2017-08-25</p>
+        </div>
+    </div>
+</a>
+            
+        </div>
+    </div>
+    <div class="column is-12 is-hidden-desktop">
+        
+        
+<a class="post-hover" href="/2017/08/25/Ubuntu生存指南/" style="height: 48.5%">
+    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('')">
+        <div class="content-bg-mask full-width full-height has-padding">
+            <h3 class="title is-marginless text-shadow">
+                Ubuntu生存指南
+            </h3>
+            
+            
+            
+            <p class="sub-title text-shadow"></p>
+            <p class="is-marginless text-shadow post-content-text">
+                切换开关机动画sudo update-alternatives --config default..
+            </p>
+            <p class="date text-shadow is-marginless">2017-08-25</p>
+        </div>
+    </div>
+</a>
+        
+        
+        
+<a class="post-hover" href="/2017/08/25/Ubuntu中的软件安装与卸载/" style="height: 48.5%">
+    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('')">
+        <div class="content-bg-mask full-width full-height has-padding">
+            <h3 class="title is-marginless text-shadow">
+                ubuntu 中的安装和卸载
+            </h3>
+            
+            
+            <span class="tag is-post-tag">linux</span>
+            
+            <span class="tag is-post-tag">ubuntu</span>
+            
+            
+            <p class="sub-title text-shadow"></p>
+            <p class="is-marginless text-shadow post-content-text">
+                Ubuntu中软件的安装方法1、APT方式
+（1）普通安装：apt-get install so..
+            </p>
+            <p class="date text-shadow is-marginless">2017-08-25</p>
+        </div>
+    </div>
+</a>
+        
+    </div>
 </div>
 
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/25/python中wordcloud的基本用法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Desc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="某人的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+                    
+                    
                 
-                <a class="post-title-link" href="/2017/08/25/python中wordcloud的基本用法/" itemprop="url">Python中wordcloud的用法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T06:29:35+08:00">
-                2017-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
+                    
+                        <div class="content-box  is-hidden-desktop" style="margin-bottom: 27px;">
+                            <a class="post-hover" href="/2017/08/25/Ubuntu生存指南/">
+                            <div class="columns" style="min-height: 230px;">
+                                
+                                <div class="column is-8-desktop post-content is-flex align-center">
+                                    <div class="content">
+                                        <h3>Ubuntu生存指南</h3>
+                                        
+                                        <p>
+                                            
+                                        </p>
+                                        <p>
+                                            切换开关机动画sudo update-alternatives --config default.plymouth
+#####增加ubuntu对python3中tkinter的支持
+sudo apt-get install python3-tk
+安装快照 snapdsudo apt install snapd    
+使软件开机启动
+生成该软件的桌面图标..
+                                        </p>
+                                        <p>2017-08-25</p>
+                                        <button class="button is-small">Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+                    
                 
+                    
+                        <div class="content-box  is-hidden-desktop" style="margin-bottom: 27px;">
+                            <a class="post-hover" href="/2017/08/25/Ubuntu中的软件安装与卸载/">
+                            <div class="columns" style="min-height: 230px;">
+                                
+                                <div class="column is-8-desktop post-content is-flex align-center">
+                                    <div class="content">
+                                        <h3>ubuntu 中的安装和卸载</h3>
+                                        
+                                        <p>
+                                            
+                                                <span class="tag is-post-tag">linux</span>
+                                            
+                                                <span class="tag is-post-tag">ubuntu</span>
+                                            
+                                        </p>
+                                        <p>
+                                            Ubuntu中软件的安装方法1、APT方式
+（1）普通安装：apt-get install softname1 softname2 …;
+（2）修复安装：apt-get -f install softname1 softname2… ;(-f Atemp to correct broken dependencies)
+（3）重新安装：apt-get –r..
+                                        </p>
+                                        <p>2017-08-25</p>
+                                        <button class="button is-small">Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+                    
                 
-              
-            </span>
-          
+                    
+                        <div class="content-box  " style="margin-bottom: 27px;">
+                            <a class="post-hover" href="/2017/08/21/Linux中如何查看端口占用/">
+                            <div class="columns" style="min-height: 230px;">
+                                
+                                <div class="column is-8-desktop post-content is-flex align-center">
+                                    <div class="content">
+                                        <h3>Ubuntu中如何查看端口占用</h3>
+                                        
+                                        <p>
+                                            
+                                                <span class="tag is-post-tag">linux</span>
+                                            
+                                                <span class="tag is-post-tag">ubuntu</span>
+                                            
+                                                <span class="tag is-post-tag">命令</span>
+                                            
+                                        </p>
+                                        <p>
+                                            在程序运行过程中，经常会因为一些不当的操作导致应用不能正常关闭，依然占用着端口，影响其他应用的运行
+查看所有的服务端口
+1netstat -a
 
-          
+查看所有的服务端口，显示pid号
+netstat -a
+
+
+查看指定端口信息共有四种方式(以8000为例):
+​
+
+查看某一个指定端口，则可以结合grep(|)命令使用，过滤出当前端口
+netstat -ap ..
+                                        </p>
+                                        <p>2017-08-21</p>
+                                        <button class="button is-small">Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+                    
+                
+                    
+                        <div class="content-box  " style="margin-bottom: 27px;">
+                            <a class="post-hover" href="/2017/08/20/FirstBook/">
+                            <div class="columns" style="min-height: 230px;">
+                                
+                                    <div class="column is-4-desktop is-5-tablet post-avatar is-hidden-mobile"
+                                         style="margin: 10px; background-size: cover;background-image: url('/myimages/0.gif')">
+                                    </div>
+                                
+                                <div class="column is-8-desktop post-content is-flex align-center">
+                                    <div class="content">
+                                        <h3>First Book</h3>
+                                        
+                                        <p>
+                                            
+                                                <span class="tag is-post-tag">随笔</span>
+                                            
+                                                <span class="tag is-post-tag">杂项</span>
+                                            
+                                        </p>
+                                        <p>
+                                            
+我有一头小毛驴我从来都不骑
+
+
+
+一二一二一二一！
+
+                                        </p>
+                                        <p>2017-08-20</p>
+                                        <button class="button is-small">Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+                    
+                
+                    
+                        <div class="content-box  " style="margin-bottom: 27px;">
+                            <a class="post-hover" href="/2017/08/20/Java中的反射机制/">
+                            <div class="columns" style="min-height: 230px;">
+                                
+                                <div class="column is-8-desktop post-content is-flex align-center">
+                                    <div class="content">
+                                        <h3>Java中的反射机制</h3>
+                                        
+                                        <p>
+                                            
+                                                <span class="tag is-post-tag">Java</span>
+                                            
+                                                <span class="tag is-post-tag">反射</span>
+                                            
+                                        </p>
+                                        <p>
+                                            什么是反射？
+一个对象或者类获得自身的Class对象的过程称为反射。
+
+
+反射的作用：
+确定一个对象的Class。
+可以获得一个类的修饰符、字段、方法、构造器和父类。
+获得接口声明的常量和方法。
+创建Class的实例，直到运行时才获得。
+运行前即使字段名称不知道，也可以在程序运行时获得和修改这些字段的值。
+运行前即使对象的方法名不知道，可以在程序运行时触..
+                                        </p>
+                                        <p>2017-08-20</p>
+                                        <button class="button is-small">Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+                    
+                
+                    
+                        <div class="content-box  " style="margin-bottom: 27px;">
+                            <a class="post-hover" href="/2017/07/02/Git的基本使用/">
+                            <div class="columns" style="min-height: 230px;">
+                                
+                                <div class="column is-8-desktop post-content is-flex align-center">
+                                    <div class="content">
+                                        <h3>Git的基本使用</h3>
+                                        
+                                        <p>
+                                            
+                                                <span class="tag is-post-tag">Git</span>
+                                            
+                                                <span class="tag is-post-tag">github</span>
+                                            
+                                                <span class="tag is-post-tag">项目</span>
+                                            
+                                        </p>
+                                        <p>
+                                            Git的安装这一步去官网查看如何安装就行，Git的安装算是比较简单的了，Windows操作系统只需要去官网下载安装包安装即可
+创建代码仓库在开始创建前先配置一下你的身份，这样在提交代码的时候Git就知道是谁提交的了，命令如下：12git config --global user.name "Tom"git config --global user.ema..
+                                        </p>
+                                        <p>2017-07-02</p>
+                                        <button class="button is-small">Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+                    
+                
+                    
+                        <div class="content-box  " style="margin-bottom: 27px;">
+                            <a class="post-hover" href="/2017/07/01/项目构建工具-Gradle的学习/">
+                            <div class="columns" style="min-height: 230px;">
+                                
+                                <div class="column is-8-desktop post-content is-flex align-center">
+                                    <div class="content">
+                                        <h3>项目构建工具-Gradle的学习</h3>
+                                        
+                                        <p>
+                                            
+                                                <span class="tag is-post-tag">-Java -项目工具 -Gradle</span>
+                                            
+                                        </p>
+                                        <p>
+                                            #Gradle是什么？        一个开源的项目自动化构建工具，
+
+                                        </p>
+                                        <p>2017-07-01</p>
+                                        <button class="button is-small">Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+                    
+                
+                <!--翻頁-->
+                <nav class="pagination is-flex" style="justify-content: flex-end">
+                    
+                        
+                        
+                    
+                </nav>
+            </section>
             
-          
+                <style>
+    /*user info start*/
+    .user-info {
+        padding: 15px 0 0;
+    }
 
-          
-          
+    .user-info .avatar {
+        width: 155px;
+        height: 155px;
+        border-radius: 50%;
+    }
 
-          
+    .sns-container {
+        flex-wrap: wrap;
+    }
 
-          
+    .sns-container a{
+        color: black;
+    }
+    /*user info end*/
 
-          
+    /*Tag start*/
+    #tag_cloud .tags-item{
+        display: inline-block;
+        color: #000;
+        border: 1px solid gray;
 
+        margin: 4px 2px;
+        padding: 0 4px;
+        border-radius: 6px;
+    }
+    /*Tag end*/
+
+    /*Site box start*/
+    .site-box {
+        height: 60px;
+    }
+    /*Site box end*/
+
+    .category-list-item,
+    .archive-list-item {
+        display: flex;
+        margin-bottom: 4px;
+        justify-content: space-between;
+    }
+    .category-list-link,
+    .archive-list-link {
+        color: black;
+    }
+
+    .category-list-count,
+    .archive-list-count {
+        width: 32px;
+        text-align: center;
+        border-radius: 4px;
+        color: #fff;
+        background-color: gray;
+    }
+</style>
+<aside class="column is-hidden-touch is-3" style="max-width: 280px; min-width: 230px">
+    <div class="content-box user-info">
+        <div class="has-padding">
+            <header class="has-text-centered">
+                <img class="avatar" src="http://v1.qzone.cc/avatar/201407/11/12/38/53bf6a5a45801719.jpg!200x200.jpg">
+            </header>
+            <section class="has-text-centered">
+                <h3><strong>Vetoer</strong></h3>
+                <p class="sub-title">to use,to make.</p>
+                
+            </section>
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h5 id="wordcloud包的基本用法"><a href="#wordcloud包的基本用法" class="headerlink" title="wordcloud包的基本用法"></a>wordcloud包的基本用法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class wordcloud.WordCloud(font_path=None, width=400, height=200, margin=2, ranks_only=None, prefer_horizontal=0.9,mask=None, scale=1, color_func=None, max_words=200, min_font_size=4, stopwords=None, random_state=None,background_color=&apos;black&apos;, max_font_size=None, font_step=1, mode=&apos;RGB&apos;, relative_scaling=0.5, regexp=None, collocations=True,colormap=None, normalize_plurals=True)</div></pre></td></tr></table></figure>
-<h5 id="wordcloud的所有参数"><a href="#wordcloud的所有参数" class="headerlink" title="wordcloud的所有参数"></a>wordcloud的所有参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">font_path : string //字体路径，需要展现什么字体就把该字体路径+后缀名写上，如：font_path = &apos;黑体.ttf&apos;</div><div class="line"></div><div class="line">width : int (default=400) //输出的画布宽度，默认为400像素</div><div class="line"></div><div class="line">height : int (default=200) //输出的画布高度，默认为200像素</div><div class="line"></div><div class="line">prefer_horizontal : float (default=0.90) //词语水平方向排版出现的频率，默认 0.9 （所以词语垂直方向排版出现频率为 0.1 ）</div><div class="line"></div><div class="line">mask : nd-array or None (default=None) //如果参数为空，则使用二维遮罩绘制词云。如果 mask 非空，设置的宽高值将被忽略，遮罩形状被 mask 取代。除全白（#FFFFFF）的部分将不会绘制，其余部分会用于绘制词云。如：bg_pic = imread(&apos;读取一张图片.png&apos;)，背景图片的画布一定要设置为白色（#FFFFFF），然后显示的形状为不是白色的其他颜色。可以用ps工具将自己要显示的形状复制到一个纯白色的画布上再保存，就ok了。</div><div class="line"></div><div class="line">scale : float (default=1) //按照比例进行放大画布，如设置为1.5，则长和宽都是原来画布的1.5倍。</div><div class="line"></div><div class="line">min_font_size : int (default=4) //显示的最小的字体大小</div><div class="line"></div><div class="line">font_step : int (default=1) //字体步长，如果步长大于1，会加快运算但是可能导致结果出现较大的误差。</div><div class="line"></div><div class="line">max_words : number (default=200) //要显示的词的最大个数</div><div class="line"></div><div class="line">stopwords : set of strings or None //设置需要屏蔽的词，如果为空，则使用内置的STOPWORDS</div><div class="line"></div><div class="line">background_color : color value (default=”black”) //背景颜色，如background_color=&apos;white&apos;,背景颜色为白色。</div><div class="line"></div><div class="line">max_font_size : int or None (default=None) //显示的最大的字体大小</div><div class="line"></div><div class="line">mode : string (default=”RGB”) //当参数为“RGBA”并且background_color不为空时，背景为透明。</div><div class="line"></div><div class="line">relative_scaling : float (default=.5) //词频和字体大小的关联性</div><div class="line"></div><div class="line">color_func : callable, default=None //生成新颜色的函数，如果为空，则使用 self.color_func</div><div class="line"></div><div class="line">regexp : string or None (optional) //使用正则表达式分隔输入的文本</div><div class="line"></div><div class="line">collocations : bool, default=True //是否包括两个词的搭配</div><div class="line"></div><div class="line">colormap : string or matplotlib colormap, default=”viridis” //给每个单词随机分配颜色，若指定color_func，则忽略该方法。</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">fit_words(frequencies)  //根据词频生成词云</div><div class="line">generate(text)  //根据文本生成词云</div><div class="line">generate_from_frequencies(frequencies[, ...])   //根据词频生成词云</div><div class="line">generate_from_text(text)    //根据文本生成词云</div><div class="line">process_text(text)  //将长文本分词并去除屏蔽词（此处指英语，中文分词还是需要自己用别的库先行实现，使用上面的 fit_words(frequencies) ）</div><div class="line">recolor([random_state, color_func, colormap])   //对现有输出重新着色。重新上色会比重新生成整个词云快很多。</div><div class="line">to_array()  //转化为 numpy array</div><div class="line">to_file(filename)   //输出到文件</div></pre></td></tr></table></figure>
-<h5 id="生成带有某种形状的词云"><a href="#生成带有某种形状的词云" class="headerlink" title="生成带有某种形状的词云"></a>生成带有某种形状的词云</h5><ol>
-<li>导入模块</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">from wordcloud import WordCloud		# 词云模块</div><div class="line">from scipy.misc import imread		# 读取图片模块</div><div class="line">from matplotlib.pyplot as plt		# 好用的matplotlib作图模块</div></pre></td></tr></table></figure>
-<ol>
-<li>读取txt文件和读入图片</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">text = open(&apos;wordcloud.txt&apos;,&apos;r&apos;).read()</div><div class="line">bg = imread(&apos;bg.png&apos;)</div></pre></td></tr></table></figure>
-<ol>
-<li>生成词云并显示</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">wordcloud = WordCloud(mask = bg,background_color=&apos;white&apos;,scale=1.5).generate(text)</div><div class="line">image_colors = ImageColorGenerator(bg)</div><div class="line"></div><div class="line">plt.imshow(wordcloud)</div><div class="line">plt.axis(&apos;off&apos;)</div><div class="line">plt.show()</div><div class="line">wordcloud.to_file(&apos;wordcloud_img.jpg&apos;)		# 保存图片</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/24/Ubuntu生存指南/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Desc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="某人的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="top-line">
+            <ul class="sns-container justify-center is-flex has-padding">
                 
-                <a class="post-title-link" href="/2017/08/24/Ubuntu生存指南/" itemprop="url">Ubuntu生存指南</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T20:08:23+08:00">
-                2017-08-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">Ubuntu</span>
-                  </a>
-                </span>
 
                 
+
                 
-              
-            </span>
-          
 
-          
-            
-          
+                
 
-          
-          
+                
 
-          
+                
+                <li>
+                    <a target="_blank" href="https://github.com/comTg">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                    </a>
+                </li>
+                
 
-          
-
-          
-
+                
+            </ul>
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h5 id="切换开关机动画"><a href="#切换开关机动画" class="headerlink" title="切换开关机动画"></a>切换开关机动画</h5><p><code>sudo update-alternatives --config default.plymouth</code></p>
-<p>#####增加ubuntu对python3中tkinter的支持</p>
-<p><code>sudo apt-get install python3-tk</code></p>
-<h5 id="安装快照-snapd"><a href="#安装快照-snapd" class="headerlink" title="安装快照 snapd"></a>安装快照 snapd</h5><p><code>sudo apt install snapd</code>   <!-- 最好不要安装 --> </p>
-<h5 id="使软件开机启动"><a href="#使软件开机启动" class="headerlink" title="使软件开机启动"></a>使软件开机启动</h5><blockquote>
-<p>生成该软件的桌面图标,然后把桌面图标拖到 /etc/xdg/autostart 里面即可</p>
-</blockquote>
-
-          
-        
-      
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/22/Ubuntu中的软件安装与卸载/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Desc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="某人的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/22/Ubuntu中的软件安装与卸载/" itemprop="url">ubuntu 中的安装和卸载</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T18:53:13+08:00">
-                2017-08-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h5 id="Ubuntu中软件的安装方法"><a href="#Ubuntu中软件的安装方法" class="headerlink" title="Ubuntu中软件的安装方法"></a>Ubuntu中软件的安装方法</h5><p>1、APT方式</p>
-<p>（1）普通安装：apt-get install softname1 softname2 …;</p>
-<p>（2）修复安装：apt-get -f install softname1 softname2… ;(-f Atemp to correct broken dependencies)</p>
-<p>（3）重新安装：apt-get –reinstall install softname1 softname2…;</p>
-<p>2、Dpkg方式</p>
-<p>（1）普通安装：dpkg -i package_name.deb</p>
-<p>3、源码安装（.tar、tar.gz、tar.bz2、tar.Z）</p>
-<p>首先解压缩源码压缩包然后通过tar命令来完成</p>
-<p>a．解xx.tar.gz：tar zxf xx.tar.gz<br>b．解xx.tar.Z：tar zxf xx.tar.Z<br>c．解xx.tgz：tar zxf xx.tgz<br>d．解xx.bz2：bunzip2 xx.bz2<br>e．解xx.tar：tar xf xx.tar</p>
-<p>然后进入到解压出的目录中，建议先读一下README之类的说明文件，因为此时不同源代码包或者预编译包可能存在差异，然后建议使用ls -F –color或者ls -F命令（实际上我的只需要 l 命令即可）查看一下可执行文件，可执行文件会以*号的尾部标志。</p>
-<p>一般依次执行./configure</p>
-<p>​                       make</p>
-<p>​                       sudo make install</p>
-<p>即可完成安装。</p>
-<h5 id="Ubuntu中软件包的卸载方法"><a href="#Ubuntu中软件包的卸载方法" class="headerlink" title="Ubuntu中软件包的卸载方法"></a>Ubuntu中软件包的卸载方法</h5><p>1、APT方式</p>
-<p>（1）移除式卸载：apt-get remove softname1 softname2 …;（移除软件包，当包尾部有+时，意为安装）</p>
-<p>（2）清除式卸载 ：apt-get –purge remove softname1 softname2…;(同时清除配置)</p>
-<p>​        清除式卸载：apt-get purge sofname1 softname2…;(同上，也清除配置文件)</p>
-<p>2、Dpkg方式</p>
-<p>（1）移除式卸载：dpkg -r pkg1 pkg2 …;</p>
-<p>（2）清除式卸载：dpkg -P pkg1 pkg2…;</p>
-<h5 id="Ubuntu中软件包的查询方法"><a href="#Ubuntu中软件包的查询方法" class="headerlink" title="Ubuntu中软件包的查询方法"></a>Ubuntu中软件包的查询方法</h5><p>Dpkg 使用文本文件来作为数据库.通称在 <code>/var/lib/dpkg</code> 目录下. 通称在 status 文件中存储软件状态,和控制信息. 在 info/ 目录下备份控制文件, 并在其下的 .list 文件中记录安装文件清单, 其下的 .mdasums 保存文件的 MD5 编码.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">➜  test dpkg -l </div><div class="line">期望状态=未知(u)/安装(i)/删除(r)/清除(p)/保持(h)</div><div class="line">| 状态=未安装(n)/已安装(i)/仅存配置(c)/仅解压缩(U)/配置失败(F)/不完全安装(H)/触发器等待(W)/触发器未决(T)</div><div class="line">|/ 错误?=(无)/须重装(R) (状态，错误：大写=故障)</div><div class="line">||/ 名称                            版本                 体系结构：           描述</div><div class="line">+++-===============================-====================-====================-====================================================================</div><div class="line">ii  a11y-profile-manager-indicator  0.1.10-0ubuntu3      amd64                Accessibility Profile Manager - Unity desktop indicator</div><div class="line">ii  account-plugin-facebook         0.12+16.04.20160126- all                  GNOME Control Center account plugin for single signon - facebook</div></pre></td></tr></table></figure>
-<p>每条记录对应一个软件包, 注意每条记录的第一, 二, 三个字符. 这就是软件包的状态标识, 后边依此是软件包名称, 版本号, 和简单描述.</p>
-<ul>
-<li>第一字符为期望值,它包括:<ul>
-<li>u 状态未知,这意味着软件包未安装,并且用户也未发出安装请求.</li>
-<li>i 用户请求安装软件包.</li>
-<li>r 用户请求卸载软件包.</li>
-<li>p 用户请求清除软件包.</li>
-<li>h 用户请求保持软件包版本锁定.</li>
-</ul>
-</li>
-<li>第二列,是软件包的当前状态.此列包括软件包的六种状态.<ul>
-<li>n 软件包未安装.</li>
-<li>i 软件包安装并完成配置.</li>
-<li>c 软件包以前安装过,现在删除了,但是它的配置文件还留在系统中.</li>
-<li>u 软件包被解包,但还未配置.</li>
-<li>f 试图配置软件包,但是失败了.</li>
-<li>h 软件包安装,但是但是没有成功.</li>
-</ul>
-</li>
-<li>第三列标识错误状态,可以总结为四种状态. 第一种状态标识没有问题,为空. 其它三种符号则标识相应问题.<ul>
-<li>h 软件包被强制保持,因为有其它软件包依赖需求,无法升级.</li>
-<li>r 软件包被破坏,可能需要重新安装才能正常使用(包括删除).</li>
-<li>x 软包件被破坏,并且被强制保持.</li>
-</ul>
-</li>
-</ul>
-<p>也可以以统配符模式进行模糊查询, 比如我要查找以nano字符开始的所有软件包:</p>
-<p><code>dpkg -l python*</code></p>
-<h5 id="其它应用总结"><a href="#其它应用总结" class="headerlink" title="其它应用总结"></a>其它应用总结</h5><p>apt-cache search # ——(package 搜索包)<br>apt-cache show #——(package 获取包的相关信息，如说明、大小、版本等)<br>apt-get install # ——(package 安装包)<br>apt-get install # —–(package –reinstall 重新安装包)<br>apt-get -f install # —–(强制安装, “-f = –fix-missing”当是修复安装吧…)<br>apt-get remove #—–(package 删除包)<br>apt-get remove –purge # ——(package 删除包，包括删除配置文件等)<br>apt-get autoremove –purge # —-(package 删除包及其依赖的软件包+配置文件等（只对6.10有效，强烈推荐）)<br>apt-get update #——更新源<br>apt-get upgrade #——更新已安装的包<br>apt-get dist-upgrade # ———升级系统<br>apt-get dselect-upgrade #——使用 dselect 升级<br>apt-cache depends #——-(package 了解使用依赖)<br>apt-cache rdepends # ——(package 了解某个具体的依赖,当是查看该包被哪些包依赖吧…)<br>apt-get build-dep # ——(package 安装相关的编译环境)<br>apt-get source #——(package 下载该包的源代码)<br>apt-get clean &amp;&amp; apt-get autoclean # ——–清理下载文件的存档 &amp;&amp; 只清理过时的包<br>apt-get check #——-检查是否有损坏的依赖<br>dpkg -S filename —–查找filename属于哪个软件包<br>apt-file search filename —–查找filename属于哪个软件包<br>apt-file list packagename —–列出软件包的内容<br>apt-file update –更新apt-file的数据库</p>
-<p>dpkg –info “软件包名” –列出软件包解包后的包名称.<br>dpkg -l –列出当前系统中所有的包.可以和参数less一起使用在分屏查看. (类似于rpm -qa)<br>dpkg -l |grep -i “软件包名” –查看系统中与”软件包名”相关联的包.<br>dpkg -s 查询已安装的包的详细信息.<br>dpkg -L 查询系统中已安装的软件包所安装的位置. (类似于rpm -ql)<br>dpkg -S 查询系统中某个文件属于哪个软件包. (类似于rpm -qf)<br>dpkg -I 查询deb包的详细信息,在一个软件包下载到本地之后看看用不用安装(看一下呗).<br>dpkg -i 手动安装软件包(这个命令并不能解决软件包之前的依赖性问题),如果在安装某一个软件包的时候遇到了软件依赖的问题,可以用apt-get -f install在解决信赖性这个问题.<br>dpkg -r 卸载软件包.不是完全的卸载,它的配置文件还存在.<br>dpkg -P 全部卸载(但是还是不能解决软件包的依赖性的问题)<br>dpkg -reconfigure 重新配置</p>
-<p>apt-get install<br>下载软件包，以及所有依赖的包，同时进行包的安装或升级。如果某个包被设置了 hold (停止标志，就会被搁在一边(即不会被升级)。更多 hold 细节请看下面。<br>apt-get remove [–purge]<br>移除 以及任何依赖这个包的其它包。<br>–purge 指明这个包应该被完全清除 (purged) ，更多信息请看 dpkg -P。</p>
-<p>apt-get update<br>升级来自 Debian 镜像的包列表，如果你想安装当天的任何软件，至少每天运行一次，而且每次修改了<br>/etc/apt/sources.list 後，必须执行。</p>
-<p>apt-get upgrade [-u]<br>升 级所有已经安装的包为最新可用版本。不会安装新的或移除老的包。如果一个包改变了依赖关系而需要安装一个新的包，那么它将不会被升级，而是标志为 hold。apt-get update 不会升级被标志为 hold 的包 (这个也就是 hold 的意思)。请看下文如何手动设置包为 hold。我建议同时使用 ‘-u’ 选项，因为这样你就能看到哪些包将会被升级。</p>
-<p>apt-get dist-upgrade [-u]<br>和 apt-get upgrade 类似，除了 dist-upgrade 会安装和移除包来满足依赖关系。因此具有一定的危险性。</p>
-<p>apt-cache search<br>在软件包名称和描述中，搜索包含xxx的软件包。</p>
-<p>apt-cache show<br>显示某个软件包的完整的描述。</p>
-<p>apt-cache showpkg<br>显示软件包更多细节，以及和其它包的关系。</p>
-<p>dselect<br>console-apt<br>aptitude<br>gnome-apt<br>APT 的几个图形前端(其中一些在使用前得先安装)。这里 dselect 无疑是最强大的，也是最古老，最难驾驭。</p>
-<p>普通 Dpkg 用法<br>dpkg -i<br>安装一个 Debian 包文件，如你手动下载的文件。</p>
-<p>dpkg -c<br>列出 的内容。</p>
-<p>dpkg -I<br>从 中提取包信息。</p>
-<p>dpkg -r<br>移除一个已安装的包。</p>
-<p>dpkg -P<br>完全清除一个已安装的包。和 remove 不同的是，remove 只是删掉数据和可执行文件，purge 另外还删除所有的配制文件。</p>
-<p>dpkg -L<br>列出 安装的所有文件清单。同时请看 dpkg -c 来检查一个 .deb 文件的内容。</p>
-<p>dpkg -s<br>显示已安装包的信息。同时请看 apt-cache 显示 Debian 存档中的包信息，以及 dpkg -I 来显示从一个 .deb 文件中提取的包信息。</p>
-<p>dpkg-reconfigure<br>重 新配制一个已经安装的包，如果它使用的是 debconf (debconf 为包安装提供了一个统一的配制界面)。你能够重新配制 debconf 它本身，如你想改变它的前端或提问的优先权。例如，重新配制 debconf，使用一个 dialog 前端，简单运行：</p>
-<p>dpkg-reconfigure –frontend=dialog debconf (如果你安装时选错了，这里可以改回来哟：)</p>
-<p>echo “ hold” | dpkg –set-selections<br>设置 的状态为 hlod (命令行方式)</p>
-<p>dpkg –get-selections “”<br>取的 的当前状态 (命令行方式)</p>
-<p>支持通配符，如：<br>Debian:~# dpkg –get-selections <em>wine</em><br>libwine hold<br>libwine-alsa hold<br>libwine-arts hold<br>libwine-dev hold<br>libwine-nas hold<br>libwine-print hold<br>libwine-twain hold<br>wine hold<br>wine+ hold<br>wine-doc hold<br>wine-utils hold</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/21/Linux中如何查看端口占用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Desc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="某人的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/21/Linux中如何查看端口占用/" itemprop="url">Ubuntu中如何查看端口占用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-21T07:15:24+08:00">
-                2017-08-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h6 id="在程序运行过程中，经常会因为一些不当的操作导致应用不能正常关闭，依然占用着端口，影响其他应用的运行"><a href="#在程序运行过程中，经常会因为一些不当的操作导致应用不能正常关闭，依然占用着端口，影响其他应用的运行" class="headerlink" title="在程序运行过程中，经常会因为一些不当的操作导致应用不能正常关闭，依然占用着端口，影响其他应用的运行"></a>在程序运行过程中，经常会因为一些不当的操作导致应用不能正常关闭，依然占用着端口，影响其他应用的运行</h6><ol>
-<li><p>查看所有的服务端口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -a</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看所有的服务端口，显示pid号</p>
-<p><code>netstat -a</code></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/21/Linux中如何查看端口占用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/20/FirstBook/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Desc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="某人的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/20/FirstBook/" itemprop="url">First Book</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-20T17:00:02+08:00">
-                2017-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/test/" itemprop="url" rel="index">
-                    <span itemprop="name">test</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>我有一头小毛驴我从来都不骑</p>
-</blockquote>
-<p><img src="/myimages/0.gif" alt=""></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/20/FirstBook/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/20/Java中的反射机制/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Desc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="某人的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/20/Java中的反射机制/" itemprop="url">Java中的反射机制</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-20T17:00:02+08:00">
-                2017-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="什么是反射？"><a href="#什么是反射？" class="headerlink" title="什么是反射？"></a>什么是反射？</h3><blockquote>
-<p>一个对象或者类获得自身的Class对象的过程称为反射。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/20/Java中的反射机制/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/02/Git的基本使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Desc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="某人的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/02/Git的基本使用/" itemprop="url">Git的基本使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-02T15:33:25+08:00">
-                2017-07-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h2><p>这一步去官网查看如何安装就行，Git的安装算是比较简单的了，Windows操作系统只需要去官网下载安装包安装即可</p>
-<h2 id="创建代码仓库"><a href="#创建代码仓库" class="headerlink" title="创建代码仓库"></a>创建代码仓库</h2><p>在开始创建前先配置一下你的身份，这样在提交代码的时候Git就知道是谁提交的了，命令如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"Tom"</span></div><div class="line">git config --global user.email <span class="string">"Tom@gmail.com"</span></div></pre></td></tr></table></figure></p>
-<p><strong>仓库(Repository)是用于保存版本管理所需信息的地方，所有本地提交的代码都会被提交到代码仓库中，也可以推送到Github远程仓库中。</strong><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/02/Git的基本使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/01/项目构建工具-Gradle的学习/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Desc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="某人的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/01/项目构建工具-Gradle的学习/" itemprop="url">项目构建工具-Gradle的学习</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-01T08:35:22+08:00">
-                2017-07-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#Gradle是什么？<br>        一个开源的项目自动化构建工具，</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="Desc" />
-          <p class="site-author-name" itemprop="name">Desc</p>
-           
-              <p class="site-description motion-element" itemprop="description">Java是世界上最差的语言</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
+    <div class="content-box">
+        <!--post数量和tag category 数量-->
+        <div class="site-box is-flex">
+            <div class="flex-1 is-flex flex-column center full-height right-line">
+                <strong>8</strong>
+                <p>Posts</p>
             </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
+            <div class="flex-1 is-flex flex-column center full-height">
+                <strong>11</strong>
+                <p>Tags</p>
             </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-
-      
-
     </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Desc</span>
+    <div id='tag_cloud' class="content-inner content-box">
+        <div class="has-text-centered">
+            <strong>Tags</strong>
+        </div>
+        <div class="content-inner is-flex flex-wrap justify-space-between">
+            
+                <a class="tags-item" href="tags/随笔/" title="随笔" rel="1">
+                    随笔
+                </a>
+            
+                <a class="tags-item" href="tags/杂项/" title="杂项" rel="1">
+                    杂项
+                </a>
+            
+                <a class="tags-item" href="tags/Java/" title="Java" rel="1">
+                    Java
+                </a>
+            
+                <a class="tags-item" href="tags/反射/" title="反射" rel="1">
+                    反射
+                </a>
+            
+                <a class="tags-item" href="tags/linux/" title="linux" rel="2">
+                    linux
+                </a>
+            
+                <a class="tags-item" href="tags/ubuntu/" title="ubuntu" rel="2">
+                    ubuntu
+                </a>
+            
+                <a class="tags-item" href="tags/命令/" title="命令" rel="1">
+                    命令
+                </a>
+            
+                <a class="tags-item" href="tags/Git/" title="Git" rel="1">
+                    Git
+                </a>
+            
+                <a class="tags-item" href="tags/github/" title="github" rel="1">
+                    github
+                </a>
+            
+                <a class="tags-item" href="tags/项目/" title="项目" rel="1">
+                    项目
+                </a>
+            
+                <a class="tags-item" href="tags/Java-项目工具-Gradle/" title="-Java -项目工具 -Gradle" rel="1">
+                    -Java -项目工具 -Gradle
+                </a>
+            
+        </div>
+    </div>
+    <div class="content-inner content-box">
+        <div class="has-text-centered">
+            <strong>Categories</strong>
+        </div>
+        <div class="content-inner">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+    <div class="content-inner content-box">
+        <div class="has-text-centered">
+            <strong>Archives</strong>
+        </div>
+        <div class="content-inner">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+</aside>
+            
+        </div>
+    </div>
 </div>
 
-
-<div class="powered-by">
-  每一个不曾学习的日子
-  <!--
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-  -->
-</div>
-
-<div class="theme-info">
-  都是对生命的极大浪费
-  <!--
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>-->
-</div> 
-
-
-        
-
-        
       </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
   </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
   }
-</script>
 
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Desc 2017
+        <br>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
 
 </body>
 </html>

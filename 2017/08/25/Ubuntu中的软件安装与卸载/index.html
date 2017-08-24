@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>ubuntu 中的安装和卸载 | 某人的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Ubuntu中软件的安装方法1、APT方式 （1）普通安装：apt-get install softname1 softname2 …; （2）修复安装：apt-get -f install softname1 softname2… ;(-f Atemp to correct broken dependencies) （3）重新安装：apt-get –reinstall install softn">
+<meta name="keywords" content="linux,ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu 中的安装和卸载">
+<meta property="og:url" content="http://yoursite.com/2017/08/25/Ubuntu中的软件安装与卸载/index.html">
+<meta property="og:site_name" content="某人的博客">
+<meta property="og:description" content="Ubuntu中软件的安装方法1、APT方式 （1）普通安装：apt-get install softname1 softname2 …; （2）修复安装：apt-get -f install softname1 softname2… ;(-f Atemp to correct broken dependencies) （3）重新安装：apt-get –reinstall install softn">
+<meta property="og:updated_time" content="2017-08-24T22:39:06.608Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ubuntu 中的安装和卸载">
+<meta name="twitter:description" content="Ubuntu中软件的安装方法1、APT方式 （1）普通安装：apt-get install softname1 softname2 …; （2）修复安装：apt-get -f install softname1 softname2… ;(-f Atemp to correct broken dependencies) （3）重新安装：apt-get –reinstall install softn">
+  
+    <link rel="alternate" href="/atom.xml" title="某人的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Vetoer</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>ubuntu 中的安装和卸载</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="http://v1.qzone.cc/avatar/201407/11/12/38/53bf6a5a45801719.jpg!200x200.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Vetoer</span>
+                <span class="post-date sub-title">at: 2017-08-25</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/linux/">linux</a>
+                    
+                         <a class="tag is-post-tag" href="/tags/ubuntu/">ubuntu</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <h5 id="Ubuntu中软件的安装方法"><a href="#Ubuntu中软件的安装方法" class="headerlink" title="Ubuntu中软件的安装方法"></a>Ubuntu中软件的安装方法</h5><p>1、APT方式</p>
+<p>（1）普通安装：apt-get install softname1 softname2 …;</p>
+<p>（2）修复安装：apt-get -f install softname1 softname2… ;(-f Atemp to correct broken dependencies)</p>
+<p>（3）重新安装：apt-get –reinstall install softname1 softname2…;</p>
+<p>2、Dpkg方式</p>
+<p>（1）普通安装：dpkg -i package_name.deb</p>
+<a id="more"></a>
+<p>3、源码安装（.tar、tar.gz、tar.bz2、tar.Z）</p>
+<p>首先解压缩源码压缩包然后通过tar命令来完成</p>
+<p>a．解xx.tar.gz：tar zxf xx.tar.gz<br>b．解xx.tar.Z：tar zxf xx.tar.Z<br>c．解xx.tgz：tar zxf xx.tgz<br>d．解xx.bz2：bunzip2 xx.bz2<br>e．解xx.tar：tar xf xx.tar</p>
+<p>然后进入到解压出的目录中，建议先读一下README之类的说明文件，因为此时不同源代码包或者预编译包可能存在差异，然后建议使用ls -F –color或者ls -F命令（实际上我的只需要 l 命令即可）查看一下可执行文件，可执行文件会以*号的尾部标志。</p>
+<p>一般依次执行./configure</p>
+<p>​                       make</p>
+<p>​                       sudo make install</p>
+<p>即可完成安装。</p>
+<h5 id="Ubuntu中软件包的卸载方法"><a href="#Ubuntu中软件包的卸载方法" class="headerlink" title="Ubuntu中软件包的卸载方法"></a>Ubuntu中软件包的卸载方法</h5><p>1、APT方式</p>
+<p>（1）移除式卸载：apt-get remove softname1 softname2 …;（移除软件包，当包尾部有+时，意为安装）</p>
+<p>（2）清除式卸载 ：apt-get –purge remove softname1 softname2…;(同时清除配置)</p>
+<p>​        清除式卸载：apt-get purge sofname1 softname2…;(同上，也清除配置文件)</p>
+<p>2、Dpkg方式</p>
+<p>（1）移除式卸载：dpkg -r pkg1 pkg2 …;</p>
+<p>（2）清除式卸载：dpkg -P pkg1 pkg2…;</p>
+<h5 id="Ubuntu中软件包的查询方法"><a href="#Ubuntu中软件包的查询方法" class="headerlink" title="Ubuntu中软件包的查询方法"></a>Ubuntu中软件包的查询方法</h5><p>Dpkg 使用文本文件来作为数据库.通称在 <code>/var/lib/dpkg</code> 目录下. 通称在 status 文件中存储软件状态,和控制信息. 在 info/ 目录下备份控制文件, 并在其下的 .list 文件中记录安装文件清单, 其下的 .mdasums 保存文件的 MD5 编码.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">➜  test dpkg -l </div><div class="line">期望状态=未知(u)/安装(i)/删除(r)/清除(p)/保持(h)</div><div class="line">| 状态=未安装(n)/已安装(i)/仅存配置(c)/仅解压缩(U)/配置失败(F)/不完全安装(H)/触发器等待(W)/触发器未决(T)</div><div class="line">|/ 错误?=(无)/须重装(R) (状态，错误：大写=故障)</div><div class="line">||/ 名称                            版本                 体系结构：           描述</div><div class="line">+++-===============================-====================-====================-====================================================================</div><div class="line">ii  a11y-profile-manager-indicator  0.1.10-0ubuntu3      amd64                Accessibility Profile Manager - Unity desktop indicator</div><div class="line">ii  account-plugin-facebook         0.12+16.04.20160126- all                  GNOME Control Center account plugin for single signon - facebook</div></pre></td></tr></table></figure>
+<p>每条记录对应一个软件包, 注意每条记录的第一, 二, 三个字符. 这就是软件包的状态标识, 后边依此是软件包名称, 版本号, 和简单描述.</p>
+<ul>
+<li>第一字符为期望值,它包括:<ul>
+<li>u 状态未知,这意味着软件包未安装,并且用户也未发出安装请求.</li>
+<li>i 用户请求安装软件包.</li>
+<li>r 用户请求卸载软件包.</li>
+<li>p 用户请求清除软件包.</li>
+<li>h 用户请求保持软件包版本锁定.</li>
+</ul>
+</li>
+<li>第二列,是软件包的当前状态.此列包括软件包的六种状态.<ul>
+<li>n 软件包未安装.</li>
+<li>i 软件包安装并完成配置.</li>
+<li>c 软件包以前安装过,现在删除了,但是它的配置文件还留在系统中.</li>
+<li>u 软件包被解包,但还未配置.</li>
+<li>f 试图配置软件包,但是失败了.</li>
+<li>h 软件包安装,但是但是没有成功.</li>
+</ul>
+</li>
+<li>第三列标识错误状态,可以总结为四种状态. 第一种状态标识没有问题,为空. 其它三种符号则标识相应问题.<ul>
+<li>h 软件包被强制保持,因为有其它软件包依赖需求,无法升级.</li>
+<li>r 软件包被破坏,可能需要重新安装才能正常使用(包括删除).</li>
+<li>x 软包件被破坏,并且被强制保持.</li>
+</ul>
+</li>
+</ul>
+<p>也可以以统配符模式进行模糊查询, 比如我要查找以nano字符开始的所有软件包:</p>
+<p><code>dpkg -l python*</code></p>
+<h5 id="其它应用总结"><a href="#其它应用总结" class="headerlink" title="其它应用总结"></a>其它应用总结</h5><p>apt-cache search # ——(package 搜索包)<br>apt-cache show #——(package 获取包的相关信息，如说明、大小、版本等)<br>apt-get install # ——(package 安装包)<br>apt-get install # —–(package –reinstall 重新安装包)<br>apt-get -f install # —–(强制安装, “-f = –fix-missing”当是修复安装吧…)<br>apt-get remove #—–(package 删除包)<br>apt-get remove –purge # ——(package 删除包，包括删除配置文件等)<br>apt-get autoremove –purge # —-(package 删除包及其依赖的软件包+配置文件等（只对6.10有效，强烈推荐）)<br>apt-get update #——更新源<br>apt-get upgrade #——更新已安装的包<br>apt-get dist-upgrade # ———升级系统<br>apt-get dselect-upgrade #——使用 dselect 升级<br>apt-cache depends #——-(package 了解使用依赖)<br>apt-cache rdepends # ——(package 了解某个具体的依赖,当是查看该包被哪些包依赖吧…)<br>apt-get build-dep # ——(package 安装相关的编译环境)<br>apt-get source #——(package 下载该包的源代码)<br>apt-get clean &amp;&amp; apt-get autoclean # ——–清理下载文件的存档 &amp;&amp; 只清理过时的包<br>apt-get check #——-检查是否有损坏的依赖<br>dpkg -S filename —–查找filename属于哪个软件包<br>apt-file search filename —–查找filename属于哪个软件包<br>apt-file list packagename —–列出软件包的内容<br>apt-file update –更新apt-file的数据库</p>
+<p>dpkg –info “软件包名” –列出软件包解包后的包名称.<br>dpkg -l –列出当前系统中所有的包.可以和参数less一起使用在分屏查看. (类似于rpm -qa)<br>dpkg -l |grep -i “软件包名” –查看系统中与”软件包名”相关联的包.<br>dpkg -s 查询已安装的包的详细信息.<br>dpkg -L 查询系统中已安装的软件包所安装的位置. (类似于rpm -ql)<br>dpkg -S 查询系统中某个文件属于哪个软件包. (类似于rpm -qf)<br>dpkg -I 查询deb包的详细信息,在一个软件包下载到本地之后看看用不用安装(看一下呗).<br>dpkg -i 手动安装软件包(这个命令并不能解决软件包之前的依赖性问题),如果在安装某一个软件包的时候遇到了软件依赖的问题,可以用apt-get -f install在解决信赖性这个问题.<br>dpkg -r 卸载软件包.不是完全的卸载,它的配置文件还存在.<br>dpkg -P 全部卸载(但是还是不能解决软件包的依赖性的问题)<br>dpkg -reconfigure 重新配置</p>
+<p>apt-get install<br>下载软件包，以及所有依赖的包，同时进行包的安装或升级。如果某个包被设置了 hold (停止标志，就会被搁在一边(即不会被升级)。更多 hold 细节请看下面。<br>apt-get remove [–purge]<br>移除 以及任何依赖这个包的其它包。<br>–purge 指明这个包应该被完全清除 (purged) ，更多信息请看 dpkg -P。</p>
+<p>apt-get update<br>升级来自 Debian 镜像的包列表，如果你想安装当天的任何软件，至少每天运行一次，而且每次修改了<br>/etc/apt/sources.list 後，必须执行。</p>
+<p>apt-get upgrade [-u]<br>升 级所有已经安装的包为最新可用版本。不会安装新的或移除老的包。如果一个包改变了依赖关系而需要安装一个新的包，那么它将不会被升级，而是标志为 hold。apt-get update 不会升级被标志为 hold 的包 (这个也就是 hold 的意思)。请看下文如何手动设置包为 hold。我建议同时使用 ‘-u’ 选项，因为这样你就能看到哪些包将会被升级。</p>
+<p>apt-get dist-upgrade [-u]<br>和 apt-get upgrade 类似，除了 dist-upgrade 会安装和移除包来满足依赖关系。因此具有一定的危险性。</p>
+<p>apt-cache search<br>在软件包名称和描述中，搜索包含xxx的软件包。</p>
+<p>apt-cache show<br>显示某个软件包的完整的描述。</p>
+<p>apt-cache showpkg<br>显示软件包更多细节，以及和其它包的关系。</p>
+<p>dselect<br>console-apt<br>aptitude<br>gnome-apt<br>APT 的几个图形前端(其中一些在使用前得先安装)。这里 dselect 无疑是最强大的，也是最古老，最难驾驭。</p>
+<p>普通 Dpkg 用法<br>dpkg -i<br>安装一个 Debian 包文件，如你手动下载的文件。</p>
+<p>dpkg -c<br>列出 的内容。</p>
+<p>dpkg -I<br>从 中提取包信息。</p>
+<p>dpkg -r<br>移除一个已安装的包。</p>
+<p>dpkg -P<br>完全清除一个已安装的包。和 remove 不同的是，remove 只是删掉数据和可执行文件，purge 另外还删除所有的配制文件。</p>
+<p>dpkg -L<br>列出 安装的所有文件清单。同时请看 dpkg -c 来检查一个 .deb 文件的内容。</p>
+<p>dpkg -s<br>显示已安装包的信息。同时请看 apt-cache 显示 Debian 存档中的包信息，以及 dpkg -I 来显示从一个 .deb 文件中提取的包信息。</p>
+<p>dpkg-reconfigure<br>重 新配制一个已经安装的包，如果它使用的是 debconf (debconf 为包安装提供了一个统一的配制界面)。你能够重新配制 debconf 它本身，如你想改变它的前端或提问的优先权。例如，重新配制 debconf，使用一个 dialog 前端，简单运行：</p>
+<p>dpkg-reconfigure –frontend=dialog debconf (如果你安装时选错了，这里可以改回来哟：)</p>
+<p>echo “ hold” | dpkg –set-selections<br>设置 的状态为 hlod (命令行方式)</p>
+<p>dpkg –get-selections “”<br>取的 的当前状态 (命令行方式)</p>
+<p>支持通配符，如：<br>Debian:~# dpkg –get-selections <em>wine</em><br>libwine hold<br>libwine-alsa hold<br>libwine-arts hold<br>libwine-dev hold<br>libwine-nas hold<br>libwine-print hold<br>libwine-twain hold<br>wine hold<br>wine+ hold<br>wine-doc hold<br>wine-utils hold</p>
+
+        </div>
+        <div class="post-reply">
+            
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDQyNS82OTc5">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Desc 2017
+        <br>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>
