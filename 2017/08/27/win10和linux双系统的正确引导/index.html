@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>window10和linux双系统开机无法正常引导Linux的解决办法 | 某人的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="由于bios启动会对windows的efi文件进行保护,所以导致开机后不能正常引导linux的grub,所以只有通过修改windows的efi文件解决了.  第一步 用linux系统的grubx64.efi文件去替换Microsoft/Boot/里面的bootmgfw.efi文件,原bootmgfw.efi保留重命名为bootmgfw.efi.old,方便从grub中启动win10,不过如果你不用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="window10和linux双系统开机无法正常引导Linux的解决办法">
+<meta property="og:url" content="http://yoursite.com/2017/08/27/win10和linux双系统的正确引导/index.html">
+<meta property="og:site_name" content="某人的博客">
+<meta property="og:description" content="由于bios启动会对windows的efi文件进行保护,所以导致开机后不能正常引导linux的grub,所以只有通过修改windows的efi文件解决了.  第一步 用linux系统的grubx64.efi文件去替换Microsoft/Boot/里面的bootmgfw.efi文件,原bootmgfw.efi保留重命名为bootmgfw.efi.old,方便从grub中启动win10,不过如果你不用">
+<meta property="og:updated_time" content="2017-08-27T01:29:24.675Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="window10和linux双系统开机无法正常引导Linux的解决办法">
+<meta name="twitter:description" content="由于bios启动会对windows的efi文件进行保护,所以导致开机后不能正常引导linux的grub,所以只有通过修改windows的efi文件解决了.  第一步 用linux系统的grubx64.efi文件去替换Microsoft/Boot/里面的bootmgfw.efi文件,原bootmgfw.efi保留重命名为bootmgfw.efi.old,方便从grub中启动win10,不过如果你不用">
+  
+    <link rel="alternate" href="/atom.xml" title="某人的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Vetoer</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>window10和linux双系统开机无法正常引导Linux的解决办法</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="http://v1.qzone.cc/avatar/201407/11/12/38/53bf6a5a45801719.jpg!200x200.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Vetoer</span>
+                <span class="post-date sub-title">at: 2017-08-27</span>
+            </div>
+            
+                <div>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <p>由于bios启动会对windows的efi文件进行保护,所以导致开机后不能正常引导linux的grub,所以只有通过修改windows的efi文件解决了.</p>
+<ol>
+<li><p>第一步</p>
+<p>用linux系统的grubx64.efi文件去替换Microsoft/Boot/里面的bootmgfw.efi文件,原bootmgfw.efi保留重命名为bootmgfw.efi.old,方便从grub中启动win10,不过如果你不用win10了的话,下面的步骤就不用看了:)</p>
+</li>
+<li><p>第二步</p>
+<p>在/etc/grup.d/40_custom文件中手动添加启动文件,也就是之前的bootmgfw.efi.old,格式如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">menuentry <span class="string">"win 10"</span>&#123;</div><div class="line">  set root=<span class="string">'(hd0,gpt2)'</span></div><div class="line">  chainloader /EFI/Microsoft/Boot/bootmgfw.efi.old</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>hd0值的是sda,也就是第一块硬盘,如果是sdb的话应该改为hd1,sdc也就是hd2,以此类推,gpt2对应sda2或者sdb2,这两个需要你根据自己的硬盘分配来写,用lsdk命令可以查看.</p>
+</li>
+<li><p>第三步</p>
+<p>上述两步修改完之后,在终端运行即可.</p>
+<p><code>sudo update-grub</code></p>
+<p>​</p>
+</li>
+</ol>
+
+        </div>
+        <div class="post-reply">
+            
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDQyNS82OTc5">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © Desc 2017
+        <br>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>
