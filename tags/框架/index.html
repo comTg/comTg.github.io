@@ -23,7 +23,7 @@
     <!--Title-->
 
 
-<title>Ubuntu中如何查看端口占用 | 某人的博客</title>
+<title>Tag: 框架 | 某人的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="某人的博客" type="application/atom+xml">
@@ -35,8 +35,6 @@
 
 
 
-
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css?rev=9.12.0">
 
 
 <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
@@ -104,118 +102,35 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    <p id="process"></p>
-<article class="post">
-    <div class="post-head">
-        <h1 id="Ubuntu中如何查看端口占用">
-            
-            Ubuntu中如何查看端口占用
-            
-        </h1>
-        <div class="post-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-        <i class="fa fa-folder-open-o"></i>
-        <span>无</span>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-tags"></i>
-        <span class="tags-meta">
-            
-            linux
-            
-        </span>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta">2017/08/21</span>
-    </span>
-</div>
+                <main class="col-md-8 main-content ">
+                    <h3> 
 
-            
-            
-    </div>
-    
-    <div class="post-body">
-        <h6 id="在程序运行过程中，经常会因为一些不当的操作导致应用不能正常关闭，依然占用着端口，影响其他应用的运行"><a href="#在程序运行过程中，经常会因为一些不当的操作导致应用不能正常关闭，依然占用着端口，影响其他应用的运行" class="headerlink" title="在程序运行过程中，经常会因为一些不当的操作导致应用不能正常关闭，依然占用着端口，影响其他应用的运行"></a>在程序运行过程中，经常会因为一些不当的操作导致应用不能正常关闭，依然占用着端口，影响其他应用的运行</h6><ol>
-<li><p>查看所有的服务端口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -a</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看所有的服务端口，显示pid号</p>
-<p><code>netstat -a</code></p>
-<a id="more"></a>
-</li>
-<li><p>查看指定端口信息共有四种方式(以8000为例):</p>
-<p>​</p>
-<ol>
-<li><p>查看某一个指定端口，则可以结合grep(|)命令使用，过滤出当前端口</p>
-<p><code>netstat -ap | grep 8000</code></p>
-</li>
-<li><p>查看指定端口也有另一种方式，在终端中输入</p>
-<p><code>lsof -i:8000</code></p>
-</li>
-<li><p>使用netstat -lnp命令查询</p>
-<p><code>sudo netstat -lnp | grep 8000</code></p>
-</li>
-<li><p>查看端口号和运行程序</p>
-<p><code>netstat -atunp | more</code></p>
-</li>
-<li><p>查看进程所用端口</p>
-<p><code>netstat -tlnp | grep 8000</code></p>
-</li>
-</ol>
-</li>
-<li><p>使用kill杀死对应pid的进程</p>
-</li>
-</ol>
-<p>​    <code>kill pid</code></p>
-
-    </div>
-
-    <div class="post-footer">   
-        <div>
-            
-                转载声明: 商业转载请联系作者获得授权,非商业转载请注明出处 © Tg
-            
-        </div>
-        <div>
-            
-                License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
-知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
-</a>
-            
-        </div>  
-    </div>
-</article>
-
-<div class="article-nav prev-next-wrap clearfix">
-    
-        <a href="/2017/08/27/Ubuntu生存指南/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
-    
-    
-        <a href="/2017/08/20/Java中的反射机制/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
-    
-</div>
+    框架 
 
 
-    <div id="comments">
+</h3>
+
+    <article class="post">
         
-   <p>评论系统未开启，无法评论！</p>
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title"> 
+                    <a href="/2017/10/03/springmvc原理和运行流程/">springmvc原理和运行流程</a>
+                </h1>
+                <div class="post-meta">  &bull;
+                    <time class="post-date" datetime="" title="">
+                        2017年10月03日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                Spring MVC概述spring MVC是spring提供的一个强大而灵活的web框架.借助于注解,spring MVC提供了几乎是POJO的开发模式,使得控制器的开发和测试更加简单.spring MVC的控制器一般不直接处理请求...
+            </p> 
+        </div>
+    </article>
+ 
 
 
-
-
-
-
-
-
-    </div>
 
 
 
@@ -338,11 +253,6 @@
         </div>
     </div>
 </div>
-
-  <script src="/assets/highlight.pack.js?rev=@@hash"></script>
-  <script>
-    hljs.initHighlightingOnLoad(); //初始化代码高亮 
-  </script>
 
 <script src="/js/app.js?rev=@@hash"></script>
 

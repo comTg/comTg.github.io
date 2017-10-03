@@ -23,7 +23,7 @@
     <!--Title-->
 
 
-<title>Ubuntu中如何查看端口占用 | 某人的博客</title>
+<title>springmvc原理和运行流程 | 某人的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="某人的博客" type="application/atom+xml">
@@ -108,9 +108,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Ubuntu中如何查看端口占用">
+        <h1 id="springmvc原理和运行流程">
             
-            Ubuntu中如何查看端口占用
+            springmvc原理和运行流程
             
         </h1>
         <div class="post-meta">
@@ -118,7 +118,7 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <span>无</span>
+        <span>javaee</span>
     </span>
     
     
@@ -126,7 +126,7 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            linux
+            javaee
             
         </span>
     </span>
@@ -134,7 +134,7 @@
     
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
-        <span class="date-meta">2017/08/21</span>
+        <span class="date-meta">2017/10/03</span>
     </span>
 </div>
 
@@ -143,38 +143,8 @@
     </div>
     
     <div class="post-body">
-        <h6 id="在程序运行过程中，经常会因为一些不当的操作导致应用不能正常关闭，依然占用着端口，影响其他应用的运行"><a href="#在程序运行过程中，经常会因为一些不当的操作导致应用不能正常关闭，依然占用着端口，影响其他应用的运行" class="headerlink" title="在程序运行过程中，经常会因为一些不当的操作导致应用不能正常关闭，依然占用着端口，影响其他应用的运行"></a>在程序运行过程中，经常会因为一些不当的操作导致应用不能正常关闭，依然占用着端口，影响其他应用的运行</h6><ol>
-<li><p>查看所有的服务端口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -a</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看所有的服务端口，显示pid号</p>
-<p><code>netstat -a</code></p>
-<a id="more"></a>
-</li>
-<li><p>查看指定端口信息共有四种方式(以8000为例):</p>
-<p>​</p>
-<ol>
-<li><p>查看某一个指定端口，则可以结合grep(|)命令使用，过滤出当前端口</p>
-<p><code>netstat -ap | grep 8000</code></p>
-</li>
-<li><p>查看指定端口也有另一种方式，在终端中输入</p>
-<p><code>lsof -i:8000</code></p>
-</li>
-<li><p>使用netstat -lnp命令查询</p>
-<p><code>sudo netstat -lnp | grep 8000</code></p>
-</li>
-<li><p>查看端口号和运行程序</p>
-<p><code>netstat -atunp | more</code></p>
-</li>
-<li><p>查看进程所用端口</p>
-<p><code>netstat -tlnp | grep 8000</code></p>
-</li>
-</ol>
-</li>
-<li><p>使用kill杀死对应pid的进程</p>
-</li>
-</ol>
-<p>​    <code>kill pid</code></p>
+        <h3 id="Spring-MVC概述"><a href="#Spring-MVC概述" class="headerlink" title="Spring MVC概述"></a>Spring MVC概述</h3><p>spring MVC是spring提供的一个强大而灵活的web框架.借助于注解,spring MVC提供了几乎是POJO的开发模式,使得控制器的开发和测试更加简单.spring MVC的控制器一般不直接处理请求,而是将其委托给spring上下文中的其它bean,通过spring的依赖注入功能,这些bean被注入到控制器中.<br>spring MVC主要由DiapatcherServlet,处理器映射,处理器(控制器),视图解析器,视图组成,它的两个核心是:</p>
+<p><strong>处理器映射</strong>: 选择使用哪个控制器来处理请求<br><strong>视图解析起</strong>: 选择结果应该如何渲染<br>通过以上两个,Spring MVC保证了如何选择控制处理请求和如何选择视图展现输出之间的松耦合.</p>
 
     </div>
 
@@ -196,10 +166,8 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2017/08/27/Ubuntu生存指南/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
     
-    
-        <a href="/2017/08/20/Java中的反射机制/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+        <a href="/2017/10/02/struts2中Action访问Web对象的4种方式/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
     
 </div>
 
