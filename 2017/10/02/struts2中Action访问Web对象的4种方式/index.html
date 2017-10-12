@@ -23,7 +23,7 @@
     <!--Title-->
 
 
-<title>struts2中Action访问Web对象的4种方式 | 某人的博客</title>
+<title>struts2中Action访问Web对象的3种方式 | 某人的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="某人的博客" type="application/atom+xml">
@@ -85,7 +85,7 @@
                 <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="menu">
                         
-                            <li role="presentation" class=""><a href="/">首页</a></li>
+                            <li role="presentation" class=""><a href="/">Home</a></li>
                         
                             <li role="presentation" class=""><a href="/categories/Java/">Java</a></li>
                         
@@ -108,9 +108,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="struts2中Action访问Web对象的4种方式">
+        <h1 id="struts2中Action访问Web对象的3种方式">
             
-            struts2中Action访问Web对象的4种方式
+            struts2中Action访问Web对象的3种方式
             
         </h1>
         <div class="post-meta">
@@ -143,7 +143,9 @@
     </div>
     
     <div class="post-body">
-        <h3 id="Struts2中Action访问Web资源"><a href="#Struts2中Action访问Web资源" class="headerlink" title="Struts2中Action访问Web资源"></a>Struts2中Action访问Web资源</h3><p>在Action中访问Web对象有4种方式.<br> 通过ServletActionContext对象直接访问Web对象—Servlet依赖容器方式<br> 通过ActionContext访问—Map依赖容器方式<br> 通过IOC访问Servlet对象—Map IOC方式</p>
+        <h3 id="Struts2中Action访问Web资源"><a href="#Struts2中Action访问Web资源" class="headerlink" title="Struts2中Action访问Web资源"></a>Struts2中Action访问Web资源</h3><p>在Action中访问Web对象有4种方式.<br> 通过ServletActionContext对象直接访问Web对象—Servlet依赖容器方式<br> 通过ActionContext访问—Map IOC方式<br> 通过Servlet接口方式访问Servlet对象—非IOC方式，与Servlet API耦合大</p>
+<h5 id="通过ActionContext类访问Servlet-API"><a href="#通过ActionContext类访问Servlet-API" class="headerlink" title="通过ActionContext类访问Servlet API"></a>通过ActionContext类访问Servlet API</h5><p>下面是ActionContext类中包含的几个常用方法。<br>1、public Object get(Object key)：取得HttpServletRequest中key的值;<br>2、void put(String key,Object value)：设置HttpServletRequest中key的值为value;<br>3、public Map getApplication()：获取封装了ServletContext的Map对象;<br>4、void setApplication(Map application)：设置ServletContext实例;<br>5、static ActionContext getContext()：静态方法，获取系统的ActionContext实例;<br>6、Map getParameters()：类似于HttpServletRequest中的getParametersMap方法;<br>7、public Map getSession()：获取封装了HttpSession的Map对象;<br>8、void setSession(Map session)：直接传入一个Map实例，将该Map实例里的key-value对转换为session的属性名和属性值;</p>
+<h5 id="通过接口方式访问Servlet-API"><a href="#通过接口方式访问Servlet-API" class="headerlink" title="通过接口方式访问Servlet API"></a>通过接口方式访问Servlet API</h5><p>虽然Struts2提供了ActionContext访问Servlet API，但是如果需要直接获得Servlet API，Struts2提供了以下接口：<br>1、ServletContextAware：实现该接口的Action可以直接访问Web应用的ServletContext实例;<br>2、ServletRequestAware：实现该接口的Action可以直接访问用户请求对象的HttpServletRequest的实例;<br>3、ServletResponseAware：实现该接口的Action可以直接访问服务器响应的HttpServletResponse的实例; </p>
 
     </div>
 
@@ -155,7 +157,7 @@
         </div>
         <div>
             
-                版权声明: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+                License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
 知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
 </a>
             
@@ -237,26 +239,26 @@
         
         
     <div class="widget">
-        <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/"><i class="fa" aria-hidden="true">Ubuntu</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaee/"><i class="fa" aria-hidden="true">javaee</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/"><i class="fa" aria-hidden="true">linux</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/"><i class="fa" aria-hidden="true">python</i></a><span class="category-list-count">3</span></li></ul>
+        <h3 class="title">Categories</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/"><i class="fa" aria-hidden="true">Ubuntu</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaee/"><i class="fa" aria-hidden="true">javaee</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/"><i class="fa" aria-hidden="true">linux</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/"><i class="fa" aria-hidden="true">python</i></a><span class="category-list-count">3</span></li></ul>
     </div>
 
 
         
         
     <div class="widget">
-      <h3 class="title">归档</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">October 2017</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">August 2017</i></a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/"><i class="fa" aria-hidden="true">July 2017</i></a><span class="archive-list-count">2</span></li></ul>
+      <h3 class="title">Archives</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">October 2017</i></a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">August 2017</i></a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/"><i class="fa" aria-hidden="true">July 2017</i></a><span class="archive-list-count">2</span></li></ul>
     </div>
 
 
         
         
   <div class="widget">
-    <h3 class="title">标签云</h3>
+    <h3 class="title">Tag Cloud</h3>
     <div class="content tag-cloud">
       
-        <a href="/tags/命令/" style="font-size: 1em;">命令</a> <a href="/tags/Git/" style="font-size: 1em;">Git</a> <a href="/tags/项目/" style="font-size: 1em;">项目</a> <a href="/tags/python/" style="font-size: 1em;">python</a> <a href="/tags/Java/" style="font-size: 1em;">Java</a> <a href="/tags/反射/" style="font-size: 1em;">反射</a> <a href="/tags/linux/" style="font-size: 1em;">linux</a> <a href="/tags/ubuntu/" style="font-size: 1em;">ubuntu</a> <a href="/tags/github/" style="font-size: 1em;">github</a> <a href="/tags/java/" style="font-size: 1em;">java</a> <a href="/tags/struts2/" style="font-size: 1em;">struts2</a> <a href="/tags/javaee/" style="font-size: 1em;">javaee</a> <a href="/tags/springmvc/" style="font-size: 1em;">springmvc</a> <a href="/tags/框架/" style="font-size: 1em;">框架</a> <a href="/tags/struts2-javaee-web/" style="font-size: 1em;">struts2,javaee,web</a> <a href="/tags/项目工具/" style="font-size: 1em;">项目工具</a> <a href="/tags/Gradle/" style="font-size: 1em;">Gradle</a>
+        <a href="/tags/反射/" style="font-size: 1em;">反射</a> <a href="/tags/python/" style="font-size: 1em;">python</a> <a href="/tags/github/" style="font-size: 1em;">github</a> <a href="/tags/项目/" style="font-size: 1em;">项目</a> <a href="/tags/linux/" style="font-size: 1em;">linux</a> <a href="/tags/ubuntu/" style="font-size: 1em;">ubuntu</a> <a href="/tags/命令/" style="font-size: 1em;">命令</a> <a href="/tags/java/" style="font-size: 1em;">java</a> <a href="/tags/struts2/" style="font-size: 1em;">struts2</a> <a href="/tags/Java/" style="font-size: 1em;">Java</a> <a href="/tags/Git/" style="font-size: 1em;">Git</a> <a href="/tags/idea/" style="font-size: 1em;">idea</a> <a href="/tags/javaee/" style="font-size: 1em;">javaee</a> <a href="/tags/springmvc/" style="font-size: 1em;">springmvc</a> <a href="/tags/框架/" style="font-size: 1em;">框架</a> <a href="/tags/struts2-javaee-web/" style="font-size: 1em;">struts2,javaee,web</a> <a href="/tags/项目工具/" style="font-size: 1em;">项目工具</a> <a href="/tags/Gradle/" style="font-size: 1em;">Gradle</a> <a href="/tags/数据库/" style="font-size: 1em;">数据库</a> <a href="/tags/连接池/" style="font-size: 1em;">连接池</a>
     </div>
   </div>
 
@@ -264,7 +266,7 @@
         
         
     <div class="widget">
-        <h3 class="title">友链</h3>
+        <h3 class="title">Friends</h3>
         <div class="content friends-link">
         
             <a href="http://www.vetoer.top" class="fa" target="_blank">个人网站</a>

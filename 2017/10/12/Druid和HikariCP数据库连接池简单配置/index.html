@@ -23,7 +23,7 @@
     <!--Title-->
 
 
-<title>Java中的反射机制 | 某人的博客</title>
+<title>Druid和HikariCP数据库连接池简单配置 | 某人的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="某人的博客" type="application/atom+xml">
@@ -108,9 +108,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Java中的反射机制">
+        <h1 id="Druid和HikariCP数据库连接池简单配置">
             
-            Java中的反射机制
+            Druid和HikariCP数据库连接池简单配置
             
         </h1>
         <div class="post-meta">
@@ -134,7 +134,7 @@
     
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
-        <span class="date-meta">2017/08/20</span>
+        <span class="date-meta">2017/10/12</span>
     </span>
 </div>
 
@@ -143,22 +143,10 @@
     </div>
     
     <div class="post-body">
-        <h3 id="什么是反射？"><a href="#什么是反射？" class="headerlink" title="什么是反射？"></a>什么是反射？</h3><blockquote>
-<p>一个对象或者类获得自身的Class对象的过程称为反射。</p>
-</blockquote>
-<a id="more"></a>
-<h3 id="反射的作用："><a href="#反射的作用：" class="headerlink" title="反射的作用："></a>反射的作用：</h3><ol>
-<li>确定一个对象的Class。</li>
-<li>可以获得一个类的修饰符、字段、方法、构造器和父类。</li>
-<li>获得接口声明的常量和方法。</li>
-<li>创建Class的实例，直到运行时才获得。</li>
-<li>运行前即使字段名称不知道，也可以在程序运行时获得和修改这些字段的值。</li>
-<li>运行前即使对象的方法名不知道，可以在程序运行时触发调用该方法。</li>
-</ol>
-<ol>
-<li>运行前创建了一个大小和元素都未知的新数组，可以在运行时修改数组的元素。</li>
-</ol>
-<p><strong>反射机制通过在运行时探查字段和方法，从而帮助用户写出通用性很好的程序，这项能力对系统编程来说特别有用，但它不适用于应用编程。然而，反射是脆弱的，编译不能帮助用户发现编译错误，任何错误在运行时被发现都会导致异常。</strong></p>
+        <p>采用Spring配置,这样以后如果更换连接池比较方便.</p>
+<h3 id="HikariCP数据库连接池配置"><a href="#HikariCP数据库连接池配置" class="headerlink" title="HikariCP数据库连接池配置"></a>HikariCP数据库连接池配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">1  &lt;!-- HikariCP 高性能数据库连接池 --&gt; </div><div class="line"> 2     &lt;bean id=&quot;dataSourceHikari&quot; class=&quot;com.zaxxer.hikari.HikariDataSource&quot;&gt;</div><div class="line"> 3         &lt;property name=&quot;driverClassName&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;</div><div class="line"> 4         &lt;property name=&quot;jdbcUrl&quot; value=&quot;jdbc:mysql://localhost:3306/black1?useUnicode=true&amp;amp;characterEncoding=UTF-8&quot;/&gt;</div><div class="line"> 5         &lt;property name=&quot;username&quot; value=&quot;root&quot;/&gt;</div><div class="line"> 6         &lt;property name=&quot;password&quot; value=&quot;&quot;/&gt;</div><div class="line"> 7         &lt;!-- Default settings --&gt;</div><div class="line"> 8         &lt;!-- 控制自动提交行为 default：true --&gt;</div><div class="line"> 9         &lt;property name=&quot;autoCommit&quot; value=&quot;true&quot;/&gt;</div><div class="line">10         &lt;!--连接池获取的连接是否只读 default:false--&gt;</div><div class="line">11         &lt;property name=&quot;readOnly&quot; value=&quot;false&quot;/&gt;</div><div class="line">12         &lt;!--控制连接的事务隔离等级 default:none--&gt;</div><div class="line">13         &lt;property name=&quot;transactionIsolation&quot; value=&quot;none&quot;/&gt;</div><div class="line">14         &lt;!--设置catalog以便于支持查看catalogs ， 若不指定的话将直接使用 JDBC driver使用的 default:none--&gt;</div><div class="line">15         &lt;property name=&quot;catalog&quot; value=&quot;none&quot;/&gt;</div><div class="line">16         &lt;!--最大连接超时时间 default：30秒--&gt;</div><div class="line">17         &lt;property name=&quot;connectionTimeout&quot; value=&quot;30000&quot;/&gt;</div><div class="line">18         &lt;!--最大空闲超时时间 default：10分钟   --&gt;</div><div class="line">19         &lt;property name=&quot;idleTimeout&quot; value=&quot;600000&quot;/&gt;</div><div class="line">20         &lt;!--连接池中一个连接的最大生命周期 default：30分钟--&gt;</div><div class="line">21         &lt;property name=&quot;maxLifetime&quot; value=&quot;1800000 &quot;/&gt;</div><div class="line">22         &lt;!-- others  --&gt;</div><div class="line">23     &lt;/bean&gt;</div></pre></td></tr></table></figure>
+<h3 id="Druid数据库连接池配置参考"><a href="#Druid数据库连接池配置参考" class="headerlink" title="Druid数据库连接池配置参考"></a>Druid数据库连接池配置参考</h3><p>Druid是阿里旗下的一款开源连接池项目,性能和稳定性各方面都还不错.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;dataSource&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot; init-method=&quot;init&quot; destroy-method=&quot;close&quot;&gt; </div><div class="line">      &lt;!-- 基本属性 url、user、password --&gt;</div><div class="line">      &lt;property name=&quot;url&quot; value=&quot;$&#123;jdbc_url&#125;&quot; /&gt;</div><div class="line">      &lt;property name=&quot;username&quot; value=&quot;$&#123;jdbc_user&#125;&quot; /&gt;</div><div class="line">      &lt;property name=&quot;password&quot; value=&quot;$&#123;jdbc_password&#125;&quot; /&gt;</div><div class="line">        </div><div class="line">      &lt;!-- 配置初始化大小、最小、最大 --&gt;</div><div class="line">      &lt;property name=&quot;initialSize&quot; value=&quot;1&quot; /&gt;</div><div class="line">      &lt;property name=&quot;minIdle&quot; value=&quot;1&quot; /&gt; </div><div class="line">      &lt;property name=&quot;maxActive&quot; value=&quot;20&quot; /&gt;</div><div class="line">   </div><div class="line">      &lt;!-- 配置获取连接等待超时的时间 --&gt;</div><div class="line">      &lt;property name=&quot;maxWait&quot; value=&quot;60000&quot; /&gt;</div><div class="line">   </div><div class="line">      &lt;!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 --&gt;</div><div class="line">      &lt;property name=&quot;timeBetweenEvictionRunsMillis&quot; value=&quot;60000&quot; /&gt;</div><div class="line">   </div><div class="line">      &lt;!-- 配置一个连接在池中最小生存的时间，单位是毫秒 --&gt;</div><div class="line">      &lt;property name=&quot;minEvictableIdleTimeMillis&quot; value=&quot;300000&quot; /&gt;</div><div class="line">    </div><div class="line">      &lt;property name=&quot;validationQuery&quot; value=&quot;SELECT &apos;x&apos;&quot; /&gt;</div><div class="line">      &lt;property name=&quot;testWhileIdle&quot; value=&quot;true&quot; /&gt;</div><div class="line">      &lt;property name=&quot;testOnBorrow&quot; value=&quot;false&quot; /&gt;</div><div class="line">      &lt;property name=&quot;testOnReturn&quot; value=&quot;false&quot; /&gt;</div><div class="line">   </div><div class="line">      &lt;!-- 打开PSCache，并且指定每个连接上PSCache的大小 --&gt;</div><div class="line">      &lt;property name=&quot;poolPreparedStatements&quot; value=&quot;true&quot; /&gt;</div><div class="line">      &lt;property name=&quot;maxPoolPreparedStatementPerConnectionSize&quot; value=&quot;20&quot; /&gt;</div><div class="line">   </div><div class="line">      &lt;!-- 配置监控统计拦截的filters --&gt;</div><div class="line">      &lt;property name=&quot;filters&quot; value=&quot;stat&quot; /&gt; </div><div class="line">  &lt;/bean&gt;</div></pre></td></tr></table></figure>
 
     </div>
 
@@ -180,10 +168,8 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2017/08/21/Linux中如何查看端口占用/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
     
-    
-        <a href="/2017/07/02/Git的基本使用/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+        <a href="/2017/10/07/idea一些我比较常用的快捷键/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
     
 </div>
 
