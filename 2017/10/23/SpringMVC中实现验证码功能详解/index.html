@@ -1,0 +1,328 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable"  content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <link rel="dns-prefetch" href="//t11.baidu.com">
+    <!--SEO-->
+
+<meta name="description" content="Java是世界上最差的语言"/>
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>SpringMVC中实现验证码功能详解 | 某人的博客</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="某人的博客" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css?rev=9.12.0">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+    
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header">
+    <div class="main-header-box">
+        <a class="branding" href="/" title="">
+            <img src="/img/header_logo.png" alt="Snippet 博客主题">
+        </a>
+        <h2 class="text-hide">Snippet主题</h2>
+        <img src="/img/header_logo.png" alt="Snippet 博客主题" class="hide">
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class=""><a href="/">首页</a></li>
+                        
+                            <li role="presentation" class=""><a href="/categories/Java/">Java</a></li>
+                        
+                            <li role="presentation" class=""><a href="/categories/linux/">linux</a></li>
+                        
+                            <li role="presentation" class=""><a href="/categories/python/">python</a></li>
+                        
+                            <li role="presentation" class=""><a href="/categories/Ubuntu/">Ubuntu</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="SpringMVC中实现验证码功能详解">
+            
+            SpringMVC中实现验证码功能详解
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>Java</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Java
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/10/23</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body">
+        <h3 id="1-为什么要验证码呢"><a href="#1-为什么要验证码呢" class="headerlink" title="1. 为什么要验证码呢"></a>1. 为什么要验证码呢</h3><p>现在去验证码是个趋势,用户输入麻烦,虽然对公司倒不怎么麻烦,现在出现的滑动验证功能是越来越方便了,而且可能还更安全点,但是传统的图片字符验证还是有必要的,主要是滑动验证我也不会,还是随便实现一个简单的就好啦.</p>
+<h3 id="2-导入google的kaptcha库"><a href="#2-导入google的kaptcha库" class="headerlink" title="2. 导入google的kaptcha库"></a>2. 导入google的kaptcha库</h3><p>kaptcha能很方便的帮我们创建一个比较难被破解的验证码,主要是封装好了,方便快捷<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;!--添加google验证码库--&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;com.github.penggle&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;kaptcha&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;2.3.2&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="3-在spring的xml中配置kaptcha"><a href="#3-在spring的xml中配置kaptcha" class="headerlink" title="3. 在spring的xml中配置kaptcha"></a>3. 在spring的xml中配置kaptcha</h3><p>这里只是一些我的基本配置,具体配置详情可以参考kaptcha的wiki<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;!--配置图片验证码bean--&gt;</div><div class="line">&lt;bean id=&quot;captchaProducer&quot; class=&quot;com.google.code.kaptcha.impl.DefaultKaptcha&quot;&gt;</div><div class="line">    &lt;property name=&quot;config&quot;&gt;</div><div class="line">        &lt;bean class=&quot;com.google.code.kaptcha.util.Config&quot;&gt;</div><div class="line">            &lt;constructor-arg&gt;</div><div class="line">                &lt;props&gt;</div><div class="line">                    &lt;prop key=&quot;kaptcha.border&quot;&gt;no&lt;/prop&gt;</div><div class="line">                    &lt;prop key=&quot;kaptcha.image.width&quot;&gt;120&lt;/prop&gt;</div><div class="line">                    &lt;prop key=&quot;kaptcha.session.key&quot;&gt;code&lt;/prop&gt;</div><div class="line">                    &lt;prop key=&quot;kaptcha.textproducer.font.color&quot;&gt;blue&lt;/prop&gt;</div><div class="line">                    &lt;prop key=&quot;kaptcha.textproducer.font.size&quot;&gt;40&lt;/prop&gt;</div><div class="line">                    &lt;prop key=&quot;kaptcha.textproducer.char.length&quot;&gt;4&lt;/prop&gt;</div><div class="line">                &lt;/props&gt;</div><div class="line">            &lt;/constructor-arg&gt;</div><div class="line">        &lt;/bean&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="4-在controller中添加生成验证码方法-绑定链接"><a href="#4-在controller中添加生成验证码方法-绑定链接" class="headerlink" title="4. 在controller中添加生成验证码方法,绑定链接"></a>4. 在controller中添加生成验证码方法,绑定链接</h3><p>给验证码图片绑定上这个链接,当页面加载时即可加载出图片<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">@RequestMapping(value = &quot;/loadValidateCode&quot;,method = RequestMethod.GET)</div><div class="line">public void loadValidateCode(HttpServletRequest req, HttpServletResponse resp)&#123;</div><div class="line">    try &#123;</div><div class="line">        HttpSession httpSession = req.getSession();</div><div class="line">        //设置清除浏览器缓存</div><div class="line">        resp.setDateHeader(&quot;Expires&quot;, 0);</div><div class="line">        resp.setHeader(&quot;Cache-Control&quot;, &quot;no-store, no-cache, must-revalidate&quot;);</div><div class="line">        resp.addHeader(&quot;Cache-Control&quot;, &quot;post-check=0, pre-check=0&quot;);</div><div class="line">        resp.setHeader(&quot;Pragma&quot;, &quot;no-cache&quot;);</div><div class="line">        resp.setContentType(&quot;image/png&quot;);</div><div class="line">        // 设置验证码有效期限:1分钟</div><div class="line">        long expireTime = System.currentTimeMillis()+60000;</div><div class="line">        // 生成验证码,将验证码放入session中</div><div class="line">        String validateCode = captchaProducer.createText();</div><div class="line">        httpSession.setAttribute(VALIDATE_CODE, SeckillUtils.encodeBase64(validateCode));</div><div class="line">        httpSession.setAttribute(EXPIRE_TIME,expireTime);</div><div class="line"></div><div class="line">        // 输出验证码图片</div><div class="line">        BufferedImage bufferedImage = captchaProducer.createImage(validateCode);</div><div class="line">        ServletOutputStream out = resp.getOutputStream();</div><div class="line">        ImageIO.write(bufferedImage,&quot;png&quot;,out);</div><div class="line">        out.flush();</div><div class="line">        out.close();</div><div class="line"></div><div class="line">    &#125;catch (Exception e)&#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="5-在网页上添加输入框和验证码图片"><a href="#5-在网页上添加输入框和验证码图片" class="headerlink" title="5. 在网页上添加输入框和验证码图片"></a>5. 在网页上添加输入框和验证码图片</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;div style=&quot;float:left; width: 60%;&quot;&gt;</div><div class="line">                        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;validateCode&quot; name=&quot;validateCode&quot; placeholder=&quot;验证码&quot; &gt;</div><div class="line">                        &lt;i class=&quot;glyphicon glyphicon-exclamation-sign&quot;&gt;&lt;/i&gt;</div><div class="line">                    &lt;/div&gt;</div><div class="line">                    &lt;div style=&quot;float: right;overflow: visible !important;&quot;&gt;</div><div class="line">                        &lt;img src=&quot;/loadValidateCode&quot; id=&quot;validateCodeImage&quot; name=&quot;validateCodeImage&quot;</div><div class="line">                             style=&quot;width: 100px;height: 35px;&quot;  onclick=&quot;seckill.loadValidateCode()&quot; &gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>在这里用JS给图片添加一个点击刷新的功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">loadValidateCode: function () &#123;</div><div class="line">        var time = new Date().getTime();</div><div class="line">        $(&quot;#validateCodeImage&quot;).attr(&apos;src&apos;, &apos;/loadValidateCode&apos;)</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>完美!接下来还有最后一步</p>
+<h3 id="6-写一个验证验证码的逻辑"><a href="#6-写一个验证验证码的逻辑" class="headerlink" title="6. 写一个验证验证码的逻辑"></a>6. 写一个验证验证码的逻辑</h3><p>其实这里感觉用拦截器要好点,这样可以在其它需要验证码的页面中也可以复用,不过我这个系统只有这一处,所以就没有用拦截器实现了,写在controller里面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@RequestMapping(value = &quot;/login&quot;, method = RequestMethod.POST)</div><div class="line">public String login(Model model, HttpServletRequest req, HttpServletResponse resp) &#123;</div><div class="line">    HttpSession session = req.getSession();</div><div class="line">    // 1.校验验证码是否过期</div><div class="line">    String currentExpireTime = String.valueOf(session.getAttribute(EXPIRE_TIME));</div><div class="line">    if(!&quot;null&quot;.equals(currentExpireTime) &amp;&amp;</div><div class="line">            System.currentTimeMillis()&gt;Long.parseLong(currentExpireTime))&#123;</div><div class="line">        //  验证码过期</div><div class="line">        model.addAttribute(&quot;error&quot;,&quot;验证码过期,请重试&quot;);</div><div class="line">        return &quot;login&quot;;</div><div class="line">    &#125;</div><div class="line">    // 2.判断验证码是否为空以及输入验证码是否正确</div><div class="line">    String currentValidateCode = req.getParameter(&quot;validateCode&quot;);</div><div class="line">    String validateCode = String.valueOf(session.getAttribute(VALIDATE_CODE));</div><div class="line">    if(StringUtils.isEmpty(currentValidateCode)||</div><div class="line">            StringUtils.isEmpty(validateCode) ||</div><div class="line">            !SeckillUtils.encodeBase64(currentValidateCode).equals(validateCode))&#123;</div><div class="line">        model.addAttribute(&quot;error&quot;,&quot;验证码输入错误,请重试&quot;);</div><div class="line">        return &quot;login&quot;;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>对了,这里的验证码需要用Base64加密一下,防止某些别有用心的人<br><strong>ok!</strong>,完美让我们来运行一下</p>
+<p><img src="/myimages/validatecode.png" alt=""></p>
+
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明: 商业转载请联系作者获得授权,非商业转载请注明出处 © Tg
+            
+        </div>
+        <div>
+            
+                版权声明: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/10/23/记一次反复尝试的表单提交功能/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2017/10/12/Druid和HikariCP数据库连接池简单配置/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+    <div id="comments">
+        
+   <p>评论系统未开启，无法评论！</p>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <p>
+微斯人，吾谁与归<br>
+</p>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/comTg" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="mailto:vetoeraice@gmail.com" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="微博" target="_blank">
+			    	<i class="weibo fa fa-weibo"></i>
+			    </a>
+            
+	            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
+			    	<i class="feed fa fa-feed"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/"><i class="fa" aria-hidden="true">Ubuntu</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaee/"><i class="fa" aria-hidden="true">javaee</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/"><i class="fa" aria-hidden="true">linux</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/"><i class="fa" aria-hidden="true">python</i></a><span class="category-list-count">3</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">October 2017</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">August 2017</i></a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/"><i class="fa" aria-hidden="true">July 2017</i></a><span class="archive-list-count">2</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+      
+        <a href="/tags/struts2/" style="font-size: 1em;">struts2</a> <a href="/tags/Git/" style="font-size: 1em;">Git</a> <a href="/tags/项目/" style="font-size: 1em;">项目</a> <a href="/tags/Java/" style="font-size: 1em;">Java</a> <a href="/tags/反射/" style="font-size: 1em;">反射</a> <a href="/tags/linux/" style="font-size: 1em;">linux</a> <a href="/tags/ubuntu/" style="font-size: 1em;">ubuntu</a> <a href="/tags/命令/" style="font-size: 1em;">命令</a> <a href="/tags/SpringMVC/" style="font-size: 1em;">SpringMVC</a> <a href="/tags/验证码/" style="font-size: 1em;">验证码</a> <a href="/tags/kaptcha/" style="font-size: 1em;">kaptcha</a> <a href="/tags/java/" style="font-size: 1em;">java</a> <a href="/tags/github/" style="font-size: 1em;">github</a> <a href="/tags/javaee/" style="font-size: 1em;">javaee</a> <a href="/tags/springmvc/" style="font-size: 1em;">springmvc</a> <a href="/tags/框架/" style="font-size: 1em;">框架</a> <a href="/tags/struts2-javaee-web/" style="font-size: 1em;">struts2,javaee,web</a> <a href="/tags/JAVA/" style="font-size: 1em;">JAVA</a> <a href="/tags/项目工具/" style="font-size: 1em;">项目工具</a> <a href="/tags/Gradle/" style="font-size: 1em;">Gradle</a> <a href="/tags/python/" style="font-size: 1em;">python</a> <a href="/tags/数据库/" style="font-size: 1em;">数据库</a> <a href="/tags/连接池/" style="font-size: 1em;">连接池</a> <a href="/tags/idea/" style="font-size: 1em;">idea</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="http://www.vetoer.top" class="fa" target="_blank">个人网站</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017 
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <script src="/assets/highlight.pack.js?rev=@@hash"></script>
+  <script>
+    hljs.initHighlightingOnLoad(); //初始化代码高亮 
+  </script>
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

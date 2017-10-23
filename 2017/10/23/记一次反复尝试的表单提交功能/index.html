@@ -23,7 +23,7 @@
     <!--Title-->
 
 
-<title>springmvc原理和运行流程 | 某人的博客</title>
+<title>记一次反复尝试的禁止刷新页面表单提交功能 | 某人的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="某人的博客" type="application/atom+xml">
@@ -108,9 +108,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="springmvc原理和运行流程">
+        <h1 id="记一次反复尝试的禁止刷新页面表单提交功能">
             
-            springmvc原理和运行流程
+            记一次反复尝试的禁止刷新页面表单提交功能
             
         </h1>
         <div class="post-meta">
@@ -118,7 +118,7 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <span>javaee</span>
+        <span>Java</span>
     </span>
     
     
@@ -126,7 +126,7 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            javaee
+            SpringMVC
             
         </span>
     </span>
@@ -134,7 +134,7 @@
     
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
-        <span class="date-meta">2017/10/03</span>
+        <span class="date-meta">2017/10/23</span>
     </span>
 </div>
 
@@ -143,23 +143,17 @@
     </div>
     
     <div class="post-body">
-        <h3 id="Spring-MVC概述"><a href="#Spring-MVC概述" class="headerlink" title="Spring MVC概述"></a>Spring MVC概述</h3><p>spring MVC是spring提供的一个强大而灵活的web框架.借助于注解,spring MVC提供了几乎是POJO的开发模式,使得控制器的开发和测试更加简单.spring MVC的控制器一般不直接处理请求,而是将其委托给spring上下文中的其它bean,通过spring的依赖注入功能,这些bean被注入到控制器中.<br>spring MVC主要由DiapatcherServlet,处理器映射,处理器(控制器),视图解析器,视图组成,它的两个核心是:</p>
-<p><strong>处理器映射</strong>: 选择使用哪个控制器来处理请求<br><strong>视图解析起</strong>: 选择结果应该如何渲染<br>通过以上两个,Spring MVC保证了如何选择控制处理请求和如何选择视图展现输出之间的松耦合.</p>
-<h3 id="Spring-MVC运行原理"><a href="#Spring-MVC运行原理" class="headerlink" title="Spring MVC运行原理"></a>Spring MVC运行原理</h3><ol>
-<li>客户端提交请求到DispatcherServlet</li>
-<li>由DispatcherServlet控制器查询一个或多个HandlerMapping,找到处理请求的Controller</li>
-<li>DispatcherServlet将请求提交到Controller</li>
-<li>Controller调用业务逻辑处理后,返回ModelAndView</li>
-<li>DispatcherServlet查询一个或多个ViewResoler视图解析器,找到ModelAndView指定的视图</li>
-<li>视图负责将结果显示到客户端</li>
-</ol>
-<h3 id="Spring-MVC的核心"><a href="#Spring-MVC的核心" class="headerlink" title="Spring MVC的核心"></a>Spring MVC的核心</h3><p>DispatcherServlet是整个Spring MVC的核心,它负责接收HTTP请求组织协调Spring MVC的各个组成部分,它主要的功能有以下三项:</p>
+        <p>先说遇到的问题</p>
 <ol>
-<li>截获符合特定格式的URL请求</li>
-<li>初始化DispatcherServlet上下文对应的WebApplicationContext,并将其与业务层,持久化层的WebApplicationContext建立关联</li>
-<li>初始化Spring MVC的各个组成组件,并装配到DispatcherServlet中.</li>
+<li>在还没写js验证表单提交数据的时候,用户点击登录后提交空数据,需要在后端进行验证,增加了大段代码.</li>
+<li>js验证表单后,用户数据通过验证进入controller验证的时候,因为在控制层中如果用户输入数据不正确是转发回login页面,所以当用户刷新的时候会出现跳过js重复验证的情况.<br>本来就想用springMVC实现一个验证码功能, 洋洋洒洒写了一堆代码,O了,验证码功能完成!<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">此处省略一千行代码............</div><div class="line">.....</div><div class="line">.....</div></pre></td></tr></table></figure>
+</li>
 </ol>
-
+<p>还是写写步骤,不然以后自己再看忘了(ps:项目基于springMVC+spring搭建)</p>
+<h4 id="1-导入google的kaptcha库"><a href="#1-导入google的kaptcha库" class="headerlink" title="1. 导入google的kaptcha库"></a>1. 导入google的kaptcha库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;!--添加google验证码库--&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;com.github.penggle&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;kaptcha&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;2.3.2&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<h4 id="2-在spring的xml中配置kaptcha"><a href="#2-在spring的xml中配置kaptcha" class="headerlink" title="2. 在spring的xml中配置kaptcha"></a>2. 在spring的xml中配置kaptcha</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;!--配置图片验证码bean--&gt;</div><div class="line">&lt;bean id=&quot;captchaProducer&quot; class=&quot;com.google.code.kaptcha.impl.DefaultKaptcha&quot;&gt;</div><div class="line">    &lt;property name=&quot;config&quot;&gt;</div><div class="line">        &lt;bean class=&quot;com.google.code.kaptcha.util.Config&quot;&gt;</div><div class="line">            &lt;constructor-arg&gt;</div><div class="line">                &lt;props&gt;</div><div class="line">                    &lt;prop key=&quot;kaptcha.border&quot;&gt;no&lt;/prop&gt;</div><div class="line">                    &lt;prop key=&quot;kaptcha.image.width&quot;&gt;120&lt;/prop&gt;</div><div class="line">                    &lt;prop key=&quot;kaptcha.session.key&quot;&gt;code&lt;/prop&gt;</div><div class="line">                    &lt;prop key=&quot;kaptcha.textproducer.font.color&quot;&gt;blue&lt;/prop&gt;</div><div class="line">                    &lt;prop key=&quot;kaptcha.textproducer.font.size&quot;&gt;40&lt;/prop&gt;</div><div class="line">                    &lt;prop key=&quot;kaptcha.textproducer.char.length&quot;&gt;4&lt;/prop&gt;</div><div class="line">                &lt;/props&gt;</div><div class="line">            &lt;/constructor-arg&gt;</div><div class="line">        &lt;/bean&gt;</div><div class="line">    &lt;/property&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+<h4 id="3-在controller中添加生成验证码方法"><a href="#3-在controller中添加生成验证码方法" class="headerlink" title="3. 在controller中添加生成验证码方法"></a>3. 在controller中添加生成验证码方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">@RequestMapping(value = &quot;/loadValidateCode&quot;,method = RequestMethod.GET)</div><div class="line">public void loadValidateCode(HttpServletRequest req, HttpServletResponse resp)&#123;</div><div class="line">    try &#123;</div><div class="line">        HttpSession httpSession = req.getSession();</div><div class="line">        //设置清除浏览器缓存</div><div class="line">        resp.setDateHeader(&quot;Expires&quot;, 0);</div><div class="line">        resp.setHeader(&quot;Cache-Control&quot;, &quot;no-store, no-cache, must-revalidate&quot;);</div><div class="line">        resp.addHeader(&quot;Cache-Control&quot;, &quot;post-check=0, pre-check=0&quot;);</div><div class="line">        resp.setHeader(&quot;Pragma&quot;, &quot;no-cache&quot;);</div><div class="line">        resp.setContentType(&quot;image/png&quot;);</div><div class="line">        // 设置验证码有效期限:1分钟</div><div class="line">        long expireTime = System.currentTimeMillis()+60000;</div><div class="line">        // 生成验证码,将验证码放入session中</div><div class="line">        String validateCode = captchaProducer.createText();</div><div class="line">        httpSession.setAttribute(VALIDATE_CODE, SeckillUtils.encodeBase64(validateCode));</div><div class="line">        httpSession.setAttribute(EXPIRE_TIME,expireTime);</div><div class="line"></div><div class="line">        // 输出验证码图片</div><div class="line">        BufferedImage bufferedImage = captchaProducer.createImage(validateCode);</div><div class="line">        ServletOutputStream out = resp.getOutputStream();</div><div class="line">        ImageIO.write(bufferedImage,&quot;png&quot;,out);</div><div class="line">        out.flush();</div><div class="line">        out.close();</div><div class="line"></div><div class="line">    &#125;catch (Exception e)&#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="4-在网页上添加输入框和验证码图片链接"><a href="#4-在网页上添加输入框和验证码图片链接" class="headerlink" title="4. 在网页上添加输入框和验证码图片链接"></a>4. 在网页上添加输入框和验证码图片链接</h4>
     </div>
 
     <div class="post-footer">   
@@ -180,10 +174,8 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2017/10/03/Struts2相关/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
     
-    
-        <a href="/2017/10/02/struts2中Action访问Web对象的4种方式/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+        <a href="/2017/10/23/SpringMVC中实现验证码功能详解/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
     
 </div>
 
