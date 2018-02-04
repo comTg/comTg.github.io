@@ -23,7 +23,7 @@
     <!--Title-->
 
 
-<title>Anaconda的基本使用方式 | 某人的博客</title>
+<title>Ubuntu生存指南 | 某人的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="某人的博客" type="application/atom+xml">
@@ -85,7 +85,7 @@
                 <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="menu">
                         
-                            <li role="presentation" class=""><a href="/">首页</a></li>
+                            <li role="presentation" class=""><a href="/">Home</a></li>
                         
                             <li role="presentation" class=""><a href="/categories/Java/">Java</a></li>
                         
@@ -108,9 +108,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Anaconda的基本使用方式">
+        <h1 id="Ubuntu生存指南">
             
-            Anaconda的基本使用方式
+            Ubuntu生存指南
             
         </h1>
         <div class="post-meta">
@@ -118,7 +118,7 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <span>python</span>
+        <span>Ubuntu</span>
     </span>
     
     
@@ -126,7 +126,7 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            python
+            null
             
         </span>
     </span>
@@ -134,7 +134,7 @@
     
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
-        <span class="date-meta">2017/08/31</span>
+        <span class="date-meta">2017/11/15</span>
     </span>
 </div>
 
@@ -143,22 +143,14 @@
     </div>
     
     <div class="post-body">
-        <p>Anaconda 解决了官方 Python 的两大痛点。</p>
-<ul>
-<li>第一：提供了包管理功能，Windows 平台安装第三方包经常失败的场景得以解决，</li>
-<li>第二：提供环境管理的功能，功能类似 Virtualenv，解决了多版本Python并存、切换的问题。</li>
-</ul>
-<h5 id="下载-Anaconda"><a href="#下载-Anaconda" class="headerlink" title="下载 Anaconda"></a>下载 Anaconda</h5><p>直接在<a href="https://www.continuum.io/downloads" target="_blank" rel="external">官网下载</a>安装包， 选择 Python3.6 的安装包进行下载，下载完成后直接安装，安装过程选择默认配置即可，大约需要1.8G的磁盘空间。</p>
-<a id="more"></a>
-<p><strong>conda 工具介绍</strong></p>
-<p>conda 是 Anaconda 下用于包管理和环境管理的工具，功能上类似 pip 和 vitualenv 的组合。安装成功后 conda 会默认加入到环境变量中，因此可直接在命令行窗口运行命令 conda</p>
-<p>conda 的环境管理与 virtualenv 是基本上是类似的操作。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># 查看帮助</div><div class="line">conda -h </div><div class="line"># 基于python3.6版本创建一个名字为python36的环境</div><div class="line">conda create --name python36 python=3.6 </div><div class="line"># 激活此环境</div><div class="line">activate python36  </div><div class="line">source activate python36 # linux/mac</div><div class="line"># 再来检查python版本，显示是 3.6</div><div class="line">python -V  </div><div class="line"># 退出当前环境</div><div class="line">deactivate python36 </div><div class="line"># 删除该环境</div><div class="line">conda remove -n python36 --all</div><div class="line"># 或者 </div><div class="line">conda env remove  -n python36</div><div class="line"># 查看所以安装的环境</div><div class="line">conda info -e</div><div class="line">python36              *  D:\Programs\Anaconda3\envs\python36</div><div class="line">root                     D:\Programs\Anaconda3</div></pre></td></tr></table></figure>
-<p>conda 的包管理功能可 pip 是一样的，当然你选择 pip 来安装包也是没问题的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 安装 matplotlib </div><div class="line">conda install matplotlib</div><div class="line"># 查看已安装的包</div><div class="line">conda list </div><div class="line"># 包更新</div><div class="line">conda update matplotlib</div><div class="line"># 删除包</div><div class="line">conda remove matplotlib</div></pre></td></tr></table></figure>
-<p>在 conda 中 <strong>anything is a package</strong>。conda 本身可以看作是一个包，python 环境可以看作是一个包，anaconda 也可以看作是一个包，因此除了普通的第三方包支持更新之外，这3个包也支持。比如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 更新conda本身</span></div><div class="line">conda update conda</div><div class="line"><span class="comment"># 更新anaconda 应用</span></div><div class="line">conda update anaconda</div><div class="line"><span class="comment"># 更新python，假设当前python环境是3.6.1，而最新版本是3.6.2，那么就会升级到3.6.2</span></div><div class="line">conda update python</div></pre></td></tr></table></figure>
-<p>原文：<a href="https://foofish.net/anaconda-install.html" target="_blank" rel="external">Anaconda 入门安装教程 - FooFish</a></p>
+        <h5 id="切换开关机动画"><a href="#切换开关机动画" class="headerlink" title="切换开关机动画"></a>切换开关机动画</h5><p><code>sudo update-alternatives --config default.plymouth</code></p>
+<p>#####增加ubuntu对python3中tkinter的支持</p>
+<p><code>sudo apt-get install python3-tk</code></p>
+<h5 id="安装快照-snapd"><a href="#安装快照-snapd" class="headerlink" title="安装快照 snapd"></a>安装快照 snapd</h5><p><code>sudo apt install snapd</code>   <!-- 最好不要安装 --> </p>
+<h5 id="使软件开机启动"><a href="#使软件开机启动" class="headerlink" title="使软件开机启动"></a>使软件开机启动</h5><blockquote>
+<p>生成该软件的桌面图标,然后把桌面图标拖到 /etc/xdg/autostart 里面即可<br><a id="more"></a></p>
+</blockquote>
+<h5 id="恢复登录器为lightdm"><a href="#恢复登录器为lightdm" class="headerlink" title="恢复登录器为lightdm"></a>恢复登录器为lightdm</h5><p><code>sudo dpkg-reconfigure lightdm</code></p>
 
     </div>
 
@@ -170,7 +162,7 @@
         </div>
         <div>
             
-                版权声明: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+                License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
 知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
 </a>
             
@@ -180,10 +172,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2017/08/31/python中wordcloud的基本用法/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+        <a href="/2017/11/15/python解决网站的反爬虫策略/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
     
     
-        <a href="/2017/08/27/win10和linux双系统的正确引导/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+        <a href="/2017/11/15/Ubuntu中的软件安装与卸载/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
     
 </div>
 
@@ -252,7 +244,7 @@
         
         
     <div class="widget">
-        <h3 class="title">分类</h3>
+        <h3 class="title">Categories</h3>
         <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/"><i class="fa" aria-hidden="true">Ubuntu</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaee/"><i class="fa" aria-hidden="true">javaee</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/"><i class="fa" aria-hidden="true">linux</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/"><i class="fa" aria-hidden="true">python</i></a><span class="category-list-count">3</span></li></ul>
     </div>
 
@@ -260,18 +252,18 @@
         
         
     <div class="widget">
-      <h3 class="title">归档</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">October 2017</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">August 2017</i></a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/"><i class="fa" aria-hidden="true">July 2017</i></a><span class="archive-list-count">2</span></li></ul>
+      <h3 class="title">Archives</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/"><i class="fa" aria-hidden="true">February 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/"><i class="fa" aria-hidden="true">November 2017</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">October 2017</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">August 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/"><i class="fa" aria-hidden="true">July 2017</i></a><span class="archive-list-count">2</span></li></ul>
     </div>
 
 
         
         
   <div class="widget">
-    <h3 class="title">标签云</h3>
+    <h3 class="title">Tag Cloud</h3>
     <div class="content tag-cloud">
       
-        <a href="/tags/struts2/" style="font-size: 1em;">struts2</a> <a href="/tags/python/" style="font-size: 1em;">python</a> <a href="/tags/数据库/" style="font-size: 1em;">数据库</a> <a href="/tags/连接池/" style="font-size: 1em;">连接池</a> <a href="/tags/反射/" style="font-size: 1em;">反射</a> <a href="/tags/linux/" style="font-size: 1em;">linux</a> <a href="/tags/ubuntu/" style="font-size: 1em;">ubuntu</a> <a href="/tags/命令/" style="font-size: 1em;">命令</a> <a href="/tags/Git/" style="font-size: 1em;">Git</a> <a href="/tags/github/" style="font-size: 1em;">github</a> <a href="/tags/项目/" style="font-size: 1em;">项目</a> <a href="/tags/java/" style="font-size: 1em;">java</a> <a href="/tags/Java/" style="font-size: 1em;">Java</a> <a href="/tags/idea/" style="font-size: 1em;">idea</a> <a href="/tags/javaee/" style="font-size: 1em;">javaee</a> <a href="/tags/springmvc/" style="font-size: 1em;">springmvc</a> <a href="/tags/框架/" style="font-size: 1em;">框架</a> <a href="/tags/SpringMVC/" style="font-size: 1em;">SpringMVC</a> <a href="/tags/验证码/" style="font-size: 1em;">验证码</a> <a href="/tags/kaptcha/" style="font-size: 1em;">kaptcha</a> <a href="/tags/struts2-javaee-web/" style="font-size: 1em;">struts2,javaee,web</a> <a href="/tags/项目工具/" style="font-size: 1em;">项目工具</a> <a href="/tags/Gradle/" style="font-size: 1em;">Gradle</a> <a href="/tags/JAVA/" style="font-size: 1em;">JAVA</a>
+        <a href="/tags/验证码/" style="font-size: 1em;">验证码</a> <a href="/tags/python/" style="font-size: 1em;">python</a> <a href="/tags/Java/" style="font-size: 1em;">Java</a> <a href="/tags/数据库/" style="font-size: 1em;">数据库</a> <a href="/tags/连接池/" style="font-size: 1em;">连接池</a> <a href="/tags/反射/" style="font-size: 1em;">反射</a> <a href="/tags/linux/" style="font-size: 1em;">linux</a> <a href="/tags/ubuntu/" style="font-size: 1em;">ubuntu</a> <a href="/tags/命令/" style="font-size: 1em;">命令</a> <a href="/tags/java/" style="font-size: 1em;">java</a> <a href="/tags/struts2/" style="font-size: 1em;">struts2</a> <a href="/tags/SpringMVC/" style="font-size: 1em;">SpringMVC</a> <a href="/tags/包管理工具/" style="font-size: 1em;">包管理工具</a> <a href="/tags/kaptcha/" style="font-size: 1em;">kaptcha</a> <a href="/tags/Git/" style="font-size: 1em;">Git</a> <a href="/tags/github/" style="font-size: 1em;">github</a> <a href="/tags/项目/" style="font-size: 1em;">项目</a> <a href="/tags/idea/" style="font-size: 1em;">idea</a> <a href="/tags/javaee/" style="font-size: 1em;">javaee</a> <a href="/tags/springmvc/" style="font-size: 1em;">springmvc</a> <a href="/tags/框架/" style="font-size: 1em;">框架</a> <a href="/tags/struts2-javaee-web/" style="font-size: 1em;">struts2,javaee,web</a> <a href="/tags/项目工具/" style="font-size: 1em;">项目工具</a> <a href="/tags/Gradle/" style="font-size: 1em;">Gradle</a> <a href="/tags/JAVA/" style="font-size: 1em;">JAVA</a>
     </div>
   </div>
 
@@ -279,7 +271,7 @@
         
         
     <div class="widget">
-        <h3 class="title">友链</h3>
+        <h3 class="title">Friends</h3>
         <div class="content friends-link">
         
             <a href="http://www.vetoer.top" class="fa" target="_blank">个人网站</a>

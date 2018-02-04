@@ -23,7 +23,7 @@
     <!--Title-->
 
 
-<title>python解决网站的反爬虫策略 | 某人的博客</title>
+<title>Struts2相关 | 某人的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="某人的博客" type="application/atom+xml">
@@ -85,7 +85,7 @@
                 <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="menu">
                         
-                            <li role="presentation" class=""><a href="/">首页</a></li>
+                            <li role="presentation" class=""><a href="/">Home</a></li>
                         
                             <li role="presentation" class=""><a href="/categories/Java/">Java</a></li>
                         
@@ -108,9 +108,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="python解决网站的反爬虫策略">
+        <h1 id="Struts2相关">
             
-            python解决网站的反爬虫策略
+            Struts2相关
             
         </h1>
         <div class="post-meta">
@@ -118,7 +118,7 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <span>python</span>
+        <span>Java</span>
     </span>
     
     
@@ -126,7 +126,7 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            null
+            java
             
         </span>
     </span>
@@ -134,7 +134,7 @@
     
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
-        <span class="date-meta">2017/08/31</span>
+        <span class="date-meta">2017/11/15</span>
     </span>
 </div>
 
@@ -143,24 +143,9 @@
     </div>
     
     <div class="post-body">
-        <h4 id="网站的反爬虫策略"><a href="#网站的反爬虫策略" class="headerlink" title="网站的反爬虫策略:"></a>网站的反爬虫策略:</h4><ul>
-<li><p>一般网站从三个方面反爬虫：用户请求的Headers，用户行为，网站目录和数据加载方式。前两种比较容易遇到，大多数网站都从这些角度来反爬虫。第三种一些应用ajax的网站会采用，这样增大了爬取的难度（防止静态爬虫使用ajax技术动态加载页面）。</p>
-<a id="more"></a>
-</li>
-</ul>
-<ol>
-<li><p>从用户请求的Headers反爬虫是最常见的反爬虫策略</p>
-<p>伪装header。很多网站都会对Headers的User-Agent进行检测，还有一部分网站会对Referer进行检测（一些资源网站的防盗链就是检测Referer）。如果遇到了这类反爬虫机制，可以直接在爬虫中添加Headers，将浏览器的User-Agent复制到爬虫的Headers中；或者将Referer值修改为目标网站域名[评论：往往容易被忽略，通过对请求的抓包分析，确定referer，在程序中模拟访问请求头中添加]。对于检测Headers的反爬虫，在爬虫中修改或者添加Headers就能很容易的绕过。</p>
-</li>
-<li><p>基于用户行为反爬虫</p>
-<p>还有一部分网站是通过检测用户行为，例如同一IP短时间内多次访问同一页面，或者同一账户短时间内多次进行相同操作。[这种防爬，需要有足够多的ip来应对]</p>
-<p>（1）、大多数网站都是前一种情况，对于这种情况，使用IP代理就可以解决。可以专门写一个爬虫，爬取网上公开的代理ip，检测后全部保存起来。有了大量代理ip后可以每请求几次更换一个ip，这在requests或者urllib中很容易做到，这样就能很容易的绕过第一种反爬虫。</p>
-<p>（2）、对于第二种情况，可以在每次请求后随机间隔几秒再进行下一次请求。有些有逻辑漏洞的网站，可以通过请求几次，退出登录，重新登录，继续请求来绕过同一账号短时间内不能多次进行相同请求的限制。[评论：对于账户做防爬限制，一般难以应对，随机几秒请求也往往可能被封，如果能有多个账户，切换使用，效果更佳]</p>
-</li>
-<li><p>动态页面的反爬虫</p>
-<p>上述的几种情况大多都是出现在静态页面，还有一部分网站，我们需要爬取的数据是通过ajax请求得到，或者通过Java生成的。</p>
-<p>解决方案：Selenium+PhantomJS                            </p>
-<p>Selenium：自动化web测试解决方案，完全模拟真实的浏览器环境，完全模拟基本上所有的用户操作<br>PhantomJS ：一个没有图形界面的浏览器</p>
+        <h5 id="struts2不同版本中web-xml过滤器的配置"><a href="#struts2不同版本中web-xml过滤器的配置" class="headerlink" title="struts2不同版本中web.xml过滤器的配置"></a>struts2不同版本中web.xml过滤器的配置</h5><ol>
+<li><p>FilterDispatcher是struts2.0.x到2.1.2版本的核心过滤器,配置如下:</p>
+<p>​</p>
 </li>
 </ol>
 
@@ -174,7 +159,7 @@
         </div>
         <div>
             
-                版权声明: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+                License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
 知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
 </a>
             
@@ -184,10 +169,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2017/10/02/struts2中Action访问Web对象的4种方式/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+        <a href="/2017/11/15/win10和linux双系统的正确引导/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
     
     
-        <a href="/2017/08/31/Ubuntu中的软件安装与卸载/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+        <a href="/2017/11/15/python中wordcloud的基本用法/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
     
 </div>
 
@@ -256,7 +241,7 @@
         
         
     <div class="widget">
-        <h3 class="title">分类</h3>
+        <h3 class="title">Categories</h3>
         <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/"><i class="fa" aria-hidden="true">Ubuntu</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaee/"><i class="fa" aria-hidden="true">javaee</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/"><i class="fa" aria-hidden="true">linux</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/"><i class="fa" aria-hidden="true">python</i></a><span class="category-list-count">3</span></li></ul>
     </div>
 
@@ -264,18 +249,18 @@
         
         
     <div class="widget">
-      <h3 class="title">归档</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">October 2017</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">August 2017</i></a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/"><i class="fa" aria-hidden="true">July 2017</i></a><span class="archive-list-count">2</span></li></ul>
+      <h3 class="title">Archives</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/"><i class="fa" aria-hidden="true">February 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/"><i class="fa" aria-hidden="true">November 2017</i></a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">October 2017</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">August 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/"><i class="fa" aria-hidden="true">July 2017</i></a><span class="archive-list-count">2</span></li></ul>
     </div>
 
 
         
         
   <div class="widget">
-    <h3 class="title">标签云</h3>
+    <h3 class="title">Tag Cloud</h3>
     <div class="content tag-cloud">
       
-        <a href="/tags/struts2/" style="font-size: 1em;">struts2</a> <a href="/tags/python/" style="font-size: 1em;">python</a> <a href="/tags/数据库/" style="font-size: 1em;">数据库</a> <a href="/tags/连接池/" style="font-size: 1em;">连接池</a> <a href="/tags/反射/" style="font-size: 1em;">反射</a> <a href="/tags/linux/" style="font-size: 1em;">linux</a> <a href="/tags/ubuntu/" style="font-size: 1em;">ubuntu</a> <a href="/tags/命令/" style="font-size: 1em;">命令</a> <a href="/tags/Git/" style="font-size: 1em;">Git</a> <a href="/tags/github/" style="font-size: 1em;">github</a> <a href="/tags/项目/" style="font-size: 1em;">项目</a> <a href="/tags/java/" style="font-size: 1em;">java</a> <a href="/tags/Java/" style="font-size: 1em;">Java</a> <a href="/tags/idea/" style="font-size: 1em;">idea</a> <a href="/tags/javaee/" style="font-size: 1em;">javaee</a> <a href="/tags/springmvc/" style="font-size: 1em;">springmvc</a> <a href="/tags/框架/" style="font-size: 1em;">框架</a> <a href="/tags/SpringMVC/" style="font-size: 1em;">SpringMVC</a> <a href="/tags/验证码/" style="font-size: 1em;">验证码</a> <a href="/tags/kaptcha/" style="font-size: 1em;">kaptcha</a> <a href="/tags/struts2-javaee-web/" style="font-size: 1em;">struts2,javaee,web</a> <a href="/tags/项目工具/" style="font-size: 1em;">项目工具</a> <a href="/tags/Gradle/" style="font-size: 1em;">Gradle</a> <a href="/tags/JAVA/" style="font-size: 1em;">JAVA</a>
+        <a href="/tags/验证码/" style="font-size: 1em;">验证码</a> <a href="/tags/python/" style="font-size: 1em;">python</a> <a href="/tags/Java/" style="font-size: 1em;">Java</a> <a href="/tags/数据库/" style="font-size: 1em;">数据库</a> <a href="/tags/连接池/" style="font-size: 1em;">连接池</a> <a href="/tags/反射/" style="font-size: 1em;">反射</a> <a href="/tags/linux/" style="font-size: 1em;">linux</a> <a href="/tags/ubuntu/" style="font-size: 1em;">ubuntu</a> <a href="/tags/命令/" style="font-size: 1em;">命令</a> <a href="/tags/java/" style="font-size: 1em;">java</a> <a href="/tags/struts2/" style="font-size: 1em;">struts2</a> <a href="/tags/SpringMVC/" style="font-size: 1em;">SpringMVC</a> <a href="/tags/包管理工具/" style="font-size: 1em;">包管理工具</a> <a href="/tags/kaptcha/" style="font-size: 1em;">kaptcha</a> <a href="/tags/Git/" style="font-size: 1em;">Git</a> <a href="/tags/github/" style="font-size: 1em;">github</a> <a href="/tags/项目/" style="font-size: 1em;">项目</a> <a href="/tags/idea/" style="font-size: 1em;">idea</a> <a href="/tags/javaee/" style="font-size: 1em;">javaee</a> <a href="/tags/springmvc/" style="font-size: 1em;">springmvc</a> <a href="/tags/框架/" style="font-size: 1em;">框架</a> <a href="/tags/struts2-javaee-web/" style="font-size: 1em;">struts2,javaee,web</a> <a href="/tags/项目工具/" style="font-size: 1em;">项目工具</a> <a href="/tags/Gradle/" style="font-size: 1em;">Gradle</a> <a href="/tags/JAVA/" style="font-size: 1em;">JAVA</a>
     </div>
   </div>
 
@@ -283,7 +268,7 @@
         
         
     <div class="widget">
-        <h3 class="title">友链</h3>
+        <h3 class="title">Friends</h3>
         <div class="content friends-link">
         
             <a href="http://www.vetoer.top" class="fa" target="_blank">个人网站</a>
