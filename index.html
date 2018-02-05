@@ -21,7 +21,7 @@
     <link rel="alternative" href="/atom.xml" title="某人的博客" type="application/atom+xml">
   
   
-    <link rel="icon" href="/assets/img/favicon.png">
+    <link rel="icon" href="/assets/img/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -275,12 +275,9 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <p>Ubuntu下默认的文件管理器是Nautilus,但是它的功能很少,哪怕在Ubuntu 17.04也是这样,不得不换成与之相比功能更强大的Nemo了,而且Nemo能与GNOME完美结合<br><img src="/myimages/Nemo_screen.png" alt=""><br>首先,安装需要的程序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install dconf-tools nemo</div></pre></td></tr></table></figure></p>
-<p>dconf是一个编辑系统配置(主要是桌面环境)的程序,如果需要使用Ubuntu自带的归档管理器-File Roller,也需要同时安装nemo-fileroller<br>然后禁用Nautilus绘制桌面图标:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gsettings set org.gnome.desktop.background show-desktop-icons false</div></pre></td></tr></table></figure></p>
-<p>Nemo 默认开启了绘制桌面图标，这时候打开它就应该可以了。如果你想使用 Nautilus 来绘制桌面图标，而不是 Nemo 的话：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gsettings set org.nemo.desktop show-desktop-icons false</div><div class="line">gsettings set org.gnome.desktop.background show-desktop-icons true</div></pre></td></tr></table></figure></p>
-<p>这样,就会使用Nautilus来打开文件夹,而不是Nemo,最后把Nemo设置成默认的文件管理器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search</div></pre></td></tr></table></figure></p>
-<p>如果你想让 Nautilus 重新成为默认的文件管理器的话，首先按照上面的说明使 Nautilus 来绘制桌面图标。<br>然后使用如下的命令设置 Nautilus 为默认的文件管理器。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xdg-mime default nautilus.desktop inode/directory application/x-gnome-saved-search</div></pre></td></tr></table></figure></p>
-<p>引用自博客-<a href="https://www.sinosky.org/set-nemo-as-the-default-file-manager-on-ubuntu.html" target="_blank" rel="external">silnosky</a></p>
-
+        
+          <a class="article-more-a" href="/2018/02/05/使用Nemo替换ubuntu自带的文件管理器/#more">more >></a>
+        
       
 
       
@@ -440,83 +437,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-python解决网站的反爬虫策略" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/15/python解决网站的反爬虫策略/">python解决网站的反爬虫策略</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/15/python解决网站的反爬虫策略/" class="archive-article-date">
-  	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="网站的反爬虫策略"><a href="#网站的反爬虫策略" class="headerlink" title="网站的反爬虫策略:"></a>网站的反爬虫策略:</h4><ul>
-<li><p>一般网站从三个方面反爬虫：用户请求的Headers，用户行为，网站目录和数据加载方式。前两种比较容易遇到，大多数网站都从这些角度来反爬虫。第三种一些应用ajax的网站会采用，这样增大了爬取的难度（防止静态爬虫使用ajax技术动态加载页面）。</p>
-        
-          <a class="article-more-a" href="/2017/11/15/python解决网站的反爬虫策略/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/15/python解决网站的反爬虫策略/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Java中的反射机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -581,95 +501,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/11/15/Java中的反射机制/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-win10和linux双系统的正确引导" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/15/win10和linux双系统的正确引导/">window10和linux双系统开机无法正常引导Linux的解决办法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/15/win10和linux双系统的正确引导/" class="archive-article-date">
-  	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>由于bios启动会对windows的efi文件进行保护,所以导致开机后不能正常引导linux的grub,所以只有通过修改windows的efi文件解决了.</p>
-<ol>
-<li><p>第一步</p>
-<p>用linux系统的grubx64.efi文件去替换Microsoft/Boot/里面的bootmgfw.efi文件,原bootmgfw.efi保留重命名为bootmgfw.efi.old,方便从grub中启动win10,不过如果你不用win10了的话,下面的步骤就不用看了:)</p>
-</li>
-<li><p>第二步</p>
-<p>在/etc/grup.d/40_custom文件中手动添加启动文件,也就是之前的bootmgfw.efi.old,格式如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">menuentry <span class="string">"win 10"</span>&#123;</div><div class="line">  set root=<span class="string">'(hd0,gpt2)'</span></div><div class="line">  chainloader /EFI/Microsoft/Boot/bootmgfw.efi.old</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>hd0值的是sda,也就是第一块硬盘,如果是sdb的话应该改为hd1,sdc也就是hd2,以此类推,gpt2对应sda2或者sdb2,这两个需要你根据自己的硬盘分配来写,用lsdk命令可以查看.</p>
-</li>
-<li><p>第三步</p>
-<p>上述两步修改完之后,在终端运行即可.</p>
-<p><code>sudo update-grub</code></p>
-<p>​</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/15/win10和linux双系统的正确引导/">展开全文 >></a>
         </p>
       
 
@@ -949,6 +780,172 @@ var _hmt = _hmt || [];
 
 
   
+    <article id="post-python解决网站的反爬虫策略" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/15/python解决网站的反爬虫策略/">python解决网站的反爬虫策略</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/15/python解决网站的反爬虫策略/" class="archive-article-date">
+  	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="网站的反爬虫策略"><a href="#网站的反爬虫策略" class="headerlink" title="网站的反爬虫策略:"></a>网站的反爬虫策略:</h4><ul>
+<li><p>一般网站从三个方面反爬虫：用户请求的Headers，用户行为，网站目录和数据加载方式。前两种比较容易遇到，大多数网站都从这些角度来反爬虫。第三种一些应用ajax的网站会采用，这样增大了爬取的难度（防止静态爬虫使用ajax技术动态加载页面）。</p>
+        
+          <a class="article-more-a" href="/2017/11/15/python解决网站的反爬虫策略/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/15/python解决网站的反爬虫策略/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-win10和linux双系统的正确引导" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/15/win10和linux双系统的正确引导/">window10和linux双系统开机无法正常引导Linux的解决办法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/15/win10和linux双系统的正确引导/" class="archive-article-date">
+  	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于bios启动会对windows的efi文件进行保护,所以导致开机后不能正常引导linux的grub,所以只有通过修改windows的efi文件解决了.</p>
+<ol>
+<li><p>第一步</p>
+<p>用linux系统的grubx64.efi文件去替换Microsoft/Boot/里面的bootmgfw.efi文件,原bootmgfw.efi保留重命名为bootmgfw.efi.old,方便从grub中启动win10,不过如果你不用win10了的话,下面的步骤就不用看了:)</p>
+</li>
+<li><p>第二步</p>
+<p>在/etc/grup.d/40_custom文件中手动添加启动文件,也就是之前的bootmgfw.efi.old,格式如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">menuentry <span class="string">"win 10"</span>&#123;</div><div class="line">  set root=<span class="string">'(hd0,gpt2)'</span></div><div class="line">  chainloader /EFI/Microsoft/Boot/bootmgfw.efi.old</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>hd0值的是sda,也就是第一块硬盘,如果是sdb的话应该改为hd1,sdc也就是hd2,以此类推,gpt2对应sda2或者sdb2,这两个需要你根据自己的硬盘分配来写,用lsdk命令可以查看.</p>
+</li>
+<li><p>第三步</p>
+<p>上述两步修改完之后,在终端运行即可.</p>
+<p><code>sudo update-grub</code></p>
+<p>​</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/15/win10和linux双系统的正确引导/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-记一次反复尝试的表单提交功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1153,6 +1150,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">包管理工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -1162,18 +1167,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">连接池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">包管理工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1189,6 +1182,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
@@ -1201,18 +1198,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">struts2</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">idea</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
@@ -1222,6 +1207,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">kaptcha</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">struts2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1241,19 +1238,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">项目工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Gradle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">项目工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Gradle</a>
               </li>
             
             <div class="clearfix"></div>

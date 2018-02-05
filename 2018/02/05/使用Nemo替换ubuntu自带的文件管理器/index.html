@@ -8,24 +8,24 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>使用Nemo替换ubuntu自带的文件管理器 | 某人的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Ubuntu下默认的文件管理器是Nautilus,但是它的功能很少,哪怕在Ubuntu 17.04也是这样,不得不换成与之相比功能更强大的Nemo了,而且Nemo能与GNOME完美结合首先,安装需要的程序1sudo apt-get install dconf-tools nemo dconf是一个编辑系统配置(主要是桌面环境)的程序,如果需要使用Ubuntu自带的归档管理器-File Roller">
+  <meta name="description" content="Ubuntu下默认的文件管理器是Nautilus,但是它的功能很少,哪怕在Ubuntu 17.04也是这样,不得不换成与之相比功能更强大的Nemo了,而且Nemo能与GNOME完美结合首先,安装需要的程序1sudo apt-get install dconf-tools nemo">
 <meta name="keywords" content="Ubuntu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Nemo替换ubuntu自带的文件管理器">
 <meta property="og:url" content="http://yoursite.com/2018/02/05/使用Nemo替换ubuntu自带的文件管理器/index.html">
 <meta property="og:site_name" content="某人的博客">
-<meta property="og:description" content="Ubuntu下默认的文件管理器是Nautilus,但是它的功能很少,哪怕在Ubuntu 17.04也是这样,不得不换成与之相比功能更强大的Nemo了,而且Nemo能与GNOME完美结合首先,安装需要的程序1sudo apt-get install dconf-tools nemo dconf是一个编辑系统配置(主要是桌面环境)的程序,如果需要使用Ubuntu自带的归档管理器-File Roller">
+<meta property="og:description" content="Ubuntu下默认的文件管理器是Nautilus,但是它的功能很少,哪怕在Ubuntu 17.04也是这样,不得不换成与之相比功能更强大的Nemo了,而且Nemo能与GNOME完美结合首先,安装需要的程序1sudo apt-get install dconf-tools nemo">
 <meta property="og:image" content="http://yoursite.com/myimages/Nemo_screen.png">
-<meta property="og:updated_time" content="2018-02-05T10:10:52.183Z">
+<meta property="og:updated_time" content="2018-02-05T11:29:16.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Nemo替换ubuntu自带的文件管理器">
-<meta name="twitter:description" content="Ubuntu下默认的文件管理器是Nautilus,但是它的功能很少,哪怕在Ubuntu 17.04也是这样,不得不换成与之相比功能更强大的Nemo了,而且Nemo能与GNOME完美结合首先,安装需要的程序1sudo apt-get install dconf-tools nemo dconf是一个编辑系统配置(主要是桌面环境)的程序,如果需要使用Ubuntu自带的归档管理器-File Roller">
+<meta name="twitter:description" content="Ubuntu下默认的文件管理器是Nautilus,但是它的功能很少,哪怕在Ubuntu 17.04也是这样,不得不换成与之相比功能更强大的Nemo了,而且Nemo能与GNOME完美结合首先,安装需要的程序1sudo apt-get install dconf-tools nemo">
 <meta name="twitter:image" content="http://yoursite.com/myimages/Nemo_screen.png">
   
     <link rel="alternative" href="/atom.xml" title="某人的博客" type="application/atom+xml">
   
   
-    <link rel="icon" href="/assets/img/favicon.png">
+    <link rel="icon" href="/assets/img/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -181,6 +181,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <p>Ubuntu下默认的文件管理器是Nautilus,但是它的功能很少,哪怕在Ubuntu 17.04也是这样,不得不换成与之相比功能更强大的Nemo了,而且Nemo能与GNOME完美结合<br><img src="/myimages/Nemo_screen.png" alt=""><br>首先,安装需要的程序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install dconf-tools nemo</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>dconf是一个编辑系统配置(主要是桌面环境)的程序,如果需要使用Ubuntu自带的归档管理器-File Roller,也需要同时安装nemo-fileroller<br>然后禁用Nautilus绘制桌面图标:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gsettings set org.gnome.desktop.background show-desktop-icons false</div></pre></td></tr></table></figure></p>
 <p>Nemo 默认开启了绘制桌面图标，这时候打开它就应该可以了。如果你想使用 Nautilus 来绘制桌面图标，而不是 Nemo 的话：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gsettings set org.nemo.desktop show-desktop-icons false</div><div class="line">gsettings set org.gnome.desktop.background show-desktop-icons true</div></pre></td></tr></table></figure></p>
 <p>这样,就会使用Nautilus来打开文件夹,而不是Nemo,最后把Nemo设置成默认的文件管理器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search</div></pre></td></tr></table></figure></p>
@@ -413,6 +414,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">包管理工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -422,18 +431,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">连接池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">包管理工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -449,6 +446,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
@@ -461,18 +462,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">struts2</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">idea</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
@@ -482,6 +471,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">kaptcha</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">struts2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -501,19 +502,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">项目工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Gradle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">项目工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Gradle</a>
               </li>
             
             <div class="clearfix"></div>
