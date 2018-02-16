@@ -158,6 +158,117 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-记一次反复尝试的表单提交功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/23/记一次反复尝试的表单提交功能/">记一次反复尝试的禁止刷新页面表单提交功能</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/23/记一次反复尝试的表单提交功能/" class="archive-article-date">
+  	<time datetime="2017-10-23T08:32:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先说遇到的问题</p>
+<ol>
+<li>在还没写js验证表单提交数据的时候,用户点击登录后提交空数据,需要在后端进行验证,增加了大段代码.</li>
+<li>js验证表单后,用户数据通过验证进入controller验证的时候,因为在控制层中如果用户输入数据不正确是转发回login页面,所以当用户刷新的时候会出现跳过js重复验证的情况.<br><strong>实现验证码功能看这里</strong><a href="https://comtg.github.io/2017/10/23/SpringMVC%E4%B8%AD%E5%AE%9E%E7%8E%B0%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/" target="_blank" rel="external">SpringMVC中实现验证码功能</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">此处省略一千行代码............</div><div class="line">.....</div><div class="line">.....</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="1-使用js添加表单拦截验证"><a href="#1-使用js添加表单拦截验证" class="headerlink" title="1. 使用js添加表单拦截验证"></a>1. 使用js添加表单拦截验证</h3><p>这一步很必要,能在前端完成的功能就不要麻烦后端啦,后端再写一次验证很累的好不好<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">//    验证表单是否输入验证码用户名以及密码</div><div class="line">    interceptform: function () &#123;</div><div class="line">        $(&apos;form&apos;).submit(function (e) &#123;</div><div class="line">            var node = $(&apos;#errorTips&apos;);</div><div class="line">            var phone = $(&apos;#phone&apos;).val();</div><div class="line">            var password = $(&apos;#password&apos;).val();</div><div class="line">            if (phone == null || password == null || password.length &lt; 3) &#123;</div><div class="line">                node.hide().html(&apos;&lt;label class=&quot;label label-danger&quot;&gt;用户名或密码填写格式错误&lt;/label&gt;&apos;).show(300);</div><div class="line">                e.preventDefault();</div><div class="line">            &#125;</div><div class="line">            var validateCode = $(&apos;#validateCode&apos;).val();</div><div class="line">            if (validateCode == null || validateCode.length != 4) &#123;</div><div class="line">                node.hide().html(&apos;&lt;label class=&quot;label label-danger&quot;&gt;验证码格式错误&lt;/label&gt;&apos;).show(300);</div><div class="line">                e.preventDefault();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;,</div></pre></td></tr></table></figure></p>
+<h3 id="2-解决回退页面刷新提交表单功能"><a href="#2-解决回退页面刷新提交表单功能" class="headerlink" title="2. 解决回退页面刷新提交表单功能"></a>2. 解决回退页面刷新提交表单功能</h3><p>提交表单后传给controller的代码见上一篇博文,因为在springMVC中我是通过直接返回jsp页面,相当于转发回以前页面,这时候当用户点击F5获取刷新的时候就会重复提交表单,就算全是空的前端JS也拦截不了<br><strong>坑爹啊!!!</strong><br>经过一番Google之后,找到了解决办法<br><strong>给form表单添加一个隐藏域,在加载登录页面时获取一个随机token赋值给隐藏域并且保存到session中,当提交表单时,比较session中保存的token,如果相同则提交通过,删除session中的token,</strong><br>ok,解决办法有了就着手干</p>
+<ol>
+<li><p>给form表单添加隐藏域</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;hidden&quot; name=&quot;judgeDuplicate&quot; value=&quot;$&#123;token&#125;&quot;/&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>写一个拦截器,再不修改原有controller实现该功能,拦截/login的请求,如果是GET请求,在session以及页面中写入token</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"> private final String TOKEN = &quot;token&quot;;</div><div class="line">     @Override</div><div class="line">public void postHandle(HttpServletRequest request,</div><div class="line">                       HttpServletResponse response,</div><div class="line">                       Object handler, ModelAndView modelAndView) throws Exception &#123;</div><div class="line">    // GET 请求访问表单页面</div><div class="line">    if (!&quot;GET&quot;.equalsIgnoreCase(request.getMethod())) &#123;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    // 生成 token 存储到 session 里，并且保存到 form 的 input 域</div><div class="line">    String token = UUID.randomUUID().toString().replaceAll(&quot;-&quot;, &quot;&quot;).toUpperCase();</div><div class="line">    modelAndView.addObject(TOKEN, token);</div><div class="line">    request.getSession().setAttribute(TOKEN, token);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>拦截非get请求,比较token,如果页面传过来的与session中相同,继续提交表单,如果不同,重定向到login页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;</div><div class="line">    // 非get请求都有可能是提交表单</div><div class="line">    if (!&quot;GET&quot;.equalsIgnoreCase(request.getMethod())) &#123;</div><div class="line">        String currentToken = request.getParameter(&quot;judgeDuplicate&quot;);</div><div class="line">        String token = String.valueOf(request.getSession().getAttribute(TOKEN));</div><div class="line">        if (StringUtils.isEmpty(currentToken) || &quot;null&quot;.equals(token) || !currentToken.equals(token)) &#123;</div><div class="line">            // 刷新提交,重定向到登录页面</div><div class="line">            response.sendRedirect(&quot;/seckill/login&quot;);</div><div class="line">        &#125;</div><div class="line">        // 正常提交表单,删除token</div><div class="line">        request.getSession().removeAttribute(TOKEN);</div><div class="line">    &#125;</div><div class="line">    return true;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>最后一步,不要忘了在springmvc配置文件中配置拦截器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;mvc:interceptors&gt;</div><div class="line">        &lt;mvc:interceptor&gt;</div><div class="line">            &lt;mvc:mapping path=&quot;/seckill/login&quot;/&gt;</div><div class="line">            &lt;bean class=&quot;top.vetoer.interceptor.TokenValidator&quot; /&gt;</div><div class="line">        &lt;/mvc:interceptor&gt;</div><div class="line">&lt;/mvc:interceptors&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这个小小的问题折磨了我大半天,不过倒是更让我理解了重定向和转发的区别</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SpringMVC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/javaee//" class="article-tag-list-link color2">javaee</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/23/记一次反复尝试的表单提交功能/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-SpringMVC中实现验证码功能详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1006,11 +1117,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">连接池</a>
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1026,7 +1133,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">连接池</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1042,6 +1153,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">struts2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
@@ -1054,15 +1173,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">struts2</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">idea</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">struts2,javaee,web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">项目工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Gradle</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1078,23 +1205,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">struts2,javaee,web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">项目工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Gradle</a>
               </li>
             
             <div class="clearfix"></div>

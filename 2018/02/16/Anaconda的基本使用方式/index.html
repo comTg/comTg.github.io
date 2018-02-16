@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Category: javaee | 某人的博客</title>
+  <title>Anaconda的基本使用方式 | 某人的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java是世界上最差的语言">
-<meta property="og:type" content="website">
-<meta property="og:title" content="某人的博客">
-<meta property="og:url" content="http://yoursite.com/categories/javaee/index.html">
+  <meta name="description" content="Anaconda 解决了官方 Python 的两大痛点。  第一：提供了包管理功能，Windows 平台安装第三方包经常失败的场景得以解决， 第二：提供环境管理的功能，功能类似 Virtualenv，解决了多版本Python并存、切换的问题。  下载 Anaconda直接在官网下载安装包， 选择 Python3.6 的安装包进行下载，下载完成后直接安装，安装过程选择默认配置即可。">
+<meta name="keywords" content="python,包管理工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Anaconda的基本使用方式">
+<meta property="og:url" content="http://yoursite.com/2018/02/16/Anaconda的基本使用方式/index.html">
 <meta property="og:site_name" content="某人的博客">
-<meta property="og:description" content="Java是世界上最差的语言">
+<meta property="og:description" content="Anaconda 解决了官方 Python 的两大痛点。  第一：提供了包管理功能，Windows 平台安装第三方包经常失败的场景得以解决， 第二：提供环境管理的功能，功能类似 Virtualenv，解决了多版本Python并存、切换的问题。  下载 Anaconda直接在官网下载安装包， 选择 Python3.6 的安装包进行下载，下载完成后直接安装，安装过程选择默认配置即可。">
+<meta property="og:updated_time" content="2018-02-16T09:02:42.146Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="某人的博客">
-<meta name="twitter:description" content="Java是世界上最差的语言">
+<meta name="twitter:title" content="Anaconda的基本使用方式">
+<meta name="twitter:description" content="Anaconda 解决了官方 Python 的两大痛点。  第一：提供了包管理功能，Windows 平台安装第三方包经常失败的场景得以解决， 第二：提供环境管理的功能，功能类似 Virtualenv，解决了多版本Python并存、切换的问题。  下载 Anaconda直接在官网下载安装包， 选择 Python3.6 的安装包进行下载，下载完成后直接安装，安装过程选择默认配置即可。">
   
     <link rel="alternative" href="/atom.xml" title="某人的博客" type="application/atom+xml">
   
@@ -156,193 +158,196 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Anaconda的基本使用方式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Anaconda的基本使用方式
+    </h1>
+  
+
+        
+        <a href="/2018/02/16/Anaconda的基本使用方式/" class="archive-article-date">
+  	<time datetime="2018-02-16T09:02:42.146Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-16</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Anaconda 解决了官方 Python 的两大痛点。</p>
+<ul>
+<li>第一：提供了包管理功能，Windows 平台安装第三方包经常失败的场景得以解决，</li>
+<li>第二：提供环境管理的功能，功能类似 Virtualenv，解决了多版本Python并存、切换的问题。</li>
+</ul>
+<h5 id="下载-Anaconda"><a href="#下载-Anaconda" class="headerlink" title="下载 Anaconda"></a>下载 Anaconda</h5><p>直接在<a href="https://www.continuum.io/downloads" target="_blank" rel="external">官网下载</a>安装包， 选择 Python3.6 的安装包进行下载，下载完成后直接安装，安装过程选择默认配置即可。</p>
+<a id="more"></a>
+<p><strong>conda 工具介绍</strong></p>
+<p>conda 是 Anaconda 下用于包管理和环境管理的工具，功能上类似 pip 和 vitualenv 的组合。安装成功后 conda 会默认加入到环境变量中，因此可直接在命令行窗口运行命令 conda</p>
+<p>conda 的环境管理与 virtualenv 是基本上是类似的操作。</p>
+<p><strong>如何管理python包?</strong><br>安装一个package:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install package_name</div></pre></td></tr></table></figure></p>
+<p>也可以同时安装多个包:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install numpy scrapy pandas</div></pre></td></tr></table></figure></p>
+<p>也可以指定安装的版本,比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda install pandas=1.10</div></pre></td></tr></table></figure></p>
+<p>移除一个package:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda remove package_name</div></pre></td></tr></table></figure></p>
+<p>升级package版本:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda update package_name</div></pre></td></tr></table></figure></p>
+<p>查看所有的packages:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda list</div></pre></td></tr></table></figure></p>
+<p>模糊查询package<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda search search_package</div></pre></td></tr></table></figure></p>
+<p><strong>管理python环境</strong></p>
+<p>默认的环境是root,也可以创建一个新环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda create -n env_name list of packages</div></pre></td></tr></table></figure></p>
+<p>其中,-n 代表name,env_name是需要创建的环境名称,list of packages是列出需要在新环境中安装的工具包,例如创建一个python2版本的新环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda create -n py2 python=2.7 pandas</div></pre></td></tr></table></figure></p>
+<p>进入创建的名为env_name的环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source activate env_name</div></pre></td></tr></table></figure></p>
+<p>退出当前环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source deactivate</div></pre></td></tr></table></figure></p>
+<p>不过在windows系统中,不加source<br>删除名为env_name的环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">conda env remove -n env_name</div><div class="line">或者</div><div class="line">conda remove -n python36 --all</div></pre></td></tr></table></figure></p>
+<p>显示所有的环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda env list</div></pre></td></tr></table></figure></p>
+<p>当分享代码的时候，同时也需要将运行环境分享给大家，执行如下命令可以将当前环境下的 package 信息存入名为 environment 的 YAML 文件中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda env export &gt; environment.yaml</div></pre></td></tr></table></figure></p>
+<p>同样，当执行他人的代码时，也需要配置相应的环境。这时你可以用对方分享的 YAML 文件来创建一摸一样的运行环境。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">conda env create -f environment.yaml</div></pre></td></tr></table></figure></p>
+<p><strong>conda的其它使用</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">更新conda本身</div><div class="line">conda update conda</div><div class="line">更新anaconda 应用</div><div class="line">conda update anaconda</div><div class="line">更新python，假设当前python环境是3.6.1，而最新版本是3.6.2，那么就会升级到3.6.2</div><div class="line">conda update python</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/23/记一次反复尝试的表单提交功能/" class="archive-article-date">
-  	<time datetime="2017-10-23T08:32:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/23/记一次反复尝试的表单提交功能/">记一次反复尝试的禁止刷新页面表单提交功能</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SpringMVC</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">包管理工具</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/javaee//" class="article-tag-list-link color2">javaee</a>
+        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/16/Anaconda的基本使用方式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/23/SpringMVC中实现验证码功能详解/" class="archive-article-date">
-  	<time datetime="2017-10-23T05:17:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-23</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2018/02/16/jupyter notebook添加kernel踩坑/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/02/05/Ubuntu中的软件安装与卸载/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ubuntu 中的安装和卸载</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/23/SpringMVC中实现验证码功能详解/">SpringMVC中实现验证码功能详解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SpringMVC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">验证码</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">kaptcha</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/javaee//" class="article-tag-list-link color2">javaee</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/03/springmvc原理和运行流程/" class="archive-article-date">
-  	<time datetime="2017-10-03T01:07:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/03/springmvc原理和运行流程/">springmvc原理和运行流程</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javaee</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">springmvc</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/javaee//" class="article-tag-list-link color2">javaee</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -365,10 +370,10 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
