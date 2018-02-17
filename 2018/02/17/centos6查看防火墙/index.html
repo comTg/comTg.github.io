@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Ubuntu生存指南 | 某人的博客</title>
+  <title>centos6查看开放端口,防火墙关闭打开 | 某人的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="切换开关机动画sudo update-alternatives --config default.plymouth #####增加ubuntu对python3中tkinter的支持 sudo apt-get install python3-tk 安装快照 snapdsudo apt install snapd     使软件开机启动 生成该软件的桌面图标,然后把桌面图标拖到 /etc/xdg/au">
+  <meta name="description" content="为了给vps映射端口,特地记录一下防火墙规则如要开放80，43，4443 端口，输入以下命令即可123/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT/sbin/iptables -I INPUT -p tcp --dport 22 -j ACCEPT/sbin/iptables -I INPUT -p tcp --dport 8080 -j">
+<meta name="keywords" content="linux,网络,防火墙">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu生存指南">
-<meta property="og:url" content="http://yoursite.com/2017/11/15/Ubuntu生存指南/index.html">
+<meta property="og:title" content="centos6查看开放端口,防火墙关闭打开">
+<meta property="og:url" content="http://yoursite.com/2018/02/17/centos6查看防火墙/index.html">
 <meta property="og:site_name" content="某人的博客">
-<meta property="og:description" content="切换开关机动画sudo update-alternatives --config default.plymouth #####增加ubuntu对python3中tkinter的支持 sudo apt-get install python3-tk 安装快照 snapdsudo apt install snapd     使软件开机启动 生成该软件的桌面图标,然后把桌面图标拖到 /etc/xdg/au">
-<meta property="og:updated_time" content="2017-08-26T22:20:43.000Z">
+<meta property="og:description" content="为了给vps映射端口,特地记录一下防火墙规则如要开放80，43，4443 端口，输入以下命令即可123/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT/sbin/iptables -I INPUT -p tcp --dport 22 -j ACCEPT/sbin/iptables -I INPUT -p tcp --dport 8080 -j">
+<meta property="og:updated_time" content="2018-02-17T15:20:53.124Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu生存指南">
-<meta name="twitter:description" content="切换开关机动画sudo update-alternatives --config default.plymouth #####增加ubuntu对python3中tkinter的支持 sudo apt-get install python3-tk 安装快照 snapdsudo apt install snapd     使软件开机启动 生成该软件的桌面图标,然后把桌面图标拖到 /etc/xdg/au">
+<meta name="twitter:title" content="centos6查看开放端口,防火墙关闭打开">
+<meta name="twitter:description" content="为了给vps映射端口,特地记录一下防火墙规则如要开放80，43，4443 端口，输入以下命令即可123/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT/sbin/iptables -I INPUT -p tcp --dport 22 -j ACCEPT/sbin/iptables -I INPUT -p tcp --dport 8080 -j">
   
     <link rel="alternative" href="/atom.xml" title="某人的博客" type="application/atom+xml">
   
@@ -157,34 +158,35 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Ubuntu生存指南" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-centos6查看防火墙" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Ubuntu生存指南
+      centos6查看开放端口,防火墙关闭打开
     </h1>
   
 
         
-        <a href="/2017/11/15/Ubuntu生存指南/" class="archive-article-date">
-  	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
+        <a href="/2018/02/17/centos6查看防火墙/" class="archive-article-date">
+  	<time datetime="2018-02-17T02:22:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="切换开关机动画"><a href="#切换开关机动画" class="headerlink" title="切换开关机动画"></a>切换开关机动画</h5><p><code>sudo update-alternatives --config default.plymouth</code></p>
-<p>#####增加ubuntu对python3中tkinter的支持</p>
-<p><code>sudo apt-get install python3-tk</code></p>
-<h5 id="安装快照-snapd"><a href="#安装快照-snapd" class="headerlink" title="安装快照 snapd"></a>安装快照 snapd</h5><p><code>sudo apt install snapd</code>   <!-- 最好不要安装 --> </p>
-<h5 id="使软件开机启动"><a href="#使软件开机启动" class="headerlink" title="使软件开机启动"></a>使软件开机启动</h5><blockquote>
-<p>生成该软件的桌面图标,然后把桌面图标拖到 /etc/xdg/autostart 里面即可<br><a id="more"></a></p>
-</blockquote>
-<h5 id="恢复登录器为lightdm"><a href="#恢复登录器为lightdm" class="headerlink" title="恢复登录器为lightdm"></a>恢复登录器为lightdm</h5><p><code>sudo dpkg-reconfigure lightdm</code></p>
+        <p>为了给vps映射端口,特地记录一下防火墙规则<br>如要开放80，43，4443 端口，输入以下命令即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT</div><div class="line">/sbin/iptables -I INPUT -p tcp --dport 22 -j ACCEPT</div><div class="line">/sbin/iptables -I INPUT -p tcp --dport 8080 -j ACCEPT</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>然后保存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/rc.d/init.d/iptables save</div></pre></td></tr></table></figure></p>
+<p>查看打开的端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/iptables status</div></pre></td></tr></table></figure></p>
+<p>关闭防火墙</p>
+<ol>
+<li>永久性生效,重启后不会复原<br>开启: chkconfig iptables on<br>关闭: chkconfig iptables off</li>
+<li>即使生效,重启后复原<br>开启： service iptables start<br>关闭： service iptables stop<br>查看防火墙状态： service iptables status</li>
+</ol>
 
       
 
@@ -193,13 +195,32 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">防火墙</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Ubuntu//" class="article-tag-list-link color2">Ubuntu</a>
+        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -254,7 +275,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/15/Ubuntu生存指南/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/17/centos6查看防火墙/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -268,18 +289,18 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/02/05/使用Nemo替换ubuntu自带的文件管理器/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/02/17/python中wordcloud的基本用法/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          使用Nemo替换ubuntu自带的文件管理器
+          Python中wordcloud的用法
         
       </div>
     </a>
   
   
-    <a href="/2017/11/15/Struts2相关/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Struts2相关</div>
+    <a href="/2018/02/16/jupyter notebook添加kernel踩坑/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jupyter notebook添加kernel</div>
       <i class="icon-circle-right"></i>
     </a>
   

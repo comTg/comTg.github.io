@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="某人的博客">
 <meta property="og:description" content="官网地址:http://ngrok.com/ ngrok是一个反向代理,它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道,使得外网可以访问本地的计算机服务.简单来说,就是可以使用ngrok实现内网穿透,做到外网访问本地资源,可以用来临时调试网站,微信小程序.ngrok是开源的,我们可以去github上下载它的源码,在自己的外网服务器上搭建一个这样的服务.源码地址: ht">
 <meta property="og:image" content="http://yoursite.com/myimages/aliyun.png">
-<meta property="og:updated_time" content="2018-02-17T15:15:31.517Z">
+<meta property="og:updated_time" content="2018-02-17T15:20:31.516Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建ngrok服务,实现内网穿透">
 <meta name="twitter:description" content="官网地址:http://ngrok.com/ ngrok是一个反向代理,它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道,使得外网可以访问本地的计算机服务.简单来说,就是可以使用ngrok实现内网穿透,做到外网访问本地资源,可以用来临时调试网站,微信小程序.ngrok是开源的,我们可以去github上下载它的源码,在自己的外网服务器上搭建一个这样的服务.源码地址: ht">
@@ -181,7 +181,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <p>官网地址:<a href="http://ngrok.com" target="_blank" rel="external">http://ngrok.com/</a></p>
-<h4 id="ngrok是一个反向代理-它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道-使得外网可以访问本地的计算机服务-简单来说-就是可以使用ngrok实现内网穿透-做到外网访问本地资源-可以用来临时调试网站-微信小程序"><a href="#ngrok是一个反向代理-它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道-使得外网可以访问本地的计算机服务-简单来说-就是可以使用ngrok实现内网穿透-做到外网访问本地资源-可以用来临时调试网站-微信小程序" class="headerlink" title="ngrok是一个反向代理,它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道,使得外网可以访问本地的计算机服务.简单来说,就是可以使用ngrok实现内网穿透,做到外网访问本地资源,可以用来临时调试网站,微信小程序."></a>ngrok是一个反向代理,它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道,使得外网可以访问本地的计算机服务.简单来说,就是可以使用ngrok实现内网穿透,做到外网访问本地资源,可以用来临时调试网站,微信小程序.</h4><p>ngrok是开源的,我们可以去github上下载它的源码,在自己的外网服务器上搭建一个这样的服务.<br>源码地址: <a href="https://github.com/inconshreveable/ngrok" target="_blank" rel="external">https://github.com/inconshreveable/ngrok</a><br>下面,就开始搭建ngrok服务</p>
+<h4 id="ngrok是一个反向代理-它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道-使得外网可以访问本地的计算机服务-简单来说-就是可以使用ngrok实现内网穿透-做到外网访问本地资源-可以用来临时调试网站-微信小程序"><a href="#ngrok是一个反向代理-它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道-使得外网可以访问本地的计算机服务-简单来说-就是可以使用ngrok实现内网穿透-做到外网访问本地资源-可以用来临时调试网站-微信小程序" class="headerlink" title="ngrok是一个反向代理,它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道,使得外网可以访问本地的计算机服务.简单来说,就是可以使用ngrok实现内网穿透,做到外网访问本地资源,可以用来临时调试网站,微信小程序."></a>ngrok是一个反向代理,它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道,使得外网可以访问本地的计算机服务.简单来说,就是可以使用ngrok实现内网穿透,做到外网访问本地资源,可以用来临时调试网站,微信小程序.</h4><p>ngrok是开源的,我们可以去github上下载它的源码,在自己的外网服务器上搭建一个这样的服务.<br>源码地址: <a href="https://github.com/inconshreveable/ngrok" target="_blank" rel="external">https://github.com/inconshreveable/ngrok</a><br>下面,就开始搭建ngrok服务<br><a id="more"></a></p>
 <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ol>
 <li>一台有公网ip的服务器(我用的是搬瓦工的vps,便宜大碗还有不可描述的作用)</li>
 <li>服务器安装Linux64 位操作系统</li>
@@ -449,6 +449,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
@@ -458,10 +462,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">项目</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -501,6 +501,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">防火墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
               </li>
              
@@ -529,7 +537,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,10 +546,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Gradle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
             
             <div class="clearfix"></div>

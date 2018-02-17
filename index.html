@@ -179,33 +179,10 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <p>官网地址:<a href="http://ngrok.com" target="_blank" rel="external">http://ngrok.com/</a></p>
-<h4 id="ngrok是一个反向代理-它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道-使得外网可以访问本地的计算机服务-简单来说-就是可以使用ngrok实现内网穿透-做到外网访问本地资源-可以用来临时调试网站-微信小程序"><a href="#ngrok是一个反向代理-它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道-使得外网可以访问本地的计算机服务-简单来说-就是可以使用ngrok实现内网穿透-做到外网访问本地资源-可以用来临时调试网站-微信小程序" class="headerlink" title="ngrok是一个反向代理,它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道,使得外网可以访问本地的计算机服务.简单来说,就是可以使用ngrok实现内网穿透,做到外网访问本地资源,可以用来临时调试网站,微信小程序."></a>ngrok是一个反向代理,它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道,使得外网可以访问本地的计算机服务.简单来说,就是可以使用ngrok实现内网穿透,做到外网访问本地资源,可以用来临时调试网站,微信小程序.</h4><p>ngrok是开源的,我们可以去github上下载它的源码,在自己的外网服务器上搭建一个这样的服务.<br>源码地址: <a href="https://github.com/inconshreveable/ngrok" target="_blank" rel="external">https://github.com/inconshreveable/ngrok</a><br>下面,就开始搭建ngrok服务</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ol>
-<li>一台有公网ip的服务器(我用的是搬瓦工的vps,便宜大碗还有不可描述的作用)</li>
-<li>服务器安装Linux64 位操作系统</li>
-<li>ICP备案过的域名(比如domain.com,我是在阿里云上买的)</li>
-<li>准备一个二级域名(比如ngrok.domain.com)</li>
-<li>在域名解析服务器上新增两条A记录,指向服务器的公网ip<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ngrok.domain.com &gt; xxx.xxx.xxx.xxx</div><div class="line">*.ngrok.domain.com &gt; xxx.xxx.xxx.xxx  # 使用泛解析,供客户端连接</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><img src="/myimages/aliyun.png" alt="添加映射"></p>
-<h3 id="编译ngrok"><a href="#编译ngrok" class="headerlink" title="编译ngrok"></a>编译ngrok</h3><h5 id="最好本地主机上有一个linux系统-编译起来更方便点-以Ubuntu系统为例"><a href="#最好本地主机上有一个linux系统-编译起来更方便点-以Ubuntu系统为例" class="headerlink" title="最好本地主机上有一个linux系统,编译起来更方便点,以Ubuntu系统为例."></a>最好本地主机上有一个linux系统,编译起来更方便点,以Ubuntu系统为例.</h5><h4 id="1-安装go语言环境"><a href="#1-安装go语言环境" class="headerlink" title="1. 安装go语言环境"></a>1. 安装go语言环境</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt install golang</div></pre></td></tr></table></figure>
-<p>安装好之后设置go环境变量,在 ~/.bash_profile 或 ~/.zshrc 文件添加如下代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export GOPATH=$HOME/go</div><div class="line">PATH=$PATH:$HOME/.local/bin:$HOME/bin:$GOPATH/bin</div></pre></td></tr></table></figure></p>
-<p>保存后,重新加载配置文件<code>source ~/.zshrc</code><br>执行完成后,<figure class="highlight plain"><figcaption><span>$GOPATH```可查看go路径,或通过go env查看</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#### 2. 安装git</div><div class="line">在ubuntu终端执行</div></pre></td></tr></table></figure></p>
-<p>sudo apt install git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果是其它系统,可自行搜索方法,不过git版本要求1.8+</div><div class="line">#### 3. 获取ngrok源码</div></pre></td></tr></table></figure></p>
-<p>$ git clone <a href="https://github.com/inconshreveable/ngrok.git" target="_blank" rel="external">https://github.com/inconshreveable/ngrok.git</a> ngrok<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#### 4. 编译ngrok服务端和客户端</div></pre></td></tr></table></figure></p>
-<p>$ cd ngrok<br>$ openssl genrsa -out rootCA.key 2048<br>$ openssl req -x509 -new -nodes -key rootCA.key -subj “/CN=ngrok.domain.com” -days 5000 -out rootCA.pem<br>$ openssl genrsa -out device.key 2048<br>$ openssl req -new -key device.key -subj “/CN=ngrok.domain.com” -out device.csr<br>$ openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">##### 在编译生成服务端和客户端之前,需要把生成的证书分别替换到相应目录中</div></pre></td></tr></table></figure></p>
-<p>$ cp rootCA.pem assets/client/tls/ngrokroot.crt<br>$ cp device.crt assets/server/tls/snakeoil.crt<br>$ cp device.key assets/server/tls/snakeoil.key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">接下来就是编译生成服务端和客户端了</div></pre></td></tr></table></figure></p>
-<p>$ make release-server release-client<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">如果一切正常,ngrok/bin目录下应该就有ngrok,ngrokd两个可执行文件</div><div class="line">#### 5. 服务端</div><div class="line">将生成的ngrokd放入云服务器,启动命令</div></pre></td></tr></table></figure></p>
-<p>ngrokd -domain=”ngrok.domain.com” -httpAddr=”:80” -httpsAddr=”:443”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">先在ngrok服务就已经跑起来了,可以通过屏幕上的日志查看debug信息,httpAddr、httpsAddr 分别是 ngrok 用来转发 http、https 服务的端口，可以随意指定。ngrokd 还会开一个 4443 端口用来跟客户端通讯（可通过 -tunnelAddr=&quot;:xxx&quot; 指定），如果你配置了 iptables 规则，需要放行这三个端口上的 TCP 协议。</div><div class="line">ngrokd启动后,关闭命令行即关闭服务,如果需要在后台运行,则可使用screen命令执行</div></pre></td></tr></table></figure></p>
-<p>screen -S ngrokd ngrokd -domain=”ngrok.domain.com” -httpAddr=”:80” -httpsAddr=”:443”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">现在,通过http://ngrok.domain.com就可以访问到ngrok提供的转发服务</div></pre></td></tr></table></figure></p>
-<p>Tunnel ngrok.domain.com not found<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#### 6. 客户端</div><div class="line">现在可以在本地电脑上启动客户端验证成果了</div><div class="line">1. 建立ngrok配置文件:ngrok.cfg</div></pre></td></tr></table></figure></p>
-<p>server_addr: ngrok.domain.com:4443”<br>trust_host_root_certs: false<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. 运行客户端</div></pre></td></tr></table></figure></p>
-<p>$ ngrok- subdomain test -config=./ngrok.cfg 8078 # 端口可自己指定<br><code>回车后看到这样一个界面,就表示已启动成功
-![ngrok](/myimages/ngrok-cmd.png)
-在浏览器中打开</code>ngrok.domain.com<code>即可访问本地8078端口内容了
-在浏览器中输入</code>127.0.0.1:4040``` 查看页面请求情况<br>到这里,ngrok已搭建成功,测试正常</p>
-
+<h4 id="ngrok是一个反向代理-它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道-使得外网可以访问本地的计算机服务-简单来说-就是可以使用ngrok实现内网穿透-做到外网访问本地资源-可以用来临时调试网站-微信小程序"><a href="#ngrok是一个反向代理-它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道-使得外网可以访问本地的计算机服务-简单来说-就是可以使用ngrok实现内网穿透-做到外网访问本地资源-可以用来临时调试网站-微信小程序" class="headerlink" title="ngrok是一个反向代理,它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道,使得外网可以访问本地的计算机服务.简单来说,就是可以使用ngrok实现内网穿透,做到外网访问本地资源,可以用来临时调试网站,微信小程序."></a>ngrok是一个反向代理,它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道,使得外网可以访问本地的计算机服务.简单来说,就是可以使用ngrok实现内网穿透,做到外网访问本地资源,可以用来临时调试网站,微信小程序.</h4><p>ngrok是开源的,我们可以去github上下载它的源码,在自己的外网服务器上搭建一个这样的服务.<br>源码地址: <a href="https://github.com/inconshreveable/ngrok" target="_blank" rel="external">https://github.com/inconshreveable/ngrok</a><br>下面,就开始搭建ngrok服务<br>
+        
+          <a class="article-more-a" href="/2018/02/18/搭建ngrok服务/#more">more >></a>
+        
       
 
       
@@ -320,6 +297,101 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/02/17/python中wordcloud的基本用法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-centos6查看防火墙" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/17/centos6查看防火墙/">centos6查看开放端口,防火墙关闭打开</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/17/centos6查看防火墙/" class="archive-article-date">
+  	<time datetime="2018-02-17T02:22:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为了给vps映射端口,特地记录一下防火墙规则<br>如要开放80，43，4443 端口，输入以下命令即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT</div><div class="line">/sbin/iptables -I INPUT -p tcp --dport 22 -j ACCEPT</div><div class="line">/sbin/iptables -I INPUT -p tcp --dport 8080 -j ACCEPT</div></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2018/02/17/centos6查看防火墙/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">防火墙</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/17/centos6查看防火墙/">展开全文 >></a>
         </p>
       
 
@@ -726,83 +798,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-python解决网站的反爬虫策略" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/15/python解决网站的反爬虫策略/">python解决网站的反爬虫策略</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/15/python解决网站的反爬虫策略/" class="archive-article-date">
-  	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="网站的反爬虫策略"><a href="#网站的反爬虫策略" class="headerlink" title="网站的反爬虫策略:"></a>网站的反爬虫策略:</h4><ul>
-<li><p>一般网站从三个方面反爬虫：用户请求的Headers，用户行为，网站目录和数据加载方式。前两种比较容易遇到，大多数网站都从这些角度来反爬虫。第三种一些应用ajax的网站会采用，这样增大了爬取的难度（防止静态爬虫使用ajax技术动态加载页面）。</p>
-        
-          <a class="article-more-a" href="/2017/11/15/python解决网站的反爬虫策略/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/15/python解决网站的反爬虫策略/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Ubuntu生存指南" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -855,95 +850,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/11/15/Ubuntu生存指南/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-win10和linux双系统的正确引导" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/15/win10和linux双系统的正确引导/">window10和linux双系统开机无法正常引导Linux的解决办法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/15/win10和linux双系统的正确引导/" class="archive-article-date">
-  	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>由于bios启动会对windows的efi文件进行保护,所以导致开机后不能正常引导linux的grub,所以只有通过修改windows的efi文件解决了.</p>
-<ol>
-<li><p>第一步</p>
-<p>用linux系统的grubx64.efi文件去替换Microsoft/Boot/里面的bootmgfw.efi文件,原bootmgfw.efi保留重命名为bootmgfw.efi.old,方便从grub中启动win10,不过如果你不用win10了的话,下面的步骤就不用看了:)</p>
-</li>
-<li><p>第二步</p>
-<p>在/etc/grup.d/40_custom文件中手动添加启动文件,也就是之前的bootmgfw.efi.old,格式如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">menuentry <span class="string">"win 10"</span>&#123;</div><div class="line">  set root=<span class="string">'(hd0,gpt2)'</span></div><div class="line">  chainloader /EFI/Microsoft/Boot/bootmgfw.efi.old</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>hd0值的是sda,也就是第一块硬盘,如果是sdb的话应该改为hd1,sdc也就是hd2,以此类推,gpt2对应sda2或者sdb2,这两个需要你根据自己的硬盘分配来写,用lsdk命令可以查看.</p>
-</li>
-<li><p>第三步</p>
-<p>上述两步修改完之后,在终端运行即可.</p>
-<p><code>sudo update-grub</code></p>
-<p>​</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/15/win10和linux双系统的正确引导/">展开全文 >></a>
         </p>
       
 
@@ -1066,9 +972,98 @@ var _hmt = _hmt || [];
 
 
   
+    <article id="post-win10和linux双系统的正确引导" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/15/win10和linux双系统的正确引导/">window10和linux双系统开机无法正常引导Linux的解决办法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/15/win10和linux双系统的正确引导/" class="archive-article-date">
+  	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于bios启动会对windows的efi文件进行保护,所以导致开机后不能正常引导linux的grub,所以只有通过修改windows的efi文件解决了.</p>
+<ol>
+<li><p>第一步</p>
+<p>用linux系统的grubx64.efi文件去替换Microsoft/Boot/里面的bootmgfw.efi文件,原bootmgfw.efi保留重命名为bootmgfw.efi.old,方便从grub中启动win10,不过如果你不用win10了的话,下面的步骤就不用看了:)</p>
+</li>
+<li><p>第二步</p>
+<p>在/etc/grup.d/40_custom文件中手动添加启动文件,也就是之前的bootmgfw.efi.old,格式如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">menuentry <span class="string">"win 10"</span>&#123;</div><div class="line">  set root=<span class="string">'(hd0,gpt2)'</span></div><div class="line">  chainloader /EFI/Microsoft/Boot/bootmgfw.efi.old</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>hd0值的是sda,也就是第一块硬盘,如果是sdb的话应该改为hd1,sdc也就是hd2,以此类推,gpt2对应sda2或者sdb2,这两个需要你根据自己的硬盘分配来写,用lsdk命令可以查看.</p>
+</li>
+<li><p>第三步</p>
+<p>上述两步修改完之后,在终端运行即可.</p>
+<p><code>sudo update-grub</code></p>
+<p>​</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/15/win10和linux双系统的正确引导/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1179,6 +1174,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
@@ -1188,10 +1187,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">项目</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1231,6 +1226,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">防火墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
               </li>
              
@@ -1259,7 +1262,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1268,10 +1271,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Gradle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
             
             <div class="clearfix"></div>
