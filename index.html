@@ -158,6 +158,197 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-搭建ngrok服务" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/18/搭建ngrok服务/">搭建ngrok服务,实现内网穿透</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/18/搭建ngrok服务/" class="archive-article-date">
+  	<time datetime="2018-02-18T14:26:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>官网地址:<a href="http://ngrok.com" target="_blank" rel="external">http://ngrok.com/</a></p>
+<h4 id="ngrok是一个反向代理-它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道-使得外网可以访问本地的计算机服务-简单来说-就是可以使用ngrok实现内网穿透-做到外网访问本地资源-可以用来临时调试网站-微信小程序"><a href="#ngrok是一个反向代理-它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道-使得外网可以访问本地的计算机服务-简单来说-就是可以使用ngrok实现内网穿透-做到外网访问本地资源-可以用来临时调试网站-微信小程序" class="headerlink" title="ngrok是一个反向代理,它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道,使得外网可以访问本地的计算机服务.简单来说,就是可以使用ngrok实现内网穿透,做到外网访问本地资源,可以用来临时调试网站,微信小程序."></a>ngrok是一个反向代理,它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道,使得外网可以访问本地的计算机服务.简单来说,就是可以使用ngrok实现内网穿透,做到外网访问本地资源,可以用来临时调试网站,微信小程序.</h4><p>ngrok是开源的,我们可以去github上下载它的源码,在自己的外网服务器上搭建一个这样的服务.<br>源码地址: <a href="https://github.com/inconshreveable/ngrok" target="_blank" rel="external">https://github.com/inconshreveable/ngrok</a><br>下面,就开始搭建ngrok服务</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ol>
+<li>一台有公网ip的服务器(我用的是搬瓦工的vps,便宜大碗还有不可描述的作用)</li>
+<li>服务器安装Linux64 位操作系统</li>
+<li>ICP备案过的域名(比如domain.com,我是在阿里云上买的)</li>
+<li>准备一个二级域名(比如ngrok.domain.com)</li>
+<li>在域名解析服务器上新增两条A记录,指向服务器的公网ip<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ngrok.domain.com &gt; xxx.xxx.xxx.xxx</div><div class="line">*.ngrok.domain.com &gt; xxx.xxx.xxx.xxx  # 使用泛解析,供客户端连接</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/myimages/aliyun.png" alt="添加映射"></p>
+<h3 id="编译ngrok"><a href="#编译ngrok" class="headerlink" title="编译ngrok"></a>编译ngrok</h3><h5 id="最好本地主机上有一个linux系统-编译起来更方便点-以Ubuntu系统为例"><a href="#最好本地主机上有一个linux系统-编译起来更方便点-以Ubuntu系统为例" class="headerlink" title="最好本地主机上有一个linux系统,编译起来更方便点,以Ubuntu系统为例."></a>最好本地主机上有一个linux系统,编译起来更方便点,以Ubuntu系统为例.</h5><h4 id="1-安装go语言环境"><a href="#1-安装go语言环境" class="headerlink" title="1. 安装go语言环境"></a>1. 安装go语言环境</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt install golang</div></pre></td></tr></table></figure>
+<p>安装好之后设置go环境变量,在 ~/.bash_profile 或 ~/.zshrc 文件添加如下代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export GOPATH=$HOME/go</div><div class="line">PATH=$PATH:$HOME/.local/bin:$HOME/bin:$GOPATH/bin</div></pre></td></tr></table></figure></p>
+<p>保存后,重新加载配置文件<code>source ~/.zshrc</code><br>执行完成后,<figure class="highlight plain"><figcaption><span>$GOPATH```可查看go路径,或通过go env查看</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#### 2. 安装git</div><div class="line">在ubuntu终端执行</div></pre></td></tr></table></figure></p>
+<p>sudo apt install git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果是其它系统,可自行搜索方法,不过git版本要求1.8+</div><div class="line">#### 3. 获取ngrok源码</div></pre></td></tr></table></figure></p>
+<p>$ git clone <a href="https://github.com/inconshreveable/ngrok.git" target="_blank" rel="external">https://github.com/inconshreveable/ngrok.git</a> ngrok<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#### 4. 编译ngrok服务端和客户端</div></pre></td></tr></table></figure></p>
+<p>$ cd ngrok<br>$ openssl genrsa -out rootCA.key 2048<br>$ openssl req -x509 -new -nodes -key rootCA.key -subj “/CN=ngrok.domain.com” -days 5000 -out rootCA.pem<br>$ openssl genrsa -out device.key 2048<br>$ openssl req -new -key device.key -subj “/CN=ngrok.domain.com” -out device.csr<br>$ openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">##### 在编译生成服务端和客户端之前,需要把生成的证书分别替换到相应目录中</div></pre></td></tr></table></figure></p>
+<p>$ cp rootCA.pem assets/client/tls/ngrokroot.crt<br>$ cp device.crt assets/server/tls/snakeoil.crt<br>$ cp device.key assets/server/tls/snakeoil.key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">接下来就是编译生成服务端和客户端了</div></pre></td></tr></table></figure></p>
+<p>$ make release-server release-client<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">如果一切正常,ngrok/bin目录下应该就有ngrok,ngrokd两个可执行文件</div><div class="line">#### 5. 服务端</div><div class="line">将生成的ngrokd放入云服务器,启动命令</div></pre></td></tr></table></figure></p>
+<p>ngrokd -domain=”ngrok.domain.com” -httpAddr=”:80” -httpsAddr=”:443”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">先在ngrok服务就已经跑起来了,可以通过屏幕上的日志查看debug信息,httpAddr、httpsAddr 分别是 ngrok 用来转发 http、https 服务的端口，可以随意指定。ngrokd 还会开一个 4443 端口用来跟客户端通讯（可通过 -tunnelAddr=&quot;:xxx&quot; 指定），如果你配置了 iptables 规则，需要放行这三个端口上的 TCP 协议。</div><div class="line">ngrokd启动后,关闭命令行即关闭服务,如果需要在后台运行,则可使用screen命令执行</div></pre></td></tr></table></figure></p>
+<p>screen -S ngrokd ngrokd -domain=”ngrok.domain.com” -httpAddr=”:80” -httpsAddr=”:443”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">现在,通过http://ngrok.domain.com就可以访问到ngrok提供的转发服务</div></pre></td></tr></table></figure></p>
+<p>Tunnel ngrok.domain.com not found<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#### 6. 客户端</div><div class="line">现在可以在本地电脑上启动客户端验证成果了</div><div class="line">1. 建立ngrok配置文件:ngrok.cfg</div></pre></td></tr></table></figure></p>
+<p>server_addr: ngrok.domain.com:4443”<br>trust_host_root_certs: false<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. 运行客户端</div></pre></td></tr></table></figure></p>
+<p>$ ngrok- subdomain test -config=./ngrok.cfg 8078 # 端口可自己指定<br><code>回车后看到这样一个界面,就表示已启动成功
+![ngrok](/myimages/ngrok-cmd.png)
+在浏览器中打开</code>ngrok.domain.com<code>即可访问本地8078端口内容了
+在浏览器中输入</code>127.0.0.1:4040``` 查看页面请求情况<br>到这里,ngrok已搭建成功,测试正常</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Ubuntu//" class="article-tag-list-link color2">Ubuntu</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/18/搭建ngrok服务/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python中wordcloud的基本用法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/17/python中wordcloud的基本用法/">Python中wordcloud的用法</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/17/python中wordcloud的基本用法/" class="archive-article-date">
+  	<time datetime="2018-02-17T14:46:25.226Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="wordcloud包的基本用法"><a href="#wordcloud包的基本用法" class="headerlink" title="wordcloud包的基本用法"></a>wordcloud包的基本用法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class wordcloud.WordCloud(font_path=None, width=400, height=200, margin=2, ranks_only=None, prefer_horizontal=0.9,mask=None, scale=1, color_func=None, max_words=200, min_font_size=4, stopwords=None, random_state=None,background_color=&apos;black&apos;, max_font_size=None, font_step=1, mode=&apos;RGB&apos;, relative_scaling=0.5, regexp=None, collocations=True,colormap=None, normalize_plurals=True)</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2018/02/17/python中wordcloud的基本用法/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/17/python中wordcloud的基本用法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-jupyter notebook添加kernel踩坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -535,19 +726,19 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Struts2相关" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python解决网站的反爬虫策略" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/15/Struts2相关/">Struts2相关</a>
+      <a class="article-title" href="/2017/11/15/python解决网站的反爬虫策略/">python解决网站的反爬虫策略</a>
     </h1>
   
 
         
-        <a href="/2017/11/15/Struts2相关/" class="archive-article-date">
+        <a href="/2017/11/15/python解决网站的反爬虫策略/" class="archive-article-date">
   	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
 </a>
         
@@ -555,12 +746,11 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="struts2不同版本中web-xml过滤器的配置"><a href="#struts2不同版本中web-xml过滤器的配置" class="headerlink" title="struts2不同版本中web.xml过滤器的配置"></a>struts2不同版本中web.xml过滤器的配置</h5><ol>
-<li><p>FilterDispatcher是struts2.0.x到2.1.2版本的核心过滤器,配置如下:</p>
-<p>​</p>
-</li>
-</ol>
-
+        <h4 id="网站的反爬虫策略"><a href="#网站的反爬虫策略" class="headerlink" title="网站的反爬虫策略:"></a>网站的反爬虫策略:</h4><ul>
+<li><p>一般网站从三个方面反爬虫：用户请求的Headers，用户行为，网站目录和数据加载方式。前两种比较容易遇到，大多数网站都从这些角度来反爬虫。第三种一些应用ajax的网站会采用，这样增大了爬取的难度（防止静态爬虫使用ajax技术动态加载页面）。</p>
+        
+          <a class="article-more-a" href="/2017/11/15/python解决网站的反爬虫策略/#more">more >></a>
+        
       
 
       
@@ -568,28 +758,13 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">struts2</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Java//" class="article-tag-list-link color5">Java</a>
+        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -598,7 +773,88 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/15/Struts2相关/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/11/15/python解决网站的反爬虫策略/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Ubuntu生存指南" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/15/Ubuntu生存指南/">Ubuntu生存指南</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/15/Ubuntu生存指南/" class="archive-article-date">
+  	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="切换开关机动画"><a href="#切换开关机动画" class="headerlink" title="切换开关机动画"></a>切换开关机动画</h5><p><code>sudo update-alternatives --config default.plymouth</code></p>
+<p>#####增加ubuntu对python3中tkinter的支持</p>
+<p><code>sudo apt-get install python3-tk</code></p>
+<h5 id="安装快照-snapd"><a href="#安装快照-snapd" class="headerlink" title="安装快照 snapd"></a>安装快照 snapd</h5><p><code>sudo apt install snapd</code>   <!-- 最好不要安装 --> </p>
+<h5 id="使软件开机启动"><a href="#使软件开机启动" class="headerlink" title="使软件开机启动"></a>使软件开机启动</h5><blockquote>
+<p>生成该软件的桌面图标,然后把桌面图标拖到 /etc/xdg/autostart 里面即可<br>
+        
+          <a class="article-more-a" href="/2017/11/15/Ubuntu生存指南/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Ubuntu//" class="article-tag-list-link color2">Ubuntu</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/15/Ubuntu生存指南/">展开全文 >></a>
         </p>
       
 
@@ -717,19 +973,19 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Java中的反射机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Struts2相关" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/15/Java中的反射机制/">Java中的反射机制</a>
+      <a class="article-title" href="/2017/11/15/Struts2相关/">Struts2相关</a>
     </h1>
   
 
         
-        <a href="/2017/11/15/Java中的反射机制/" class="archive-article-date">
+        <a href="/2017/11/15/Struts2相关/" class="archive-article-date">
   	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
 </a>
         
@@ -737,12 +993,12 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="什么是反射？"><a href="#什么是反射？" class="headerlink" title="什么是反射？"></a>什么是反射？</h3><blockquote>
-<p>一个对象或者类获得自身的Class对象的过程称为反射。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2017/11/15/Java中的反射机制/#more">more >></a>
-        
+        <h5 id="struts2不同版本中web-xml过滤器的配置"><a href="#struts2不同版本中web-xml过滤器的配置" class="headerlink" title="struts2不同版本中web.xml过滤器的配置"></a>struts2不同版本中web.xml过滤器的配置</h5><ol>
+<li><p>FilterDispatcher是struts2.0.x到2.1.2版本的核心过滤器,配置如下:</p>
+<p>​</p>
+</li>
+</ol>
+
       
 
       
@@ -755,11 +1011,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">struts2</a>
         		</li>
       		
 		</ul>
@@ -780,241 +1036,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/15/Java中的反射机制/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Ubuntu生存指南" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/15/Ubuntu生存指南/">Ubuntu生存指南</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/15/Ubuntu生存指南/" class="archive-article-date">
-  	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="切换开关机动画"><a href="#切换开关机动画" class="headerlink" title="切换开关机动画"></a>切换开关机动画</h5><p><code>sudo update-alternatives --config default.plymouth</code></p>
-<p>#####增加ubuntu对python3中tkinter的支持</p>
-<p><code>sudo apt-get install python3-tk</code></p>
-<h5 id="安装快照-snapd"><a href="#安装快照-snapd" class="headerlink" title="安装快照 snapd"></a>安装快照 snapd</h5><p><code>sudo apt install snapd</code>   <!-- 最好不要安装 --> </p>
-<h5 id="使软件开机启动"><a href="#使软件开机启动" class="headerlink" title="使软件开机启动"></a>使软件开机启动</h5><blockquote>
-<p>生成该软件的桌面图标,然后把桌面图标拖到 /etc/xdg/autostart 里面即可<br>
-        
-          <a class="article-more-a" href="/2017/11/15/Ubuntu生存指南/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Ubuntu//" class="article-tag-list-link color2">Ubuntu</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/15/Ubuntu生存指南/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python解决网站的反爬虫策略" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/15/python解决网站的反爬虫策略/">python解决网站的反爬虫策略</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/15/python解决网站的反爬虫策略/" class="archive-article-date">
-  	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="网站的反爬虫策略"><a href="#网站的反爬虫策略" class="headerlink" title="网站的反爬虫策略:"></a>网站的反爬虫策略:</h4><ul>
-<li><p>一般网站从三个方面反爬虫：用户请求的Headers，用户行为，网站目录和数据加载方式。前两种比较容易遇到，大多数网站都从这些角度来反爬虫。第三种一些应用ajax的网站会采用，这样增大了爬取的难度（防止静态爬虫使用ajax技术动态加载页面）。</p>
-        
-          <a class="article-more-a" href="/2017/11/15/python解决网站的反爬虫策略/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/15/python解决网站的反爬虫策略/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python中wordcloud的基本用法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/15/python中wordcloud的基本用法/">Python中wordcloud的用法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/15/python中wordcloud的基本用法/" class="archive-article-date">
-  	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="wordcloud包的基本用法"><a href="#wordcloud包的基本用法" class="headerlink" title="wordcloud包的基本用法"></a>wordcloud包的基本用法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class wordcloud.WordCloud(font_path=None, width=400, height=200, margin=2, ranks_only=None, prefer_horizontal=0.9,mask=None, scale=1, color_func=None, max_words=200, min_font_size=4, stopwords=None, random_state=None,background_color=&apos;black&apos;, max_font_size=None, font_step=1, mode=&apos;RGB&apos;, relative_scaling=0.5, regexp=None, collocations=True,colormap=None, normalize_plurals=True)</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/11/15/python中wordcloud的基本用法/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/15/python中wordcloud的基本用法/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/11/15/Struts2相关/">展开全文 >></a>
         </p>
       
 
@@ -1137,6 +1159,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">包管理工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -1201,10 +1231,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
               </li>
              
@@ -1233,6 +1259,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">项目工具</a>
               </li>
              
@@ -1242,10 +1272,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">包管理工具</a>
               </li>
             
             <div class="clearfix"></div>
