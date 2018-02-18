@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/02/17/centos6查看防火墙/index.html">
 <meta property="og:site_name" content="某人的博客">
 <meta property="og:description" content="为了给vps映射端口,特地记录一下防火墙规则如要开放80，43，4443 端口，输入以下命令即可123/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT/sbin/iptables -I INPUT -p tcp --dport 22 -j ACCEPT/sbin/iptables -I INPUT -p tcp --dport 8080 -j">
-<meta property="og:updated_time" content="2018-02-17T15:20:53.124Z">
+<meta property="og:updated_time" content="2018-02-18T00:22:07.089Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos6查看开放端口,防火墙关闭打开">
 <meta name="twitter:description" content="为了给vps映射端口,特地记录一下防火墙规则如要开放80，43，4443 端口，输入以下命令即可123/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT/sbin/iptables -I INPUT -p tcp --dport 22 -j ACCEPT/sbin/iptables -I INPUT -p tcp --dport 8080 -j">
@@ -185,7 +185,7 @@ var _hmt = _hmt || [];
 <p>关闭防火墙</p>
 <ol>
 <li>永久性生效,重启后不会复原<br>开启: chkconfig iptables on<br>关闭: chkconfig iptables off</li>
-<li>即使生效,重启后复原<br>开启： service iptables start<br>关闭： service iptables stop<br>查看防火墙状态： service iptables status</li>
+<li>即使生效,重启后复原<br>开启： service iptables start<br>关闭： service iptables stop<br>查看防火墙状态： service iptables status<br>引用自博客: <a href="https://www.cnblogs.com/eaglezb/p/6073739.html" target="_blank" rel="external">cnblog</a></li>
 </ol>
 
       
@@ -289,11 +289,11 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/02/17/python中wordcloud的基本用法/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/02/18/搭建ngrok服务/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Python中wordcloud的用法
+          搭建ngrok服务,实现内网穿透
         
       </div>
     </a>
@@ -442,10 +442,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
@@ -470,11 +466,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">防火墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">struts2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -490,23 +506,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">idea</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">防火墙</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
+                <a href="javascript:void(0)" class="js-tag color4">struts2,javaee,web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,7 +522,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">struts2,javaee,web</a>
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -158,19 +158,19 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-python解决网站的反爬虫策略" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-win10和linux双系统的正确引导" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/15/python解决网站的反爬虫策略/">python解决网站的反爬虫策略</a>
+      <a class="article-title" href="/2017/11/15/win10和linux双系统的正确引导/">window10和linux双系统开机无法正常引导Linux的解决办法</a>
     </h1>
   
 
         
-        <a href="/2017/11/15/python解决网站的反爬虫策略/" class="archive-article-date">
+        <a href="/2017/11/15/win10和linux双系统的正确引导/" class="archive-article-date">
   	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
 </a>
         
@@ -178,11 +178,23 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="网站的反爬虫策略"><a href="#网站的反爬虫策略" class="headerlink" title="网站的反爬虫策略:"></a>网站的反爬虫策略:</h4><ul>
-<li><p>一般网站从三个方面反爬虫：用户请求的Headers，用户行为，网站目录和数据加载方式。前两种比较容易遇到，大多数网站都从这些角度来反爬虫。第三种一些应用ajax的网站会采用，这样增大了爬取的难度（防止静态爬虫使用ajax技术动态加载页面）。</p>
-        
-          <a class="article-more-a" href="/2017/11/15/python解决网站的反爬虫策略/#more">more >></a>
-        
+        <p>由于bios启动会对windows的efi文件进行保护,所以导致开机后不能正常引导linux的grub,所以只有通过修改windows的efi文件解决了.</p>
+<ol>
+<li><p>第一步</p>
+<p>用linux系统的grubx64.efi文件去替换Microsoft/Boot/里面的bootmgfw.efi文件,原bootmgfw.efi保留重命名为bootmgfw.efi.old,方便从grub中启动win10,不过如果你不用win10了的话,下面的步骤就不用看了:)</p>
+</li>
+<li><p>第二步</p>
+<p>在/etc/grup.d/40_custom文件中手动添加启动文件,也就是之前的bootmgfw.efi.old,格式如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">menuentry <span class="string">"win 10"</span>&#123;</div><div class="line">  set root=<span class="string">'(hd0,gpt2)'</span></div><div class="line">  chainloader /EFI/Microsoft/Boot/bootmgfw.efi.old</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>hd0值的是sda,也就是第一块硬盘,如果是sdb的话应该改为hd1,sdc也就是hd2,以此类推,gpt2对应sda2或者sdb2,这两个需要你根据自己的硬盘分配来写,用lsdk命令可以查看.</p>
+</li>
+<li><p>第三步</p>
+<p>上述两步修改完之后,在终端运行即可.</p>
+<p><code>sudo update-grub</code></p>
+<p>​</p>
+</li>
+</ol>
+
       
 
       
@@ -196,7 +208,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
+        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
         		</li>
       		
 		</ul>
@@ -205,7 +217,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/15/python解决网站的反爬虫策略/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/11/15/win10和linux双系统的正确引导/">展开全文 >></a>
         </p>
       
 
@@ -235,19 +247,19 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Java中的反射机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Struts2相关" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/15/Java中的反射机制/">Java中的反射机制</a>
+      <a class="article-title" href="/2017/11/15/Struts2相关/">Struts2相关</a>
     </h1>
   
 
         
-        <a href="/2017/11/15/Java中的反射机制/" class="archive-article-date">
+        <a href="/2017/11/15/Struts2相关/" class="archive-article-date">
   	<time datetime="2017-11-15T10:12:35.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
 </a>
         
@@ -255,12 +267,12 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="什么是反射？"><a href="#什么是反射？" class="headerlink" title="什么是反射？"></a>什么是反射？</h3><blockquote>
-<p>一个对象或者类获得自身的Class对象的过程称为反射。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2017/11/15/Java中的反射机制/#more">more >></a>
-        
+        <h5 id="struts2不同版本中web-xml过滤器的配置"><a href="#struts2不同版本中web-xml过滤器的配置" class="headerlink" title="struts2不同版本中web.xml过滤器的配置"></a>struts2不同版本中web.xml过滤器的配置</h5><ol>
+<li><p>FilterDispatcher是struts2.0.x到2.1.2版本的核心过滤器,配置如下:</p>
+<p>​</p>
+</li>
+</ol>
+
       
 
       
@@ -273,11 +285,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">struts2</a>
         		</li>
       		
 		</ul>
@@ -298,7 +310,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/15/Java中的反射机制/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/11/15/Struts2相关/">展开全文 >></a>
         </p>
       
 
@@ -1213,10 +1225,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
@@ -1241,11 +1249,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">防火墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">struts2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1261,23 +1289,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">idea</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">防火墙</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
+                <a href="javascript:void(0)" class="js-tag color4">struts2,javaee,web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1293,7 +1305,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">struts2,javaee,web</a>
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
               </li>
              
               <li class="article-tag-list-item">
