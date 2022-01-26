@@ -1,0 +1,17 @@
+name: Public Npm
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    name: 'publish npm'
+    environment: npm
+    step:
+      - uses: actions/checkout@develop
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
+          
