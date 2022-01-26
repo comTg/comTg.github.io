@@ -31,8 +31,7 @@
   .about-me {
     width: calc(100% - 260px); // 兼容 IE 10
     flex-grow: 1;
-    padding: 30px;
+    padding: 30px 100px;
     overflow-y: auto;
-    text-align: center;
   }
 </style>
