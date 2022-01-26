@@ -13,8 +13,8 @@
         </li>
       </ul>
       <ul class="left-menu">
-        <router-link :class="isBlog ? 'selected-menu':''" tag="li" :to="{name: 'BlogList'}">个人博客</router-link>
-        <router-link :class="isAboutMe ? 'selected-menu':''" tag="li" :to="{name: 'AboutMe'}">关于我</router-link>
+        <router-link :class="isBlog ? 'selected-menu':''" tag="li" :to="{name: 'BlogList'}">列表</router-link>
+        <router-link :class="isAboutMe ? 'selected-menu':''" tag="li" :to="{name: 'AboutMe'}">关于</router-link>
       </ul>
       <div v-if="showQQGroup" class="qq-group">
         <span>BGA 系列</span>
@@ -23,7 +23,7 @@
       </div>
       <div class="copyright">© {{copyright}}</div>
       <div v-if="recordNumber" class="copyright">{{recordNumber}}</div>
-      <div class="powered">
+      <div class="powered" v-if="false">
         主题 - <span
         @click="openThirdPartySite('https://github.com/bingoogolapple/bga_issue_blog')">bga_issue_blog</span>
       </div>
@@ -37,6 +37,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 100px;
     overflow-y: auto;
   }
 
@@ -53,8 +54,9 @@
       border-radius: 35px;
       cursor: pointer;
       &:hover {
-        transform: rotate(360deg);
-        transition: 1s all ease-in;
+        animation: rotate-img 10s linear infinite alternate both;
+        // transform: rotate(360deg);
+        // transition: 1s all ease-in;
       }
     }
 
@@ -169,6 +171,7 @@
   .copyright {
     flex: 0 0 20px;
     line-height: 20px;
+    padding-bottom: 20px;
   }
 
   .powered {

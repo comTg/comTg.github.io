@@ -31,6 +31,78 @@
     </div>
   </div>
 </template>
+<script>
+  import { mapGetters, mapActions } from 'vuex'
+  import Pagination from '../components/Pagination.vue'
+
+  export default {
+    name: 'blog-list',
+    data () {
+      return {
+        keyword: '',
+        totalNum: 0,
+        currentPage: 1,
+        issues: [],
+        isNoData: false
+      }
+    },
+    components: {Pagination},
+    watch: {
+      activeLabel () {
+        this.keyword = ''
+        this.totalNum = 0
+        this.currentPage = 1
+        this.getIssues()
+      }
+    },
+    computed: {
+      ...mapGetters([
+        'activeLabel',
+        'pageSize'
+      ])
+    },
+    methods: {
+      ...mapActions([
+        'updateActiveLabel'
+      ]),
+      setActiveLabel (label) {
+        this.updateActiveLabel(label)
+      },
+      searchIssues () {
+        this.currentPage = 1
+        this.getIssues()
+      },
+      handleCurrentPageChanged (val) {
+        this.currentPage = val
+        this.getIssues()
+      },
+      getIssues () {
+        this.isNoData = false
+        this.$gitHubApi.getIssues(this, {
+          label: this.activeLabel ? this.activeLabel.name : '',
+          keyword: this.keyword,
+          currentPage: this.currentPage,
+          pageSize: this.pageSize
+        }).then(response => {
+          // 加载完数据后滚动到顶部
+          if (this.$refs.issueList) {
+            this.$refs.issueList.scrollTop = 0
+          }
+          this.totalNum = response.data.total_count
+          this.issues = response.data.items
+          if (!this.issues || this.issues.length === 0) {
+            this.isNoData = true
+          }
+        })
+      }
+    },
+    mounted () {
+      this.$nextTick(() => {
+        this.getIssues()
+      })
+    }
+  }
+</script>
 <style lang="scss" scoped>
   $time-width: 150px;
 
@@ -139,74 +211,3 @@
     }
   }
 </style>
-<script>
-  import { mapGetters, mapActions } from 'vuex'
-  import Pagination from '../components/Pagination.vue'
-
-  export default {
-    data () {
-      return {
-        keyword: '',
-        totalNum: 0,
-        currentPage: 1,
-        issues: [],
-        isNoData: false
-      }
-    },
-    components: {Pagination},
-    watch: {
-      activeLabel () {
-        this.keyword = ''
-        this.totalNum = 0
-        this.currentPage = 1
-        this.getIssues()
-      }
-    },
-    computed: {
-      ...mapGetters([
-        'activeLabel',
-        'pageSize'
-      ])
-    },
-    methods: {
-      ...mapActions([
-        'updateActiveLabel'
-      ]),
-      setActiveLabel (label) {
-        this.updateActiveLabel(label)
-      },
-      searchIssues () {
-        this.currentPage = 1
-        this.getIssues()
-      },
-      handleCurrentPageChanged (val) {
-        this.currentPage = val
-        this.getIssues()
-      },
-      getIssues () {
-        this.isNoData = false
-        this.$gitHubApi.getIssues(this, {
-          label: this.activeLabel ? this.activeLabel.name : '',
-          keyword: this.keyword,
-          currentPage: this.currentPage,
-          pageSize: this.pageSize
-        }).then(response => {
-          // 加载完数据后滚动到顶部
-          if (this.$refs.issueList) {
-            this.$refs.issueList.scrollTop = 0
-          }
-          this.totalNum = response.data.total_count
-          this.issues = response.data.items
-          if (!this.issues || this.issues.length === 0) {
-            this.isNoData = true
-          }
-        })
-      }
-    },
-    mounted () {
-      this.$nextTick(() => {
-        this.getIssues()
-      })
-    }
-  }
-</script>

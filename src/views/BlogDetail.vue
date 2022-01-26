@@ -19,63 +19,13 @@
     </div>
   </div>
 </template>
-<style lang="scss" scoped>
-  .blog-detail-container {
-    flex-grow: 1;
-    display: flex;
-    overflow-y: auto; // 本来只在 comment-container 上添加 overflow-y: auto 就可以的，在 blog-detail-container 里也添加 overflow-y: auto 是为了兼容 Firefox 和 Android
-    flex-direction: column;
-  }
-
-  .title-container {
-    flex: 0 0 48px;
-    display: flex;
-    align-items: center;
-    background-color: #f9fafc;
-    padding: 0px 50px;
-    border-top: 1px solid #eeeeee;
-    border-bottom: 1px solid #eeeeee;
-    .title {
-      font-size: 22px;
-      color: #4b595f;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    ul {
-      list-style: none;
-      display: flex;
-      flex: 1 0 auto;
-      margin: 0 30px;
-    }
-    .back {
-      flex: 0 0 65px;
-      font-size: 14px;
-      color: #4b595f;
-      margin-right: 30px;
-      cursor: pointer;
-      img {
-        display: inline-block;
-        margin-right: 10px;
-        width: 18px;
-        height: 12px;
-        object-fit: contain;
-      }
-    }
-  }
-
-  .comment-container {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 0px 50px;
-  }
-</style>
 <script>
   import { mapActions } from 'vuex'
   import Comment from '../components/Comment.vue'
   import AddComment from '../components/AddComment.vue'
 
   export default{
+    name: 'blog-detail',
     data () {
       return {
         issue: null,
@@ -142,3 +92,54 @@
     }
   }
 </script>
+<style lang="scss" scoped>
+  .blog-detail-container {
+    flex-grow: 1;
+    display: flex;
+    overflow-y: auto; // 本来只在 comment-container 上添加 overflow-y: auto 就可以的，在 blog-detail-container 里也添加 overflow-y: auto 是为了兼容 Firefox 和 Android
+    flex-direction: column;
+  }
+
+  .title-container {
+    flex: 0 0 48px;
+    display: flex;
+    align-items: center;
+    background-color: #f9fafc;
+    padding: 0px 50px;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    .title {
+      font-size: 22px;
+      color: #4b595f;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    ul {
+      list-style: none;
+      display: flex;
+      flex: 1 0 auto;
+      margin: 0 30px;
+    }
+    .back {
+      flex: 0 0 65px;
+      font-size: 14px;
+      color: #4b595f;
+      margin-right: 30px;
+      cursor: pointer;
+      img {
+        display: inline-block;
+        margin-right: 10px;
+        width: 18px;
+        height: 12px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .comment-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0px 50px;
+  }
+</style>

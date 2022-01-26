@@ -23,6 +23,8 @@ import App from './App'
 import store from './store'
 import router from './router'
 import './css/main.css'
+import './css/animate-me.css'
+import 'animate.css'
 
 import { gitHubApi, isGetUserInfo, queryParse, queryStringify } from './utils'
 import { showMessage, successMessage, errorMessage, warningMessage, infoMessage } from './utils/toastUtil'

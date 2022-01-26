@@ -1,7 +1,9 @@
 <template>
   <div class="blog-container">
     <labels-list/>
-    <router-view/>
+    <keep-alive include="blog-list" exclude="blog-detail">
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
 <style lang="scss" scoped>

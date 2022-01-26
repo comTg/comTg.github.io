@@ -6,22 +6,6 @@
                   :svgType="'rocket_smoke'"/>
   </div>
 </template>
-<style lang="scss" scoped>
-  .app {
-    display: flex;
-    height: 100%;
-  }
-
-  .left-container {
-    flex: 0 0 199px;
-    border-right: 1px solid #eeeeee;
-    height: 100%;
-  }
-
-  .main-container {
-    flex-grow: 1;
-  }
-</style>
 <script>
   import LeftLayout from './components/LeftLayout.vue'
   import { mapActions } from 'vuex'
@@ -46,3 +30,22 @@
     }
   }
 </script>
+<style lang="scss" scoped>
+  .app {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    font-smooth: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .left-container {
+    border-right: 1px solid #eeeeee;
+    height: 100%;
+  }
+
+  .main-container {
+    flex-grow: 1;
+  }
+</style>
