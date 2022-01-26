@@ -2,8 +2,6 @@
   <div class="app">
     <left-layout class="left-container"/>
     <router-view class="main-container"/>
-    <bga-back-top :svgMajorColor="'#7b79e5'" :bottom="90" :right="5" :svgMinorColor="'#ba6fda'"
-                  :svgType="'rocket_smoke'"/>
   </div>
 </template>
 <script>
@@ -31,6 +29,9 @@
   }
 </script>
 <style lang="scss" scoped>
+  body {
+    overflow: hidden;
+  }
   .app {
     display: flex;
     height: 100vh;

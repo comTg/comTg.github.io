@@ -68,15 +68,15 @@ const vm = new Vue({
   components: {App}
 })
 
-let loadingInstance
+// let loadingInstance
 
 // request拦截器
 axios.interceptors.request.use((config) => {
   let isGetUserInfo = vm.$isGetUserInfo(vm, config)
   if (!isGetUserInfo) {
-    loadingInstance = Loading.service({
-      text: '拼命加载中...'
-    })
+    // loadingInstance = Loading.service({
+    //   text: '拼命加载中...'
+    // })
   }
   return config
 }, (error) => {
@@ -90,14 +90,14 @@ axios.interceptors.response.use((response) => {
     return response
   } else {
     setTimeout(() => {
-      loadingInstance.close()
+      // loadingInstance.close()
     }, 500)
     return response
   }
 }, (error) => {
   let isGetUserInfo = vm.$isGetUserInfo(vm, error.config)
   if (!isGetUserInfo) {
-    loadingInstance.close()
+    // loadingInstance.close()
 
     if (error.response) {
       if (error.response.status === 401) {

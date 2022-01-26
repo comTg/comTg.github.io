@@ -109,7 +109,8 @@
   .blog-list-container {
     flex-grow: 1;
     display: flex;
-    overflow-y: auto; // 本来只在 issue-list 上添加 overflow-y: auto 就可以的，在 blog-list-container 里也添加 overflow-y: auto 是为了兼容 Firefox 和 Android
+    // overflow-y: auto; // 本来只在 issue-list 上添加 overflow-y: auto 就可以的，在 blog-list-container 里也添加 overflow-y: auto 是为了兼容 Firefox 和 Android
+    overflow: hidden;
     flex-direction: column;
   }
 

@@ -9,6 +9,7 @@
     flex-grow: 1;
     padding: 30px;
     overflow-y: auto;
+    text-align: center;
   }
 </style>
 <script>

@@ -17,6 +17,8 @@
       <comment v-for="comment in comments" :key="comment.id" :comment="comment"/>
       <add-comment :commentsUrl="issue.comments_url" @addCommentSuccess="handleAddCommentSuccess"/>
     </div>
+    <!-- <bga-back-top class="test" :svgMajorColor="'#7b79e5'" :bottom="90" :right="5" :svgMinorColor="'#ba6fda'"
+                  :svgType="'rocket_smoke'"/> -->
   </div>
 </template>
 <script>

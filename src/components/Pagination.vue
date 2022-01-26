@@ -9,6 +9,78 @@
          @click="selectPage(parseInt(page) + 1)"/>
   </div>
 </template>
+<script>
+  export default {
+    props: {
+      totalNum: {
+        type: Number,
+        required: false,
+        default: 0,
+        validator (val) {
+          return val >= 0
+        }
+      },
+      currentPage: {
+        type: Number,
+        required: false,
+        default: 1
+      },
+      pageSize: {
+        type: [Number],
+        required: false,
+        default: 10,
+        validator (val) {
+          return val >= 5
+        }
+      }
+    },
+    data () {
+      return {
+        lastCurrentPage: 1,
+        page: 1
+      }
+    },
+    computed: {
+      pageCount () {
+        if (this.totalNum === 0) {
+          return 1
+        }
+        return parseInt((this.totalNum - 1) / this.pageSize) + 1
+      }
+    },
+    methods: {
+      selectPage (newCurrentPage) {
+        this.page = newCurrentPage
+        this.handleCurrentPageChanged()
+      },
+      handleCurrentPageChanged () {
+        let newCurrentPage = parseInt(this.page)
+        if (newCurrentPage <= 0) {
+          this.page = newCurrentPage = 1
+        }
+        if (newCurrentPage > this.pageCount) {
+          this.page = newCurrentPage = this.pageCount
+        }
+        if (newCurrentPage !== this.lastCurrentPage) {
+          this.lastCurrentPage = newCurrentPage
+          this.$emit('currentPageChanged', parseInt(newCurrentPage))
+        }
+      }
+    },
+    watch: {
+      currentPage () {
+        this.lastCurrentPage = this.currentPage
+        this.page = this.currentPage
+      }
+    },
+    mounted () {
+      this.$nextTick(() => {
+        this.lastCurrentPage = this.currentPage
+        this.page = this.currentPage
+      })
+    }
+  }
+</script>
 <style lang="scss" scoped>
   .paginataion-container {
     display: flex;
@@ -85,75 +157,3 @@
     color: #4b595f;
   }
 </style>
-<script>
-  export default {
-    props: {
-      totalNum: {
-        type: Number,
-        required: false,
-        default: 0,
-        validator (val) {
-          return val >= 0
-        }
-      },
-      currentPage: {
-        type: Number,
-        required: false,
-        default: 1
-      },
-      pageSize: {
-        type: [Number],
-        required: false,
-        default: 10,
-        validator (val) {
-          return val >= 5
-        }
-      }
-    },
-    data () {
-      return {
-        lastCurrentPage: 1,
-        page: 1
-      }
-    },
-    computed: {
-      pageCount () {
-        if (this.totalNum === 0) {
-          return 1
-        }
-        return parseInt((this.totalNum - 1) / this.pageSize) + 1
-      }
-    },
-    methods: {
-      selectPage (newCurrentPage) {
-        this.page = newCurrentPage
-        this.handleCurrentPageChanged()
-      },
-      handleCurrentPageChanged () {
-        let newCurrentPage = parseInt(this.page)
-        if (newCurrentPage <= 0) {
-          this.page = newCurrentPage = 1
-        }
-        if (newCurrentPage > this.pageCount) {
-          this.page = newCurrentPage = this.pageCount
-        }
-        if (newCurrentPage !== this.lastCurrentPage) {
-          this.lastCurrentPage = newCurrentPage
-          this.$emit('currentPageChanged', parseInt(newCurrentPage))
-        }
-      }
-    },
-    watch: {
-      currentPage () {
-        this.lastCurrentPage = this.currentPage
-        this.page = this.currentPage
-      }
-    },
-    mounted () {
-      this.$nextTick(() => {
-        this.lastCurrentPage = this.currentPage
-        this.page = this.currentPage
-      })
-    }
-  }
-</script>
