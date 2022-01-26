@@ -23,6 +23,14 @@
       <div></div>
       <span>该分类下还没有文章哦</span>
     </div>
+    <div v-show="loading" class="loader-container">
+      <div  class="loader-custom loader loader-7">
+        <div class="line line1"></div>
+        <div class="line line2"></div>
+        <div class="line line3"></div>
+      </div>
+    </div>
+
     <div class="bottom-bar">
       <input type="text" class="fl query" v-model="keyword" placeholder="按文章标题或内容搜索..."
              @keyup.enter="searchIssues()"/>
@@ -43,7 +51,8 @@
         totalNum: 0,
         currentPage: 1,
         issues: [],
-        isNoData: false
+        isNoData: false,
+        loading: false
       }
     },
     components: {Pagination},
@@ -78,6 +87,8 @@
       },
       getIssues () {
         this.isNoData = false
+        this.issues = []
+        this.loading = true
         this.$gitHubApi.getIssues(this, {
           label: this.activeLabel ? this.activeLabel.name : '',
           keyword: this.keyword,
@@ -93,11 +104,15 @@
           if (!this.issues || this.issues.length === 0) {
             this.isNoData = true
           }
+          this.loading = false
+        }).catch(() => {
+          this.loading = false
         })
       }
     },
     mounted () {
       this.$nextTick(() => {
+        document.title = '醉后不知天在水'
         this.getIssues()
       })
     }
@@ -187,6 +202,12 @@
       font-size: 14px;
     }
   }
+  .loader-container {
+    flex-grow: 1;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .bottom-bar {
     flex: 0 0 69px;
@@ -211,4 +232,5 @@
       color: #849aa4;
     }
   }
+
 </style>

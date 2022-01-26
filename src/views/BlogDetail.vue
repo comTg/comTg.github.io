@@ -86,6 +86,7 @@
     mounted () {
       this.$nextTick(() => {
         if (this.issue) {
+          document.title = this.issue.title
           this.getComments()
         } else {
           this.getIssue()

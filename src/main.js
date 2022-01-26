@@ -23,6 +23,7 @@ import App from './App'
 import store from './store'
 import router from './router'
 import './css/main.css'
+import './css/loading.css'
 import './css/animate-me.css'
 import 'animate.css'
 
